@@ -1,0 +1,1456 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Japan Trip 2026</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Japan Trip">
+<meta name="theme-color" content="#f3ddd4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#241412" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700;800;900&amp;display=swap">
+<!-- Yusei Magic, only the characters the sound-effect words and month accents use (tiny download):
+     スゴイワクヤッタキラドネー12月 — add any new character here too -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yusei+Magic&amp;text=%E3%82%B9%E3%82%B4%E3%82%A4%E3%83%AF%E3%82%AF%E3%83%A4%E3%83%83%E3%82%BF%E3%82%AD%E3%83%A9%E3%83%89%E3%83%8D%E3%83%BC12%E6%9C%88&amp;display=swap">
+
+<style>
+  /* ---------- Colour tokens (light) ---------- */
+  :root {
+    --paper: #f3ddd4;        /* page background: warm persimmon-tinted paper */
+    --wash-a: #e5ab98;       /* red washes behind the page */
+    --wash-b: #f0c79f;
+    --card: #fffaf5;
+    --ink: #2e1c1a;          /* main text + drawn lines */
+    --ink-soft: #6b4d48;
+    --line: #d6ada0;
+    --accent: #a8321f;       /* torii red: buttons */
+    --usj: #a8321f;          /* group 1 colour */
+    --md: #2f4a6b;           /* group 2 colour: indigo */
+    --md-wash: #dbe4ee;
+    --sun: #e3a129;
+    --sun-wash: #fae6b8;
+    --day-1: #c9e0ea; --day-2: #edf1e9;       /* postcard sky: top and bottom colour per time of day */
+    --morn-1: #f3c2c0; --morn-2: #fde9c8;
+    --dusk-1: #e88f5e; --dusk-2: #f4bd7a;
+    --night-1: #121831; --night-2: #2b3258;
+    --moon: #f4f0dc;
+    --window-glow: #ffcf5c;  /* warm lit windows at night */
+    --night-ink: #f5e9e3;    /* header text colour while the sky is night */
+    --bill: #e2efd8; --bill-ink: #1f5a36; --on-accent: #ffffff; --btn2: #2f4a6b; --on-btn2: #ffffff; --snow: #ffffff;   /* filled map buttons, snowflakes */
+    --glow: #2fd07a; --sparkle: #f0b400; --bill-text: #ffffff; --bill-outline: #000000;   /* Matt's banknote banner */
+    --scene-far: #a3b4c2;
+    --scene-near: #56687a;
+    --scene-hill: #c2907c;
+    --skin: #f1d3b8;         /* stick figures */
+    --hair-black: #22262b;
+    --hair-dark: #453a36;
+    --hair-brown: #5e3a22;
+    --metal: #6f7780;        /* Matt's glasses */
+    --hair-blond: #dcb65c;
+    --focus: #1f4f8a;
+    --shadow: rgba(40, 15, 10, 0.35);
+  }
+  /* ---------- Same tokens, dark values (must be in BOTH places) ---------- */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #241412; --wash-a: #4f1e17; --wash-b: #3d2613; --card: #33201d;
+      --ink: #f5e9e3; --ink-soft: #cdb0a8; --line: #6a443d;
+      --accent: #f39a80; --usj: #f39a80; --md: #a9c4e6; --md-wash: #263648;
+      --sun: #edbd5a; --sun-wash: #4d3a1a;
+      --day-1: #2f4a62; --day-2: #45606c; --morn-1: #63404a; --morn-2: #7d4f3c;
+      --dusk-1: #7c3f2c; --dusk-2: #96562e; --night-1: #0a0e20; --night-2: #1a2040;
+      --moon: #f4f0dc; --window-glow: #f6c453; --night-ink: #f5e9e3; --bill: #1c3626; --bill-ink: #a8e6bf; --on-accent: #2a0f0a; --btn2: #a9c4e6; --on-btn2: #14202e; --snow: #dfe8f2; --glow: #3ddc84; --sparkle: #fff3b0; --bill-text: #ffffff; --bill-outline: #000000; --scene-far: #263746; --scene-near: #161d26; --scene-hill: #4a2f2a;
+      --skin: #e9c9ad; --hair-black: #6b7480; --hair-dark: #8a776e; --hair-brown: #a06b45; --metal: #cfd6de; --hair-blond: #ebcb74;
+      --focus: #9cc7ff; --shadow: rgba(0, 0, 0, 0.6);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #241412; --wash-a: #4f1e17; --wash-b: #3d2613; --card: #33201d;
+    --ink: #f5e9e3; --ink-soft: #cdb0a8; --line: #6a443d;
+    --accent: #f39a80; --usj: #f39a80; --md: #a9c4e6; --md-wash: #263648;
+    --sun: #edbd5a; --sun-wash: #4d3a1a;
+    --day-1: #2f4a62; --day-2: #45606c; --morn-1: #63404a; --morn-2: #7d4f3c;
+    --dusk-1: #7c3f2c; --dusk-2: #96562e; --night-1: #0a0e20; --night-2: #1a2040;
+    --moon: #f4f0dc; --window-glow: #f6c453; --night-ink: #f5e9e3; --bill: #1c3626; --bill-ink: #a8e6bf; --on-accent: #2a0f0a; --btn2: #a9c4e6; --on-btn2: #14202e; --snow: #dfe8f2; --glow: #3ddc84; --sparkle: #fff3b0; --bill-text: #ffffff; --bill-outline: #000000; --scene-far: #263746; --scene-near: #161d26; --scene-hill: #4a2f2a;
+    --skin: #e9c9ad; --hair-black: #6b7480; --hair-dark: #8a776e; --hair-brown: #a06b45; --metal: #cfd6de; --hair-blond: #ebcb74;
+    --focus: #9cc7ff; --shadow: rgba(0, 0, 0, 0.6);
+    color-scheme: dark;
+  }
+
+  /* ---------- Base ---------- */
+  /* --s is a shrink factor for text inside the group cards only.
+     Normal: card text is 88% size. Large: back to 100%, on top of the 125% root size (so Large is unchanged). */
+  :root { --s: 0.88; }
+  :root.large { font-size: 125%; --s: 1; }   /* "Large" text: everything is sized in rem, so it all scales */
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; min-height: 100vh;
+    background:
+      radial-gradient(30rem 18rem at 0% 0%, var(--wash-a), transparent 70%),
+      radial-gradient(26rem 20rem at 100% 32rem, var(--wash-b), transparent 70%),
+      var(--paper);
+    color: var(--ink);
+    font-family: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .page {
+    max-width: 30rem;
+    margin-inline: auto;
+    /* no host wrapper on GitHub Pages, so keep clear of the notch and home bar ourselves */
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-top: calc(0.75rem + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
+    overflow-x: hidden;
+  }
+  h1, h2, h3, p, ol { margin: 0; }
+  /* Normal: shrink with the screen width (vw) so the date always fits on one line. Large: full size, may wrap. */
+  h1, .h1 { font-size: min(1.8rem, 6.5vw); white-space: nowrap; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; }
+  :root.large h1, :root.large .h1 { font-size: 1.8rem; white-space: normal; }
+  h2 { font-size: calc(1.3rem * var(--s)); font-weight: 800; line-height: 1.2; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+
+  /* ---------- Buttons and links ---------- */
+  button { font: inherit; color: inherit; cursor: pointer; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px; padding: 0.3rem 0.85rem;
+    border-radius: 0.8rem; border: 2px solid var(--ink); background: var(--card); color: var(--ink);
+    font-weight: 700; font-size: calc(0.9rem * var(--s)); text-decoration: none;
+  }
+  .btn-google { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .btn-apple { background: var(--btn2); border-color: var(--btn2); color: var(--on-btn2); }
+  .dir { margin-top: 0.6rem; }
+  .dir-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em; color: var(--ink-soft); }
+  .dir-btns { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.15rem; }
+
+  /* ---------- Matt banner: a glowing banknote that floats OVER the page (fixed), so nothing shifts ---------- */
+  .matt {
+    position: fixed; z-index: 25;
+    top: calc(1.25rem + env(safe-area-inset-top, 0px));
+    left: max(1.25rem, env(safe-area-inset-left, 0px)); right: max(1.25rem, env(safe-area-inset-right, 0px));
+    max-width: 24rem; margin-inline: auto; padding: 0;
+    background: none; border: 0; text-align: center;
+    transition: opacity 0.3s;
+  }
+  .matt.pop { animation: pop 0.45s ease-out; }
+  .matt.gone { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.5s, visibility 0s 0.5s; }
+  .bill {
+    position: relative; display: block; overflow: hidden;
+    padding: 1.7rem 2.3rem;
+    background: var(--bill); border: 6px double var(--bill-ink); border-radius: 0.4rem;
+    box-shadow: 0 0 0 3px var(--glow), 0 0 1.2rem 0.4rem var(--glow);
+    animation: glow 0.7s ease-in-out infinite alternate;
+    font-weight: 800; font-size: 1.1rem; line-height: 1.3;
+  }
+  .bill-art { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.13; }   /* faint money patterns */
+  .bill-text {   /* white letters with a black outline; paint-order draws the outline BEHIND the letters */
+    position: relative; color: var(--bill-text); font-size: 1.2rem;
+    -webkit-text-stroke: 4px var(--bill-outline); paint-order: stroke fill;
+  }
+  .corner { position: absolute; font: 800 0.8rem Georgia, "Times New Roman", serif; color: var(--bill-ink); }
+  .c1 { top: 0.2rem; left: 0.45rem; } .c2 { top: 0.2rem; right: 0.45rem; }
+  .c3 { bottom: 0.2rem; left: 0.45rem; } .c4 { bottom: 0.2rem; right: 0.45rem; }
+  .sparkle {   /* a four-point star, cut out of a coloured square */
+    position: absolute; background: var(--sparkle); pointer-events: none;
+    clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+    animation: twinkle 0.9s ease-in-out infinite;
+  }
+  @keyframes pop {
+    from { transform: scale(0.6) rotate(-6deg); }
+    60% { transform: scale(1.05) rotate(2deg); }
+    to { transform: scale(1) rotate(0); }
+  }
+  @keyframes glow {
+    from { box-shadow: 0 0 0 3px var(--glow), 0 0 0.5rem 0.1rem var(--glow); }
+    to { box-shadow: 0 0 0 3px var(--glow), 0 0 1.8rem 0.6rem var(--glow); }
+  }
+  @keyframes twinkle {
+    0%, 100% { transform: scale(0) rotate(0); }
+    50% { transform: scale(1) rotate(45deg); }
+  }
+
+  /* ---------- Control bar: Calendar | text size | Help ---------- */
+  .bar {
+    display: grid; grid-template-columns: 1fr 1fr 1.35fr;
+    border: 2px solid var(--ink); border-radius: 0.8rem; overflow: hidden; background: var(--card); color: var(--ink);
+  }
+  .bar button { min-height: 44px; min-width: 0; padding: 0.3rem 0.4rem; border: 0; border-left: 2px solid var(--ink); background: transparent; font-weight: 700; font-size: 0.875rem; line-height: 1.2; }
+  .bar button:first-child { border-left: 0; }
+  .bar button:focus-visible { outline-offset: -4px; }
+
+  /* ---------- Postcard header ---------- */
+  .postcard {
+    position: relative; overflow: hidden;
+    background: linear-gradient(var(--day-1), var(--day-2));
+    border: 2px solid var(--ink); border-radius: 1.2rem;
+  }
+  /* The postcard's top part ("stage") is layered, back to front:
+     track (the day's sky colours, stars and text: this is what slides with your finger) →
+     sun + moon (stay put, ride their own arc) →
+     landmarks + snow (stay put) → focus lines → the control bar (stays put). */
+  .stage { position: relative; overflow: hidden; touch-action: pan-y pinch-zoom; }   /* we handle sideways drags; the browser keeps vertical scroll + zoom */
+  .track { position: relative; z-index: 0; will-change: transform; }
+  .slide { position: relative; background: linear-gradient(var(--day-1), var(--day-2)); }
+  .slide.prev, .slide.next { position: absolute; top: 0; bottom: 0; width: 100%; }   /* neighbouring days wait just off-screen */
+  .slide.prev { left: -100%; }
+  .slide.next { left: 100%; }
+  .pc-top, .scene, .pc-caption { position: relative; z-index: 1; }   /* sit above the sky layers */
+  .pc-top { padding: 0.75rem 0.75rem 0; }
+  .bar-float { position: absolute; z-index: 3; top: 0.75rem; left: 0.75rem; right: 0.75rem; }
+  .bar-spacer { visibility: hidden; }   /* an invisible copy of the bar inside each slide, so the text starts below it at any text size */
+  .landmarks, .bodies { position: absolute; inset: 0; z-index: 1; pointer-events: none; }   /* .bodies = sun + moon, behind the landmarks */
+  .landmarks > svg, .bodies > svg { position: absolute; left: 0; bottom: 0; display: block; width: 100%; height: auto; }
+  .daytitle { margin-top: 0.9rem; }
+  .eyebrow { font-weight: 800; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  /* The fun day title: the hero line of the postcard. Chunky, slightly tilted, red with a pale outline
+     so it reads over every sky. Normal: one line; fitTitle() in the script shrinks long ones to fit. */
+  .funtitle {
+    margin: 0.7rem 0 0.5rem; transform: rotate(-3deg); transform-origin: left bottom;
+    font-size: min(3rem, 12.5vw); font-weight: 900; line-height: 1.1; letter-spacing: -0.01em; white-space: nowrap;
+    color: var(--accent);
+    -webkit-text-stroke: 0.14em var(--card); paint-order: stroke fill;   /* outline drawn behind the letters */
+    text-shadow: 0.06em 0.09em 0 var(--shadow);
+  }
+  :root.large .funtitle { font-size: 2.4rem; white-space: normal; overflow-wrap: anywhere; }
+  .funtitle .emoji { -webkit-text-stroke: 0; text-shadow: none; }
+  .scene > svg { display: block; width: 100%; height: auto; }
+  :root.large .scene { padding-top: 2.6rem; }   /* Large: the weather text is taller, so push the picture down */
+  .scene.multi { padding-top: 1.2rem; }        /* travel days: two cities of weather text */
+  :root.large .scene.multi { padding-top: 3.6rem; }
+  .facts { position: absolute; left: 0.75rem; right: 0.75rem; top: 0.5rem; display: flex; align-items: center; gap: 0.6rem; }
+  .facts svg { width: 3.6rem; height: 2.7rem; flex: none; }
+  .temps { font-weight: 800; font-size: 1.5rem; line-height: 1.1; }
+  .temps small { font-size: 0.95rem; font-weight: 500; }
+  .multi .temps { font-size: 1.1rem; }
+  .nw { white-space: nowrap; }
+  .pc-caption { background: var(--card); padding: 0.9rem; border-top: 2px solid var(--ink); }
+  .mum { margin-top: 0.6rem; padding: 0.6rem 0.75rem; background: var(--md-wash); border-left: 4px solid var(--md); border-radius: 0.3rem 0.8rem 0.8rem 0.3rem; }
+
+  /* Sky: the postcard background is the DAY sky. Three more skies are stacked on top, invisible until needed. */
+  .sky { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+  .sky-morning { background: linear-gradient(var(--morn-1), var(--morn-2)); }
+  .sky-dusk { background: linear-gradient(var(--dusk-1), var(--dusk-2)); }
+  .sky-night { background: linear-gradient(var(--night-1), var(--night-2)); }
+  /* Resting sky = one of four states, set from the time in Japan (see skyStateInJapan in the script). */
+  .is-morning .sky-morning, .is-dusk .sky-dusk, .is-night .sky-night { opacity: 1; }
+  /* The sun and moon are placed on their arc by the script (see arcPoint), not by CSS. */
+  .stars, .lights { opacity: 0; }   /* .lights = warm lit windows, night only */
+  .fuji { opacity: 0.5; }
+  .fuji-snow { opacity: 0.9; }
+  .is-night .fuji-snow { opacity: 0.45; }   /* dimmer snow at night */
+  .is-night .cloudsea { opacity: 0.55; }    /* air postcard: moonlit clouds, not glowing white */
+  .is-night .stars, .is-night .lights { opacity: 1; }
+  .is-night .pc-top, .is-night .facts { color: var(--night-ink); }
+
+  /* The day-change time-lapse (sky colours, stars, lights, focus lines, sun and moon) is driven by
+     one clock in the script: see skyMix, drawLapse and startLapse (the sky follows the sun). */
+
+  /* ---------- Swipeable group panels ---------- */
+  .pager { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; font-weight: 700; }
+  .dots { flex: none; }
+  .dots i { display: inline-block; width: 0.7rem; height: 0.7rem; margin-left: 0.3rem; border: 2px solid var(--ink); border-radius: 50%; }
+  .dots i.on { background: var(--ink); }
+  .panels { display: flex; align-items: flex-start; gap: 0.75rem; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; padding: 0.25rem; margin-top: 1rem; }
+  .pager + .panels { margin-top: 0; }
+  .panel { flex: 0 0 88%; min-width: 0; scroll-snap-align: start; }
+  .panels.single { touch-action: pan-y pinch-zoom; }   /* one card: a sideways drag here changes day instead */
+  .panels.single .panel { flex-basis: 100%; }
+
+  /* Stick figures peek up from behind the card: the card is pulled up over their lower half. */
+  .figs { display: flex; align-items: flex-end; gap: 0.3rem; padding-left: 0.6rem; pointer-events: none; }
+  .fig { display: flex; flex-direction: column; align-items: center; font-size: 0.8rem; font-weight: 700; min-width: 2.9rem; }
+  .fig svg { width: 2.5rem; height: 3.5rem; overflow: visible; }   /* visible: Dad's TWEET! pokes out the side */
+  .fig.child svg { width: 1.9rem; height: 2.65rem; margin-bottom: 0.45rem; }   /* lifted so half of her shows too */
+  /* 5+ people: figures shrink with the screen width so 7 fit on a 360px phone at either text size.
+     Dad is last in the row, so the right padding leaves room for his TWEET! */
+  .figs.crowd { gap: 0.15rem; padding-right: 1rem; }
+  .figs.crowd .fig { min-width: 0; flex: 0 1 auto; font-size: min(0.8rem, 3.1vw); }
+  .figs.crowd .fig svg { width: min(2.5rem, 10.5vw); height: min(3.5rem, 14.7vw); }
+  .figs.crowd .fig.child svg { width: min(1.9rem, 8vw); height: min(2.65rem, 11.2vw); margin-bottom: min(0.45rem, 1.9vw); }
+  .card {
+    position: relative; margin-top: -1.75rem;   /* half a figure's height */
+    background: var(--card); border: 3px solid var(--usj); border-radius: 1.1rem; padding: 1rem;
+    font-size: calc(1.0625rem * var(--s));
+    overflow-wrap: anywhere;
+  }
+  .figs.crowd + .card { margin-top: calc(min(3.5rem, 14.7vw) * -0.5); }
+  .card-md { border-color: var(--md); }
+
+  /* ---------- Plan items ---------- */
+  .timeline { list-style: none; padding: 0; margin-top: 0.9rem; }
+  /* Each item is two columns: a narrow rail (dot + dotted line) and the text.
+     The dot and the line are BOTH placed at left: 50% of the rail and pulled back by half their own width,
+     so they share one centre line no matter the text size or how the phone rounds pixels. */
+  .timeline li { display: grid; grid-template-columns: 1.1rem 1fr; column-gap: 0.6rem; }
+  .rail { position: relative; }
+  .dot {
+    position: absolute; left: 50%; top: 0.3rem; transform: translateX(-50%);
+    width: 0.8rem; height: 0.8rem; border: 2px solid var(--ink); border-radius: 50%; background: var(--card);
+  }
+  .line {   /* from the bottom of this dot (0.3 + 0.8rem) to the top of the next one (0.3rem into the next item) */
+    position: absolute; left: 50%; top: 1.1rem; bottom: -0.3rem; transform: translateX(-50%);
+    border-left: 2px dotted var(--ink-soft);
+  }
+  .item { min-width: 0; padding-bottom: 1.2rem; }
+  .timeline li:last-child .line { display: none; }
+  .timeline li:last-child .item { padding-bottom: 0; }
+  .time { font-weight: 800; font-size: calc(0.85rem * var(--s)); letter-spacing: 0.03em; color: var(--usj); }
+  .card-md .time { color: var(--md); }
+  .title { font-weight: 700; font-size: calc(1.12rem * var(--s)); line-height: 1.25; }
+  .note { color: var(--ink-soft); }
+  .ticket { margin-top: 0.3rem; font-weight: 700; }
+  .tips { margin-top: 1rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  .extra {   /* a small sticky note, very slightly tilted, held on with a strip of washi tape */
+    position: relative; display: inline-block; margin-top: 0.6rem; padding: 0.35rem 0.65rem;
+    background: var(--sun-wash); border-radius: 0.2rem 0.5rem 0.5rem 0.5rem; transform: rotate(-0.8deg);
+  }
+  .extra::before {   /* the tape */
+    content: ""; position: absolute; top: -0.35rem; left: 0.7rem; width: 1.7rem; height: 0.6rem;
+    background: var(--line); opacity: 0.75; transform: rotate(-5deg);
+  }
+
+  /* ---------- Meals: activities first, then this heading, then a two-column grid of meals ---------- */
+  .sep { display: flex; align-items: center; gap: 0.5rem; margin-top: 1.4rem; font-size: calc(1.15rem * var(--s)); font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+  .sep svg { width: 2.1rem; height: 1.85rem; flex: none; }
+  .sep::after { content: ""; flex: 1; border-top: 4px solid var(--ink); border-radius: 2px; }
+  .meal-name { font-weight: 800; font-size: calc(1.05rem * var(--s)); color: var(--usj); }
+  .card-md .meal-name { color: var(--md); }
+  .meal-main { font-weight: 700; line-height: 1.3; }
+  .meal-detail { font-size: calc(0.85rem * var(--s)); color: var(--ink-soft); }
+  /* tinted label column on the left, the food on the right */
+  .mgrid { margin-top: 0.6rem; border: 2px solid var(--line); border-radius: 0.8rem; overflow: hidden; }
+  .mrow { display: grid; grid-template-columns: 5.4rem 1fr; border-top: 1px solid var(--line); }
+  .mrow:first-child { border-top: 0; }
+  .mlabel { padding: 0.65rem 0.55rem; background: var(--sun-wash); min-width: 0; }
+  .mcontent { padding: 0.65rem 0.7rem; min-width: 0; }
+
+  /* ---------- Small anime / manga touches (kept subtle) ---------- */
+  /* "Kira" shine on the end of the title. The holder has no width, so it can never push the line wider. */
+  .kira { display: inline-block; position: relative; width: 0; height: 0; vertical-align: top; }
+  .kira svg { position: absolute; left: -0.3em; top: -0.42em; width: 0.75em; height: 0.75em; animation: kira 2.6s ease-in-out infinite; }
+  @keyframes kira { 0%, 100% { transform: scale(0.6) rotate(-10deg); opacity: 0.5; } 50% { transform: scale(1) rotate(0); opacity: 1; } }
+  /* Katakana sound-effect word (manga SFX): small, tilted, low contrast. Decoration only. */
+  .sfx {
+    display: inline-block; margin-left: 0.5em; transform: rotate(-8deg);
+    font-family: "Yusei Magic", "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
+    font-size: 0.72em; font-weight: 400; letter-spacing: -0.04em; color: var(--accent); opacity: 0.65;
+  }
+  /* Concentration lines (shuchu-sen): thin lines pointing at the middle of the postcard.
+     Only visible during the day-change time-lapse. The mask keeps the middle clear. */
+  .focus {   /* kept light: a few thin lines, only near the edges */
+    position: absolute; inset: 0; z-index: 2; opacity: 0; pointer-events: none;
+    background: repeating-conic-gradient(from 0deg at 50% 45%,
+      var(--ink) 0deg 0.3deg, transparent 0.3deg 9deg, var(--ink) 9deg 9.2deg, transparent 9.2deg 17deg);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 45%, transparent 45%, #000 90%);
+    mask-image: radial-gradient(ellipse at 50% 45%, transparent 45%, #000 90%);
+  }
+  /* A few snowflakes drifting down the postcard (it's late December) */
+  .snow { position: absolute; inset: 0; pointer-events: none; }
+  .snow i { position: absolute; top: -0.5rem; width: 0.3rem; height: 0.3rem; border-radius: 50%; background: var(--snow); opacity: 0.85; animation: snow linear infinite; }
+  @keyframes snow { to { transform: translate(1.5rem, 34rem); } }
+
+  /* ---------- Plain header used by the calendar and help pages ---------- */
+  .plainhead { padding: 0.75rem; background: var(--card); border: 2px solid var(--ink); border-radius: 1.2rem; }
+  .plainhead h1 { margin-top: 0.9rem; }
+  .section { margin-top: 1.2rem; padding: 1rem; background: var(--card); border: 3px solid var(--usj); border-radius: 1.1rem; overflow-wrap: anywhere; }
+  .section h2 { margin-bottom: 0.6rem; }
+
+  /* ---------- Calendar ---------- */
+  .month { padding: 0.75rem 0.45rem; }   /* thinner sides: each day tile gets every pixel it can */
+  .month h2 { margin: 0 0 0.5rem 0.3rem; }
+  .month h2 .sfx { font-size: 0.85em; }   /* the little 12月 / 1月 accent */
+  .cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.25rem; }
+  .wd { text-align: center; font-size: 0.7rem; font-weight: 800; color: var(--ink-soft); }
+  .tile {
+    position: relative; display: flex; flex-direction: column; align-items: center; min-width: 0; min-height: 5.4rem; padding: 0.25rem 0.1rem 0.3rem;
+    border: 1.5px solid var(--line); border-radius: 0.8rem; background: var(--card); color: var(--ink);
+    text-decoration: none; text-align: center; line-height: 1.15;
+  }
+  .tile.off { justify-content: center; min-height: 2.2rem; background: var(--ink-soft); border-color: transparent; opacity: 0.25; }   /* not a trip day */
+  .tile.blank { visibility: hidden; min-height: 0; }
+  .tile.past { opacity: 0.5; }
+  .tile.today { border: 2px solid var(--accent); }
+  .tile .tape {   /* a strip of washi tape across the top of today's tile */
+    position: absolute; top: -0.35rem; left: 50%; width: 1.9rem; height: 0.55rem; margin-left: -0.95rem;
+    background: var(--accent); opacity: 0.55; transform: rotate(-5deg);
+  }
+  .tile.special { transform: rotate(-2deg); background: var(--sun-wash); }   /* birthday, Christmas, NYE: a tilted sticker */
+  .sticker { position: absolute; top: -0.45rem; right: -0.15rem; font-size: 0.95rem; line-height: 1; transform: rotate(12deg); }
+  .tnum { font-weight: 800; font-size: 0.95rem; }
+  .ticon { width: 1.5rem; height: 1.5rem; flex: none; margin: 0.1rem 0; }   /* the city's landmark, as a tiny red sketch */
+  .tcity { font-size: 0.55rem; font-weight: 800; color: var(--ink-soft); max-width: 100%; white-space: nowrap; overflow: hidden; }
+  /* Titles wrap between words only; fitTiles() shrinks the text if one word is too wide. Four lines max. */
+  .ttitle { margin-top: 0.1rem; font-size: 0.55rem; font-weight: 700; max-width: 100%; overflow: hidden; overflow-wrap: normal; word-break: normal; hyphens: manual;
+            display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
+
+  /* ---------- Help & phrases ---------- */
+  .row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.3rem 0.8rem; padding: 0.5rem 0; border-top: 1px solid var(--line); }
+  .row:first-of-type { border-top: 0; }
+  .tel { font-weight: 800; font-size: 1.2rem; color: var(--accent); user-select: text; -webkit-user-select: text; }
+  .stay { padding: 0.7rem 0; border-top: 1px solid var(--line); }
+  .stay:first-of-type { border-top: 0; }
+  .ja { font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif; }
+  .stay .ja { font-size: 1.1rem; font-weight: 700; margin: 0.2rem 0 0.5rem; }
+  .phrase { display: block; width: 100%; text-align: left; margin-top: 0.5rem; padding: 0.6rem 0.75rem; background: var(--paper); border: 2px solid var(--line); border-radius: 0.8rem; }
+  .phrase .ja { display: block; font-size: 1.35rem; font-weight: 700; line-height: 1.3; }
+  .say { display: block; font-weight: 700; color: var(--accent); }
+  .en { display: block; color: var(--ink-soft); }
+  /* the huge "show this to someone" view */
+  .big {
+    position: fixed; inset: 0; z-index: 40; display: flex; flex-direction: column; justify-content: center; gap: 1rem;
+    padding: calc(1.5rem + env(safe-area-inset-top, 0px)) max(1.5rem, env(safe-area-inset-right, 0px)) calc(1.5rem + env(safe-area-inset-bottom, 0px)) max(1.5rem, env(safe-area-inset-left, 0px));
+    background: var(--card); color: var(--ink); text-align: center; overflow-y: auto; overflow-wrap: anywhere;
+  }
+  .big[hidden] { display: none; }
+  .big .ja { font-size: min(3rem, 11vw); font-weight: 800; line-height: 1.3; }
+  .big small { font-size: 1rem; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+<div class="page" id="page">
+  <!-- Matt banner: floats over the page for ~3 seconds -->
+  <button class="matt gone" id="matt" type="button" aria-label="Dismiss banner"></button>
+  <!-- The page gets drawn in here by render() -->
+  <main id="app"></main>
+</div>
+<!-- The huge "show the taxi driver" / phrase view. Tap anywhere to close. -->
+<div class="big" id="big" role="dialog" aria-modal="true" hidden></div>
+
+<script src="data.js"></script>
+<script src="logic.js"></script>
+<script>
+  var TRIP = window.TRIP;
+  var DAYS = TRIP.days;
+
+  /* ================= 1. Dates (all as "YYYY-MM-DD" text, never parsed as local time) ================= */
+
+  /* Today's date in Japan, e.g. "2026-12-23". en-CA happens to format dates as YYYY-MM-DD. */
+  function todayInJapan() { return L.todayInJapan(); }   /* tested in tests/logic.test.js */
+  /* Which day to open on: before the trip → day 1, after it → the last day, during it → today.
+     Plain text comparison works because the dates are all YYYY-MM-DD. */
+  function openingDate(today) {
+    var first = DAYS[0].date, last = DAYS[DAYS.length - 1].date;
+    if (today < first) return first;
+    if (today > last) return last;
+    return today;
+  }
+  var WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  /* Split "2026-12-23" into numbers and work out the weekday in UTC, so the phone's own time zone can't shift it. */
+  function dateParts(iso) {
+    var p = iso.split("-").map(Number);
+    return { y: p[0], m: p[1], d: p[2], wd: new Date(Date.UTC(p[0], p[1] - 1, p[2])).getUTCDay() };
+  }
+  function longDate(iso) {   /* "Wednesday 23 December" */
+    var p = dateParts(iso);
+    return WEEKDAYS[p.wd] + " " + p.d + " " + MONTHS[p.m - 1];
+  }
+  function dayIndex(iso) {
+    for (var i = 0; i < DAYS.length; i++) if (DAYS[i].date === iso) return i;
+    return -1;
+  }
+
+  /* ---------- Sky, sun and moon: everything follows the SUN ----------
+     The time in Japan (minutes since midnight; Japan is always UTC+9) sets where the sun is.
+     The sky colours, stars and lit windows are worked out from the sun's height, so the sky
+     can never disagree with the sun: sun up = day sky, near the horizon = sunrise tint (right,
+     rising) or sunset tint (left, setting), below the horizon = night, stars, windows lit, moon up. */
+  var SKY_STATES = ["morning", "day", "dusk", "night"];
+  var testMinutes = null;   /* checks only: set a number to pretend it's that time in Japan */
+  function japanMinutes() {   /* minutes since midnight in Japan (with seconds, so the lapse is smooth) */
+    if (typeof testMinutes === "number") return testMinutes;
+    var now = new Date();
+    return ((now.getUTCHours() + 9) % 24) * 60 + now.getUTCMinutes() + now.getUTCSeconds() / 60;
+  }
+  var SUNRISE = 330, SUNSET = 1080;   /* 5:30am and 6pm: the sun is up for 750 minutes, down for 690 */
+  /* Where the sun is at minute m: phase 0 = rising on the right, ~0.5 = highest, 1 = setting on the left.
+     Height runs from +1 (top of the sky) through 0 (horizon) to -1 (lowest, middle of the night). */
+  function sunAt(m) {
+    var sinceRise = ((m - SUNRISE) % 1440 + 1440) % 1440;
+    var dayLen = SUNSET - SUNRISE;
+    if (sinceRise < dayLen) {
+      var t = sinceRise / dayLen;
+      return { up: true, t: t, height: Math.sin(Math.PI * t), rising: t < 0.5 };
+    }
+    var n = (sinceRise - dayLen) / (1440 - dayLen);   /* 0 at sunset → 1 at the next sunrise */
+    return { up: false, t: n, height: -Math.sin(Math.PI * n), rising: n > 0.5 };
+  }
+  function smooth(x) { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); }
+  /* Sky layer strengths (0..1) for minute m, from the sun's height alone. */
+  function skyMix(m) {
+    var s = sunAt(m);
+    var night = 1 - smooth((s.height + 0.25) / 0.35);           /* fully night once the sun is 0.25 below the horizon */
+    var glow = (1 - smooth(Math.abs(s.height - 0.1) / 0.5)) * (1 - night);   /* pink/orange near the horizon */
+    return { night: night, morning: s.rising ? glow : 0, dusk: s.rising ? 0 : glow, sun: s };
+  }
+  /* The resting sky "state" (used for text colour and a few night-only touches): the strongest layer. */
+  function skyState(m) {
+    var x = skyMix(m);
+    if (x.night >= 0.5) return "night";
+    if (Math.max(x.morning, x.dusk) >= 0.5) return x.morning > x.dusk ? "morning" : "dusk";
+    return "day";
+  }
+  function skyStateInJapan() { return skyState(japanMinutes()); }
+
+  /* The sun and moon ride one smooth arc across the postcard: they rise on the RIGHT and set on the LEFT.
+     t = 0 is the right horizon, 0.5 the top of the arc, 1 the left horizon (a quadratic curve, in the
+     postcard picture's 390 × 190 coordinates). */
+  function arcPoint(t) {
+    var u = 1 - t;
+    return [u * u * 372 + 2 * u * t * 195 + t * t * 18,    /* x: from 372 (right) to 18 (left) */
+            u * u * 172 + 2 * u * t * 18 + t * t * 172];   /* y: from the horizon up to ~95, then back down */
+  }
+  /* Where the sun and moon are at minute m: the moon crosses while the sun is down (null = hidden). */
+  function bodiesAt(m) {
+    var s = sunAt(m);
+    return s.up ? { sun: s.t, moon: null } : { sun: null, moon: s.t };
+  }
+  function restingBodies() { return bodiesAt(japanMinutes()); }
+  /* Put a sun/moon circle at point t of the arc (null = hidden below the horizon). */
+  function bodyAttrs(t) {
+    if (t === null) return 'opacity="0" transform="translate(195 260)"';
+    var p = arcPoint(t);
+    return 'transform="translate(' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + ')"';
+  }
+  function placeBody(el, t) {
+    var p = arcPoint(t === null ? 0.5 : t);
+    el.setAttribute("transform", "translate(" + p[0].toFixed(1) + " " + (t === null ? 260 : p[1].toFixed(1)) + ")");
+    if (t === null) el.setAttribute("opacity", "0"); else el.removeAttribute("opacity");
+  }
+  /* style="opacity:…" text for a sky layer at rest, so the page is drawn by the same maths as the lapse. */
+  function op(v) { return ' style="opacity:' + v.toFixed(3) + '"'; }
+  function skyLayers() {   /* the three tint layers over the day sky, at their strength for right now */
+    var x = skyMix(japanMinutes());
+    return '<div class="sky sky-morning"' + op(x.morning) + '></div><div class="sky sky-dusk"' + op(x.dusk) + '></div>' +
+      '<div class="sky sky-night"' + op(x.night) + '></div>';
+  }
+
+  /* ---------- The day-change time-lapse: one clock, one full day ----------
+     The lapse fast-forwards exactly 24 hours of Japan time, starting and ending at "now", over LAPSE_MS.
+     Every frame turns elapsed time into a minute of the day and draws the sun, moon, sky, stars and
+     lit windows for that minute (all from the sun's position), so they always move together. */
+  var LAPSE_MS = 2200;
+  function ease(x) { return x * x * (3 - 2 * x); }   /* gentle start and stop */
+  var FOCUS = [[0, 0], [0.12, 0.1], [0.35, 0], [1, 0]];   /* focus lines: one faint, slow swell at the start */
+  function focusAt(u) {
+    for (var k = 1; k < FOCUS.length; k++) if (u <= FOCUS[k][0]) {
+      var a = FOCUS[k - 1], b = FOCUS[k];
+      return a[1] + (b[1] - a[1]) * ease((u - a[0]) / (b[0] - a[0]));
+    }
+    return 0;
+  }
+  /* Draw the lapse at moment u (0..1). At u = 0 and u = 1 this is exactly the resting picture. */
+  function drawLapse(st, u) {
+    var m = st.m0 + 1440 * ease(u);
+    var x = skyMix(m), b = bodiesAt(m);
+    st.skies.dusk.style.opacity = x.dusk;
+    st.skies.night.style.opacity = x.night;
+    st.skies.morning.style.opacity = x.morning;
+    st.stars.style.opacity = x.night;
+    var lights = st.landmarks.querySelector(".lights");   /* looked up each frame: the landmarks swap at the darkest moment */
+    if (lights) lights.style.opacity = x.night;
+    st.focus.style.opacity = focusAt(u);
+    placeBody(st.sun, b.sun);
+    placeBody(st.moon, b.moon);
+    return m;
+  }
+
+  /* ================= 2. Weather and what to wear ================= */
+
+  /* The weather for a day: one entry per city in day.weather.
+     Live Open-Meteo forecast when it covers that date (~16 days ahead), typical temps otherwise. */
+  var FORECASTS = {};   /* city key → Open-Meteo "daily" data, filled once on load */
+  function dayWeather(day) {
+    return day.weather.map(function (key) {
+      var c = TRIP.cities[key], w = L.pickWeather(c, day.date, FORECASTS[key]);
+      return { key: key, name: c.name, hi: w.hi, lo: w.lo, live: w.live };
+    });
+  }
+  /* One fetch per city on app open; if there's no signal we just keep the typical temps. */
+  function loadForecasts() {
+    var keys = Object.keys(TRIP.cities);
+    return Promise.all(keys.map(function (key) {
+      var c = TRIP.cities[key];
+      var url = "https://api.open-meteo.com/v1/forecast?latitude=" + c.lat + "&longitude=" + c.lon +
+        "&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&forecast_days=16";
+      return fetch(url).then(function (r) { return r.json(); })
+        .then(function (j) { if (j && j.daily) FORECASTS[key] = j.daily; })
+        .catch(function () { /* offline or blocked: typical temps stay */ });
+    }));
+  }
+  /* What to wear, from the colder city. "Feels like" = the middle of the day's high and low,
+     because a 10° high with a 2° low still needs a warm coat in the morning. */
+  function wearFor(weather) {
+    var t = Math.min.apply(null, weather.map(function (w) { return (w.hi + w.lo) / 2; }));
+    if (t <= 0) return "Freezing: heavy coat, thermals, gloves, beanie";
+    if (t <= 8) return "Cold: warm coat, scarf, layers";
+    if (t <= 15) return "Cool: jacket and layers";
+    return "Mild: light layers";
+  }
+  var MUM_LINE = "Mum: add an extra layer — thermal top, gloves and a beanie.";
+
+  var SUN_CLOUD_ICON =
+    '<svg viewBox="0 0 64 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<circle cx="23" cy="17" r="8" fill="var(--sun)"/>' +
+      '<path d="M23 3v3 M9 17h3 M13 7l2 2 M33 7l-2 2"/>' +
+      '<path d="M22 42 q-9 0 -9 -8 q0 -7 8 -7 q3 -8 12 -7 q8 1 9 9 q8 0 8 7 q0 6 -8 6Z" fill="var(--card)"/>' +
+    '</svg>';
+  var SNOW_CLOUD_ICON =
+    '<svg viewBox="0 0 64 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M22 32 q-9 0 -9 -8 q0 -7 8 -7 q3 -8 12 -7 q8 1 9 9 q8 0 8 7 q0 6 -8 6Z" fill="var(--card)"/>' +
+      '<path d="M22 38v6 M19 41h6 M32 40v6 M29 43h6 M42 38v6 M39 41h6" stroke-width="1.6"/>' +
+    '</svg>';
+  function weatherIcon(weather) {   /* snow cloud if the colder city's high is around freezing */
+    var coldestHi = Math.min.apply(null, weather.map(function (w) { return w.hi; }));
+    return coldestHi <= 2 ? SNOW_CLOUD_ICON : SUN_CLOUD_ICON;
+  }
+  function weatherFacts(weather) {
+    var temps, sub;
+    if (weather.length === 1) {
+      temps = weather[0].hi + '° <small>high</small> · ' + weather[0].lo + '° <small>low</small>';
+      sub = esc(weather[0].name);
+    } else {   /* travel day: "Osaka 10° → Tokyo 12°" (highs), lows underneath */
+      temps = weather.map(function (w) { return '<span class="nw">' + esc(w.name) + ' ' + w.hi + '°</span>'; }).join(' → ');   /* nw: keep "Hong Kong 20°" together */
+      sub = 'Lows ' + weather.map(function (w) { return w.lo + '°'; }).join(' → ');
+    }
+    return '<div class="facts">' + weatherIcon(weather) + '<div><div class="temps">' + temps + '</div><div>' + sub + '</div></div></div>';
+  }
+
+  /* ================= 3. Small building blocks ================= */
+
+  /* Data text goes straight into HTML, so turn & < > " into safe codes first ("Darryl & Josie"). */
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  /* Stick figures. Everyone shares one body; only the hair (and size for Choleh) changes.
+     "lines" means the hair is drawn as strokes of that thickness instead of a filled shape.
+     "under" / "extra" are extra drawings for that person, placed under / on top of the hair. */
+  /* Chloe's wavy side hair: one thick line down each side. Drawn twice (see PEOPLE): a wider ink-coloured
+     copy underneath gives it an outline, then the hair-coloured copy goes on top and hides the join with her crown. */
+  var CHLOE_WAVES = "M12.3 10 q-.3 1 0 2 q-3 3 0 6 q3 3 0 6 q-3 3 0 6 M27.7 10 q.3 1 0 2 q3 3 0 6 q-3 3 0 6 q3 3 0 6";
+  var PEOPLE = {   /* keys match data.js */
+    mum:    { name: "Mum", hair: "shoulder", colour: "var(--hair-dark)" },
+    dad:    { name: "Dad", hair: "short",    colour: "var(--hair-dark)",
+              /* referee whistle: flat mouthpiece at his lips, round barrel, air slot on top, lanyard ring.
+                 Then a tiny comic "TWEET!" with two motion lines, up and to the right. */
+              extra: '<path d="M22 15 L29 14.8 A3.2 3.2 0 1 1 25.9 17.6 L22 17.6Z" fill="var(--sun)" stroke-width="0.9"/>' +
+                     '<path d="M26.4 14.9 h1.7 v1.3 h-1.7Z" fill="var(--ink)" stroke="none"/>' +
+                     '<circle cx="33.4" cy="19" r="1.2" stroke-width="0.8"/>' +
+                     '<path d="M31 12 l2.5 -3 M34 14 l3.5 -2" stroke="var(--accent)" stroke-width="1"/>' +
+                     '<text x="31" y="6" transform="rotate(-12 31 6)" font-size="7" font-weight="800" font-style="italic" font-family="Figtree, sans-serif" fill="var(--accent)" stroke="none">TWEET!</text>' },
+    josie:  { name: "Josie", hair: "curly",  colour: "var(--hair-brown)", lines: 1.7 },
+    darryl: { name: "Darryl", hair: "short", colour: "var(--hair-blond)" },
+    matt:   { name: "Matt", hair: "curtains", colour: "var(--hair-black)",
+              /* thin metal glasses: two rounded-square lenses (flat top, round bottom), an arched bridge, short arms */
+              extra: '<path d="M14.7 11.6 Q14.6 11 15.4 11 H18.8 Q19.6 11 19.5 11.8 Q19.3 14.9 17.1 14.9 Q14.9 14.9 14.7 11.6Z' +
+                     ' M25.3 11.6 Q25.4 11 24.6 11 H21.2 Q20.4 11 20.5 11.8 Q20.7 14.9 22.9 14.9 Q25.1 14.9 25.3 11.6Z' +
+                     ' M19.5 11.9 Q20 11.2 20.5 11.9 M14.7 11.5 l-1.2 -.4 M25.3 11.5 l1.2 -.4" stroke="var(--metal)" stroke-width="0.8"/>' },
+    chloe:  { name: "Chloe", hair: "parted", colour: "var(--hair-black)",
+              under: '<path d="' + CHLOE_WAVES + '" stroke-width="5.4"/>',
+              extra: '<path d="' + CHLOE_WAVES + '" stroke="var(--hair-black)" stroke-width="3"/>' },
+    choleh: { name: "Choleh", hair: "straight", colour: "var(--hair-black)", child: true,
+              /* anime emote: a little music note floating by her head */
+              extra: '<text x="30" y="10" transform="rotate(12 30 10)" font-size="11" fill="var(--accent)" stroke="none">♪</text>' }
+  };
+  var HAIR_SHAPES = {
+    short:    "M12.5 11.5 Q12.5 3.5 20 4 Q27.8 3.8 27.5 11.5 Q24 7.5 20 8 Q15.5 8 12.5 11.5Z",
+    shoulder: "M11.5 21 Q10.5 3 20 3.5 Q29.5 3 28.5 21 Q26.5 22 25.5 20 L25.5 12 Q20 6.5 14.5 12 L14.5 20 Q13.5 22 11.5 21Z",
+    /* tight squiggles down both sides to the shoulders, plus curls over the top */
+    curly:    "M13 7 q2 -4 4.5 -1.5 q2.5 -3.5 5 0 q2.5 -2.5 4.5 1.5" +
+              " M17 5.5 c-5 0 -6 3 -5 5 q-3.5 1.5 0 3 q-3.5 1.5 0 3 q-3.5 1.5 0 3 q-3.5 1.5 0 3" +
+              " M14 6 c-6 1.5 -6 5 -5.5 7 q-3.5 1.5 0 3 q-3.5 1.5 0 3 q-3.5 1.5 0 3" +
+              " M23 5.5 c5 0 6 3 5 5 q3.5 1.5 0 3 q3.5 1.5 0 3 q3.5 1.5 0 3 q3.5 1.5 0 3" +
+              " M26 6 c6 1.5 6 5 5.5 7 q3.5 1.5 0 3 q3.5 1.5 0 3 q3.5 1.5 0 3",
+    /* ear-length, with a wavy centre part: a dip at the part and a puff of volume either side */
+    curtains: "M12.2 14.5 q-1.8 -2 -.6 -4.2 q-1.4 -3.5 1.8 -6 Q16.5 .8 20 3.6 Q23.5 .8 26.6 4.3 q3.2 2.5 1.8 6 q1.2 2.2 -.6 4.2 q-1.6 .3 -1.9 -1.2 Q27 8.5 20 5.6 Q13 8.5 14.1 13.3 q-.3 1.5 -1.9 1.2Z",
+    /* just the crown, with a middle parting (Chloe's wavy sides are added separately) */
+    parted:   "M10.8 13 Q10.3 2.8 20 3 Q29.7 2.8 29.2 13 L25.5 13 Q24 8.5 20 5.5 Q16 8.5 14.5 13Z",
+    /* straight, with a middle parting */
+    straight: "M12 12 Q11.5 3 20 3.5 Q28.5 3 28 12 L28.5 28 L25.5 28 L25.5 13 Q24 8.5 20 5.5 Q16 8.5 14.5 13 L14.5 28 L11.5 28Z"
+  };
+  function figure(key) {
+    var p = PEOPLE[key];
+    var hairStyle = p.lines ? 'fill="none" stroke="' + p.colour + '" stroke-width="' + p.lines + '"'
+                            : 'fill="' + p.colour + '" stroke-width="1.2"';
+    return '<span class="fig' + (p.child ? " child" : "") + '">' + p.name +   /* name sits above the head */
+      '<svg viewBox="0 0 40 56" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M20 19 Q19.4 28 20.3 37 M11 30.5 Q16 24 20 24.5 Q25 24 29.5 29.5 M20.3 37 Q17 44 14.5 52.5 M20.3 37 Q23 45 26 52"/>' +
+        '<circle cx="20" cy="12" r="7" fill="var(--skin)"/>' + (p.under || "") +
+        '<path d="' + HAIR_SHAPES[p.hair] + '" ' + hairStyle + '/>' + (p.extra || "") +
+      '</svg></span>';
+  }
+  /* Everyone always stands in this order. Mum sits next to Dad, and Dad is last so his TWEET!
+     pokes out to the right without covering anyone. */
+  var ORDER = ["darryl", "josie", "matt", "chloe", "choleh", "mum", "dad"];
+  function figuresRow(card) {
+    var people = card.people.slice().sort(function (a, b) { return ORDER.indexOf(a) - ORDER.indexOf(b); });
+    var names = people.map(function (k) { return PEOPLE[k].name; }).join(", ");
+    return '<div class="figs' + (people.length >= 5 ? " crowd" : "") + '" role="img" aria-label="' + esc(card.name + ": " + names) + '">' +
+      people.map(figure).join("") + '</div>';
+  }
+
+  /* Small "DIRECTIONS" label, then one button per maps app. Both ask for public-transport directions. */
+  function dirLinks(place) {
+    var q = encodeURIComponent(place);
+    return '<div class="dir"><div class="dir-label">DIRECTIONS</div><div class="dir-btns">' +
+      '<a class="btn btn-google" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;destination=' + q + '&amp;travelmode=transit">Google Maps</a>' +
+      '<a class="btn btn-apple" target="_blank" rel="noopener" href="https://maps.apple.com/?daddr=' + q + '&amp;dirflg=r">Apple Maps</a>' +
+      '</div></div>';
+  }
+
+  function timeline(activities) {
+    return '<ol class="timeline">' + activities.map(function (a) {
+      var html = '<div class="title">' + esc(a.title) + '</div>';
+      if (a.note) html += '<div class="note">' + esc(a.note) + '</div>';
+      if (a.ticket) html += '<div class="ticket">🎟️ ' + esc(a.ticket) + '</div>';
+      if (a.place) html += dirLinks(a.place);
+      return '<li><span class="rail" aria-hidden="true"><i class="line"></i><i class="dot"></i></span>' +
+        '<div class="item"><div class="time">' + esc(a.time) + '</div>' + html + '</div></li>';
+    }).join("") + '</ol>';
+  }
+
+  /* Rice bowl with chopsticks, for the "Meals" heading */
+  var BOWL_ICON =
+    '<svg viewBox="0 0 34 30" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M10 13 L27 2 M15 13 L31 5"/>' +                                  /* chopsticks */
+      '<path d="M7 15 q10 -11 20 0Z" fill="var(--card)"/>' +                     /* rice */
+      '<path d="M3 15 h28 q0 11 -14 11 q-14 0 -14 -11Z" fill="var(--accent)"/>' + /* bowl */
+      '<path d="M12 26 v2 h10 v-2"/>' +                                          /* foot */
+    '</svg>';
+  /* The meals as a two-column grid: label column + content column. No meals → no section at all. */
+  function mealSection(meals) {
+    if (!meals || !meals.length) return "";
+    return '<h3 class="sep">' + BOWL_ICON + 'Meals</h3><div class="mgrid">' + meals.map(function (m) {
+      var html = '<div class="meal-main">' + esc(m.what) + '</div>';
+      if (m.detail) html += '<div class="meal-detail">' + esc(m.detail) + '</div>';
+      if (m.place) html += dirLinks(m.place);
+      return '<div class="mrow"><div class="mlabel"><span class="meal-name">' + esc(m.meal) + '</span></div>' +
+        '<div class="mcontent">' + html + '</div></div>';
+    }).join("") + '</div>';
+  }
+
+  /* One swipeable panel: the figures, then the card pulled up over their legs.
+     Inside the card: activities, any tips (washi notes), then the meals. */
+  /* Little excited manga sound-effect words. Every character here must also be in the Yusei Magic
+     font link at the top. sugoi = amazing, waku-waku = excited, yatta = yay, kira-kira = sparkly,
+     doki-doki = heart pounding, ii ne = nice, wāi = woohoo. */
+  var SFX = ["スゴイ", "ワクワク", "ヤッタ", "キラキラ", "ドキドキ", "イイネ", "ワーイ"];
+  function sfxFor(date, i) {   /* picked from the date + card number, so it never changes on re-render */
+    return SFX[(Number(date.replace(/-/g, "")) + i * 3) % SFX.length];
+  }
+
+  function groupPanel(card, i, date) {
+    var tips = card.tips && card.tips.length
+      ? '<div class="tips">' + card.tips.map(function (t) { return '<div class="extra">' + esc(t) + '</div>'; }).join("") + '</div>'
+      : "";
+    return '<div class="panel">' + figuresRow(card) +
+      '<article class="card' + (i % 2 ? " card-md" : "") + '"><h2>' + esc(card.name) +
+        '<span class="sfx" lang="ja" aria-hidden="true">' + sfxFor(date, i) + '</span></h2>' +
+        timeline(card.activities) + tips + mealSection(card.meals) +
+      '</article></div>';
+  }
+
+  /* ================= 4. Postcard scenes ================= */
+  /* One scene per city. Every city uses the same layers, back to front (far things are pale, near things are dark):
+     sun/moon/stars → "back" (Fuji) → "far" (pale and see-through, so each sky colour tints it) →
+     "mid" (half-strength dark: the middle distance) → "near" (dark, closest buildings) → night windows → ground →
+     "front" (water etc.) → "ink" (one landmark sketched in red, drawn twice: a faint loose line under a firm one,
+     like a pencil sketch that was inked over).
+     Tall things stay below y≈82 so they never hit the weather text. Nothing pale sits behind the red landmark. */
+  var FAR_BASE = '<path d="M-5 190 V138 Q60 118 130 136 Q210 150 395 128 V190Z" opacity="0.5"/>';   /* hazy low city */
+  /* A torii gate standing on (x, y); s = size. Kyoto's gate row and Miyajima's floating gate both use it. */
+  function torii(x, y, s) {
+    function p(dx, dy) { return (x + dx * s).toFixed(1) + " " + (y - dy * s).toFixed(1); }
+    return '<path stroke-width="' + Math.max(0.9, 1.1 * s).toFixed(1) + '" d="M' + p(-8.5, 0) + ' L' + p(-7, 19) + ' M' + p(8.5, 0) + ' L' + p(7, 19) +   /* posts, leaning in a touch */
+      ' M' + p(-13, 23.5) + ' Q' + p(0, 20.5) + ' ' + p(13, 23.5) + ' L' + p(11.5, 19.5) + ' Q' + p(0, 18) + ' ' + p(-11.5, 19.5) + 'Z' +   /* roof beam, ends swept up */
+      ' M' + p(-10, 13.5) + ' L' + p(10, 13.5) + ' M' + p(0, 18.7) + ' L' + p(0, 13.5) + '"/>';                                                  /* lower beam + centre strut */
+  }
+  /* Yasaka pagoda: five storeys, each narrower, with eaves that sweep up at the tips, then the ringed spire. */
+  function pagoda(cx) {
+    var d = "";
+    for (var i = 0; i < 5; i++) {
+      var y = 176 - 16 * i, b = 12 - 1.6 * i, w = 25 - 3 * i;   /* storey bottom, body half-width, roof half-width */
+      d += " M" + (cx - b) + " " + y + " V" + (y - 10) + " H" + (cx + b) + " V" + y + "Z" +
+        " M" + (cx - w) + " " + (y - 11) + " Q" + (cx - w * 0.45) + " " + (y - 10.5) + " " + (cx - b * 0.7) + " " + (y - 16) +
+        " H" + (cx + b * 0.7) + " Q" + (cx + w * 0.45) + " " + (y - 10.5) + " " + (cx + w) + " " + (y - 11) +
+        " Q" + cx + " " + (y - 6.5) + " " + (cx - w) + " " + (y - 11) + "Z";
+    }
+    return '<path d="' + d + ' M' + (cx - 0.8) + ' 97 V82 h1.6 V97Z M' + (cx - 2.4) + ' 93 h4.8 v1.2 h-4.8Z M' + (cx - 1.9) + ' 89.5 h3.8 v1.2 h-3.8Z M' + (cx - 1.5) + ' 86 h3 v1.2 h-3Z"/>';
+  }
+  /* A piece of lattice tower (Tokyo Tower, Tsutenkaku, Sapporo TV Tower), centred on cx.
+     lv = [[y, half-width], ...] from the top down: two legs, a tie at each level, a thin X between levels. */
+  function truss(cx, lv) {
+    var legL = "", legR = "", web = "";
+    lv.forEach(function (l, i) {
+      legL += (i ? " L" : "M") + (cx - l[1]) + " " + l[0];
+      legR += (i ? " L" : " M") + (cx + l[1]) + " " + l[0];
+      if (i) {
+        var p = lv[i - 1];
+        web += "M" + (cx - p[1]) + " " + p[0] + " L" + (cx + l[1]) + " " + l[0] + " M" + (cx + p[1]) + " " + p[0] + " L" + (cx - l[1]) + " " + l[0] + " H" + (cx + l[1]);
+      }
+    });
+    return '<path d="' + legL + legR + '"/><path stroke-width="0.8" d="' + web + '"/>';
+  }
+  /* A two-tier fir tree standing on (x, y), s = size. With w = true it's just the snowy tip. */
+  function fir(x, y, s, w) {
+    return "M" + x + " " + (y - 16 * s) + (w ? " l" + 3 * s + " " + 5.5 * s + " h" + -6 * s + "Z "
+      : " l" + 4 * s + " " + 7 * s + " h" + -2 * s + " l" + 4 * s + " " + 9 * s + " h" + -12 * s + " l" + 4 * s + " " + -9 * s + " h" + -2 * s + "Z ");
+  }
+  /* Night windows, one block per building: [left x, top y, columns, rows, x step, y step] (steps default 5 and 6).
+     Bigger blocks leave a few windows dark so it looks lived-in. Only shown at night (see .lights in the CSS). */
+  function lights(blocks) {
+    var d = "";
+    blocks.forEach(function (b) {
+      for (var i = 0; i < b[2]; i++) for (var j = 0; j < b[3]; j++) {
+        if (b[2] > 1 && b[3] > 1 && (i * 7 + j * 3) % 5 === 0) continue;
+        d += "M" + (b[0] + i * (b[4] || 5)) + " " + (b[1] + j * (b[5] || 6)) + "h2v2.4h-2Z";
+      }
+    });
+    return '<path class="lights" d="' + d + '" fill="var(--window-glow)" filter="url(#glow)"' + op(skyMix(japanMinutes()).night) + '/>';
+  }
+  /* A puffy cloud sitting on (x, y), s = size. Used by the "in the air" postcard. */
+  function cloud(x, y, s) {
+    return 'M' + x + ' ' + y + ' q' + 4 * s + ' ' + -10 * s + ' ' + 14 * s + ' ' + -7 * s + ' q' + 6 * s + ' ' + -11 * s + ' ' + 18 * s + ' ' + -5 * s +
+      ' q' + 11 * s + ' ' + -3 * s + ' ' + 13 * s + ' ' + 7 * s + ' q' + 7 * s + ' 0 ' + 7 * s + ' ' + 5 * s + 'Z ';
+  }
+  /* Sapporo's far buildings [left x, roof y, width] and fir trees [x, y, size]: listed once, so each gets its own cap of snow. */
+  var SAP_B = [[92, 132, 16], [112, 120, 14], [150, 128, 18], [172, 140, 16], [318, 134, 18], [340, 122, 14], [360, 140, 20]];
+  var SAP_F = [[130, 166, 1.3], [141, 167, 1], [194, 171, 1.4], [206, 172, 1.05], [308, 171, 1.5], [321, 170, 1.1], [370, 166, 1.4], [383, 164, 1]];
+  var SCENES = {   /* keys match day.scene in data.js */
+    tokyo: {
+      back: '<path class="fuji" d="M96 168 Q170 140 222 90 Q226 85 232 86 L248 86 Q254 85 258 90 Q310 140 395 166 V190 H96Z" fill="var(--scene-far)"/>' +   /* Mount Fuji */
+        '<path class="fuji-snow" d="M222 90 Q226 85 232 86 L248 86 Q254 85 258 90 L274 104.5 L266 101 L262 110 L255 100 L249 112 L242 99 L236 110 L230 100 L224 109 L218 101 L206 104.5Z" fill="var(--snow)"/>',
+      far: FAR_BASE +   /* Shinjuku's towers on the left of Fuji, the Skytree on the right */
+        '<path d="M2 190 V136 h16 V190Z M104 190 V118 h4 V100 h9 v12 h8 v-12 h9 v18 h4 V190Z M142 190 V130 h12 V190Z M158 190 V124 h3 v-10 h3 v-8 h2.5 v-12 h1 v12 h2.5 v8 h3 v10 h3 V190Z M180 190 V130 Q181 106 189 104 Q197 106 198 130 V190Z"/>' +
+        '<path d="M296 190 V126 h6 v-5 h8 v5 h4 V190Z M320 190 V138 h16 V190Z M347 190 L350 122 h-3 v-5 h3.6 v-9 h-2 v-3 h2.4 l0.5 -17 h1 l0.5 17 h2.4 v3 h-2 v9 h3.6 v5 h-3 L357 190Z M364 190 V132 h20 V190Z"/>',
+      mid: '<path d="M90 180 V152 h16 V180Z M110 180 V143 h10 v-4 h6 v4 h2 V180Z M134 180 V156 h20 V180Z M160 180 V148 h14 V180Z M180 180 V158 h18 V180Z M214 180 V154 h14 V180Z M270 180 V157 h18 V180Z M304 180 V150 h12 V180Z M322 180 V162 h22 V180Z M372 180 V160 h23 V180Z"/>',
+      near: '<circle cx="12" cy="160" r="7"/><circle cx="24" cy="157" r="6"/><circle cx="97" cy="158" r="6"/><circle cx="108" cy="160" r="7"/><circle cx="119" cy="161" r="5"/>' +   /* park trees round the tower */
+        '<path d="M234 180 V164 h18 V180Z M298 180 V161 h24 V180Z M346 180 V156 h14 v-4 h4 V180Z" opacity="0.75"/>',
+      lights: [[4, 140, 2, 4], [107, 122, 6, 5], [110, 103, 1, 2], [128, 103, 1, 2], [144, 134, 2, 4], [161, 128, 3, 4], [183, 118, 3, 6],
+               [298, 130, 3, 5], [322, 142, 3, 3], [351, 111, 1, 1], [351, 119, 1, 1], [366, 136, 4, 4],
+               [112, 147, 3, 2], [162, 152, 2, 2], [216, 158, 2, 1], [272, 161, 3, 1], [306, 154, 2, 2],
+               [237, 167, 3, 1], [301, 164, 4, 1], [348, 159, 2, 2]],
+      ink: /* Tokyo Tower: flared lattice legs, the big arch, two white decks, banded antenna */
+        truss(62, [[112, 3], [126, 4.6], [140, 6.8]]) + truss(62, [[147, 8.2], [160, 11.6], [173, 16], [186, 22]]) +
+        '<path d="M47 186 Q62 158 77 186 M62 84 V107"/>' +
+        '<path d="M62 87 V106" stroke="var(--snow)" stroke-dasharray="3 5"/>' +
+        '<path d="M53 140 h18 v7 h-18Z M57.5 107 h9 v5 h-9Z" fill="var(--snow)"/>'
+    },
+    osaka: {
+      far: FAR_BASE +   /* a stepped tower (Abeno Harukas hint) and the twin towers joined at the top (Umeda Sky hint) */
+        '<path d="M0 190 V140 h14 V190Z M92 190 V128 h14 V190Z M110 190 V104 h8 v-8 h7 v-7 h6 V190Z M136 190 V134 h10 V190Z M150 190 V112 h9 V190Z M171 190 V112 h9 V190Z M147 121 v-9 h36 v9 h-10 a8 5 0 0 0 -16 0Z M186 190 V130 h16 V190Z M206 190 V118 h12 v-5 h4 V190Z M226 190 V136 h14 V190Z M352 190 V134 h16 V190Z M372 190 V124 h14 V190Z"/>',
+      mid: /* the buildings along both banks of the canal */
+        '<path d="M84 190 V146 h20 V190Z M108 190 V152 h8 v-3 h6 v3 h2 V190Z M128 190 V157 h12 V190Z M180 190 V158 h12 V190Z M196 190 V152 h14 V190Z M214 190 V147 h10 v-4 h6 v4 h6 V190Z"/>',
+      near: /* Osaka Castle on its stone base: pale walls, dark roofs, white gables, two gold roof ornaments */
+        '<g transform="translate(0 3)"><path d="M244 176 Q256 166 260 150 H324 Q328 166 340 176Z" opacity="0.6"/>' +
+        '<path d="M266 150 V139 H318 V150Z M272 131 V122 H312 V131Z M278 115 V107 H306 V115Z M284 100 V94 H300 V100Z" opacity="0.55"/>' +
+        '<path d="M255 140 q9 -2 12 -9 h50 q3 7 12 9Z M262 123 q8 -2 10 -8 h40 q2 6 10 8Z M269 108 q8 -2 10 -7 h26 q2 5 10 7Z M276 95 q9 -2 12 -7 L292 84 L296 88 q3 5 12 7Z"/>' +
+        '<path d="M284 140 L292 131.5 L300 140Z M287 108 L292 102.5 L297 108Z" fill="var(--scene-far)"/>' +
+        '<path d="M287 87.5 h2 v-2Z M297 87.5 h-2 v-2Z" fill="var(--sun)"/>' +
+        '<circle cx="238" cy="166" r="7"/><circle cx="249" cy="163" r="6"/><circle cx="335" cy="163" r="6"/><circle cx="346" cy="165" r="7"/><circle cx="358" cy="164" r="5"/></g>',
+      front: /* Dotonbori: the canal along the bottom, an arched bridge over it, warm lanterns and their reflections */
+        '<path d="M86 190 Q90 177 112 176 H395 V190Z" fill="var(--scene-far)" opacity="0.85"/>' +
+        '<path d="M132 187 h14 M190 188 h16 M282 186 h20 M326 188 h12" stroke="var(--scene-near)" stroke-linecap="round" opacity="0.4"/>' +
+        '<path d="M228 179 v4 M244 180 v3 M260 179 v5 M340 179 v4 M356 180 v3 M372 179 v5 M120 182 v4 M210 182 v4 M152 184 v4 M178 183 v5" stroke="var(--sun)" stroke-linecap="round" opacity="0.7"/>' +
+        '<g fill="none" stroke="var(--scene-near)" stroke-linecap="round"><path d="M118 178 Q165 158 212 178" stroke-width="2.6"/>' +
+        '<path d="M128 181 Q165 166 202 181 M120 173 Q165 153 210 173 M132 172.9 v-5 M146 169.6 v-5 M165 168 v-5 M184 169.6 v-5 M198 172.9 v-5"/></g>' +
+        '<g fill="var(--sun)"><circle cx="120" cy="170" r="1.7"/><circle cx="210" cy="170" r="1.7"/><circle cx="228" cy="174.5" r="1.4"/><circle cx="244" cy="174.5" r="1.4"/><circle cx="260" cy="174.5" r="1.4"/><circle cx="340" cy="174.5" r="1.4"/><circle cx="356" cy="174.5" r="1.4"/><circle cx="372" cy="174.5" r="1.4"/></g>',
+      lights: [[2, 144, 2, 4], [95, 132, 2, 4], [113, 108, 3, 7], [152, 126, 1, 5], [174, 126, 1, 5], [189, 134, 2, 3], [209, 122, 2, 4], [355, 138, 2, 4], [375, 128, 2, 5],
+               [87, 150, 3, 2], [110, 155, 2, 1], [198, 155, 2, 1], [217, 151, 3, 2],
+               [270, 145, 8, 1, 6], [276, 128, 6, 1, 6], [282, 113, 4, 1, 6]],   /* last three: the castle's floors */
+      ink: /* Tsutenkaku (Shinsekai): wide lattice feet, straight shaft, the stacked white deck, round cap and spire */
+        truss(58, [[119, 6], [135, 6.5], [151, 8], [167, 12], [186, 20]]) +
+        '<path d="M45 186 Q58 162 71 186 M51 105 L54 99 h8 L65 105 M55.5 99 v-5 h5 v5 M58 94 V84"/>' +
+        '<path d="M46 119 h24 v-6 h-24Z M48.5 113 h19 v-8 h-19Z" fill="var(--snow)"/>' +
+        '<path d="M51.5 109 h13" stroke-width="0.8"/>'
+    },
+    kyoto: {
+      far: '<path d="M-5 190 V116 Q40 88 96 110 Q150 86 214 108 Q268 92 328 112 Q364 102 395 110 V190Z" opacity="0.55"/>' +   /* Higashiyama hills, with a few cedars on the ridge */
+        '<path d="' + fir(128, 104, 0.6) + fir(139, 101, 0.75) + fir(151, 98, 0.6) + fir(334, 111, 0.6) + fir(345, 108, 0.75) + '" opacity="0.55"/>' +
+        '<path d="M-5 190 V144 Q70 122 150 142 Q230 126 300 144 Q350 134 395 142 V190Z"/>',
+      mid: /* roofs further up the lane */
+        '<path d="M140 180 V161 l6 -5 h20 l6 5 V180Z M174 180 V156 l8 -7 h24 l8 7 V180Z M300 180 V152 l8 -7 h22 l8 7 V180Z M346 180 V157 l7 -6 h24 l7 6 V180Z"/>',
+      near: pagoda(262) +   /* + machiya: low wooden town houses with tiled roofs (the pale line is the eave) */
+        '<path d="M194 180 V160 H232 V180Z M190 161 L198 152 H228 L236 161Z M280 180 V159 H322 V180Z M276 160 L285 150 H317 L326 160Z M330 180 V161 H372 V180Z M326 162 L334 154 H368 L376 162Z" opacity="0.8"/>' +
+        '<path d="M191 161 H235 M277 160 H325 M327 162 H375" stroke="var(--scene-far)"/>',
+      lights: [[261, 168, 1, 5, 0, -16], [198, 163.5, 5, 1, 7], [285, 162.5, 5, 1, 8], [336, 164, 4, 1, 9], [180, 160, 3, 1, 8], [307, 156, 3, 1, 8]],   /* one lamp per pagoda storey, house windows */
+      ink: /* Fushimi Inari: a row of torii going back up the hill, each a little smaller */
+        torii(26, 187, 1.7) + torii(60, 184, 1.4) + torii(87, 181, 1.15) + torii(108, 178.5, 0.93) + torii(125, 176.5, 0.75) + torii(138, 175, 0.6) + torii(148, 174, 0.48)
+    },
+    hiroshima: {
+      far: '<path d="M-5 190 V142 Q60 128 150 144 V190Z" opacity="0.5"/>' +
+        '<path d="M4 190 V138 h14 V190Z M22 190 V146 h10 V190Z M138 190 V134 h14 V190Z M156 190 V144 h12 V190Z"/>' +
+        '<path d="M170 190 V150 Q205 122 250 130 Q292 96 340 120 Q372 110 395 118 V190Z" opacity="0.6"/>' +   /* Miyajima's hills */
+        '<path d="M296 190 V150 Q340 130 395 138 V190Z"/>',
+      mid: /* trees beside the Dome; on the island, the shrine's roof and a few firs */
+        '<circle cx="28" cy="156" r="7"/><circle cx="136" cy="155" r="6"/><circle cx="147" cy="159" r="7"/>' +
+        '<path d="M342 162 V154 h32 V162Z M337 154 l7 -7 h28 l7 7Z ' + fir(322, 160, 0.9) + fir(387, 160, 1) + '"/>',
+      near: /* Atomic Bomb Dome: kept quiet and low. Broken walls, empty windows you can see the sky through, the bare dome frame. */
+        '<g transform="translate(0 -9)"><path fill-rule="evenodd" d="M38 180 V155 l4 -3 v-3 h13 l3 3 h10 V140 h32 v11 h15 l3 -3 l4 4 l3 -3 v8 l6 2 V180Z M45 159 a2.5 2.5 0 0 1 5 0 v7 h-5Z M56 159 a2.5 2.5 0 0 1 5 0 v7 h-5Z M73 146 a2.5 2.5 0 0 1 5 0 v8 h-5Z M81.5 146 a2.5 2.5 0 0 1 5 0 v8 h-5Z M90 146 a2.5 2.5 0 0 1 5 0 v8 h-5Z M106 158 a2.5 2.5 0 0 1 5 0 v7 h-5Z M117 158 a2.5 2.5 0 0 1 5 0 v7 h-5Z M73 160 h5 v8 h-5Z M81.5 160 h5 v8 h-5Z M90 160 h5 v8 h-5Z" opacity="0.8"/>' +
+        '<path d="M70 140 Q70 121 84 119 Q98 121 98 140 M77 140 Q77 122 84 119 Q91 122 91 140 M84 115 V140 M71.5 131 H96.5 M75 124.5 H93" fill="none" stroke="var(--scene-near)" stroke-width="1.3" stroke-linecap="round"/></g>',
+      lights: [[6, 142, 2, 4], [140, 138, 2, 4], [158, 148, 2, 3], [346, 156.5, 4, 1, 7]],   /* city behind, the shrine on the island (none on the Dome) */
+      front: /* the sea, with a few ripples */
+        '<path d="M150 190 Q165 166 215 160 H395 V190Z" fill="var(--scene-far)" opacity="0.75"/>' +
+        '<path d="M226 170 h16 M200 180 h12 M244 181 h20 M336 186 h22 M342 172 h18 M366 180 h20" stroke="var(--scene-near)" stroke-linecap="round" opacity="0.45"/>',
+      ink: /* Itsukushima's floating torii, with its small support legs and a broken reflection */
+        torii(292, 180, 2.6) + '<path d="M262 180 V157 M322 180 V157 M262 163 H271 M322 163 H313"/>' +
+        '<path d="M264 185 h13 M306 186 h15 M283 188.5 h11" opacity="0.5"/>'
+    },
+    sapporo: {
+      ground: "var(--snow)",
+      far: '<path d="M-5 190 V130 Q40 112 84 122 L128 96 L160 118 Q200 104 240 122 Q300 108 395 128 V190Z" opacity="0.5"/>' +   /* mountains, one snowy peak */
+        '<path d="M128 96 L141 105 L134 104 L129 109 L124 103 L117 104Z" fill="var(--snow)"/>' +
+        '<path d="' + SAP_B.map(function (b) { return 'M' + b[0] + ' 190 V' + b[1] + ' h' + b[2] + ' V190Z'; }).join("") + '"/>' +
+        '<path d="' + SAP_B.map(function (b) { return 'M' + (b[0] - 1) + ' ' + (b[1] + 2) + ' q' + (b[2] / 2 + 1) + ' -7 ' + (b[2] + 2) + ' 0Z'; }).join("") + '" fill="var(--snow)"/>',   /* a thick cap of snow on every roof */
+      mid: '<path d="' + SAP_F.map(function (f) { return fir(f[0], f[1], f[2]); }).join("") + '"/>',
+      near: /* the clock tower, roofs heavy with snow */
+        '<path d="' + SAP_F.map(function (f) { return fir(f[0], f[1], f[2], true); }).join("") + '" fill="var(--snow)"/>' +
+        '<path d="M208 180 V150 H292 V180Z" opacity="0.85"/>' +
+        '<path d="M200 152 L250 129 L300 152Z M240 140 V108 H260 V140Z M235 110 L250 92 L265 110Z M249.2 93 V84 h1.6 V93Z"/>' +
+        '<path d="M198 153 Q224 137 250 127 Q276 137 302 153 H291 Q270 142 250 136 Q230 142 209 153Z M233 111 Q242 100 250 90.5 Q258 100 267 111 H259 L250 100.5 L241 111Z" fill="var(--snow)"/>' +
+        '<circle cx="250" cy="121" r="5.5" fill="var(--snow)"/>' +
+        '<path d="M250 121 V117 M250 121 h3" fill="none" stroke="var(--scene-near)" stroke-width="1.1" stroke-linecap="round"/>' +
+        '<path d="M216 158 a3 3 0 0 1 6 0 v9 h-6Z M230 158 a3 3 0 0 1 6 0 v9 h-6Z M264 158 a3 3 0 0 1 6 0 v9 h-6Z M278 158 a3 3 0 0 1 6 0 v9 h-6Z" fill="var(--snow)" opacity="0.6"/>',
+      front: /* soft lines where the snow has drifted */
+        '<path d="M-5 181 Q40 172 96 180 Q160 188 220 179 M250 185 Q300 173 340 180 Q370 185 395 178" fill="none" stroke="var(--scene-far)" stroke-linecap="round"/>',
+      lights: [[95, 139, 3, 4], [115, 127, 2, 6], [153, 135, 3, 4], [175, 147, 3, 3], [321, 141, 3, 3], [343, 129, 2, 5], [363, 147, 3, 2], [218, 160, 2, 1, 14], [266, 160, 2, 1, 14]],
+      ink: /* Sapporo TV Tower: lattice legs, the white deck with snow on top, the big clock under it */
+        truss(60, [[98, 2], [108, 3.5], [118, 5]]) + truss(60, [[128, 6.5], [146, 9.5], [164, 13.5], [180, 18]]) +
+        '<path d="M38 187 h44 M41 187 v-7 h38 v7 M60 98 V84"/>' +                                /* building it stands on, antenna */
+        '<path d="M52 128 h16 v-10 h-16Z" fill="var(--snow)"/>' +                                 /* observation deck */
+        '<path d="M54.5 131.5 h11 v7 h-11Z" fill="var(--sun)" stroke-width="1"/>' +               /* the big clock */
+        '<path d="M57.2 135 h1.8 M61 135 h1.8" stroke-width="0.9"/>'
+    },
+    air: {   /* travel days: above the clouds, a small plane with a thinning contrail */
+      ground: "var(--snow)",   /* the hill shape becomes the top of the cloud sea */
+      far: '<path d="' + cloud(10, 122, 1.3) + cloud(128, 98, 0.8) + cloud(240, 142, 1.2) + cloud(296, 110, 0.7) + cloud(330, 152, 0.9) + '"/>',
+      front: /* two rows of puffy cloud tops: a paler one behind, a bright one in front */
+        '<path class="cloudsea" d="M-5 190 V160 q22 -16 46 -4 q20 -16 46 -2 q24 -14 48 2 q24 -14 46 0 q26 -16 52 0 q24 -12 46 2 q24 -14 50 -2 q20 -8 40 0 q10 -4 30 0 V190Z" fill="var(--snow)" opacity="0.5"/>' +
+        '<path class="cloudsea" d="M-5 190 V174 q18 -16 38 -6 q14 -18 38 -4 q20 -14 40 0 q18 -12 38 2 q22 -16 44 0 q20 -12 40 2 q20 -14 40 -2 q20 -10 40 4 q16 -8 34 -2 q24 -12 50 2 V190Z" fill="var(--snow)"/>',
+      lights: [[160, 126, 2, 1, 7], [174, 124, 2, 1, 7], [188, 122, 2, 1, 7]],   /* the plane's windows glow at night */
+      ink:
+        '<path d="M141 131 Q86 143 14 150 Q86 148.5 141 134.5Z" fill="var(--snow)" stroke="none" opacity="0.85"/>' +   /* contrail */
+        '<path d="M180 122.4 L174 111 H179 L192 120.6Z" fill="var(--card)"/>' +                                       /* far wing */
+        '<path d="M140 133 Q139.5 128.5 146 127.3 L206 118.6 Q219 116.8 226 120.6 Q221 125 209 126.3 L150 134.6 Q142 135.6 140 133Z" fill="var(--card)"/>' +   /* body */
+        '<path d="M146 127.3 L139 112 H145 L160 125.3Z M178 130.6 L160 150 H168 L196 128Z M144 131.5 L134 136 H141 L152 133.3Z" fill="var(--card)"/>' +   /* tail fin, near wing, tailplane */
+        '<path d="M171 140 h8 v3.2 h-8Z" fill="var(--card)" stroke-width="1.1"/>' +                                   /* engine */
+        '<path d="M160 127.8 h2 M167 126.8 h2 M174 125.8 h2 M181 124.8 h2 M188 123.8 h2 M195 122.8 h2 M202 121.8 h2 M214 120 l5 1.2" stroke="var(--ink)" stroke-width="1.3"/>'   /* windows + cockpit */
+    }
+  };
+  var SCENE_LABELS = { tokyo: "Tokyo", osaka: "Osaka", kyoto: "Kyoto", hiroshima: "Hiroshima", sapporo: "Sapporo", air: "Flying" };
+  /* The calendar's tiny landmark icons: the window ("viewBox") onto each city's red ink sketch. */
+  var ICON_BOX = { tokyo: "36 80 52 110", osaka: "34 80 48 110", sapporo: "34 80 52 110", kyoto: "2 144 50 46", hiroshima: "254 116 76 72", air: "132 104 98 52" };
+  function miniIcon(scene) {
+    return '<svg class="ticon" viewBox="' + ICON_BOX[scene] + '" aria-hidden="true"><g fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+      SCENES[scene].ink + '</g></svg>';
+  }
+
+  /* The stars: part of each day's sliding sky (this picture also sets the height of the scene area). */
+  function skySvg() {
+    return '<svg class="sky-svg" viewBox="0 0 390 190" aria-hidden="true">' +
+      '<g class="stars" fill="var(--moon)"' + op(skyMix(japanMinutes()).night) + '><circle cx="40" cy="30" r="1.5"/><circle cx="95" cy="70" r="1.2"/><circle cx="140" cy="22" r="1.5"/><circle cx="235" cy="60" r="1.2"/><circle cx="290" cy="25" r="1.5"/><circle cx="355" cy="55" r="1.2"/></g>' +
+    '</svg>';
+  }
+  /* The sun and moon, drawn at their arc positions. They sit on the fixed layer, so they don't slide with a drag. */
+  function bodiesSvg() {
+    var b = restingBodies();
+    return '<svg class="bodies-svg" viewBox="0 0 390 190" aria-hidden="true">' +
+      '<circle class="moon" r="15" fill="var(--moon)" ' + bodyAttrs(b.moon) + '/>' +
+      '<circle class="sun" r="20" fill="var(--sun)" ' + bodyAttrs(b.sun) + '/>' +
+    '</svg>';
+  }
+  /* The city's landmarks (and its snow). These stay put while you drag between days. */
+  var INK = '<g fill="none" stroke="var(--accent)" stroke-linecap="round" stroke-linejoin="round"';   /* the red pen */
+  function landmarksHtml(name) {
+    var c = SCENES[name];
+    return snowHtml(name) + '<svg viewBox="0 0 390 190" aria-hidden="true">' +
+      '<filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter>' +
+      /* the "sketch" filter gives the landmarks a slight hand-drawn wobble (kept gentle so lines stay crisp) */
+      '<filter id="sketch"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="1"/><feDisplacementMap in="SourceGraphic" scale="0.9"/></filter>' +
+      '<filter id="loose"><feTurbulence type="fractalNoise" baseFrequency="0.07" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter>' +   /* a wobblier copy: the faint first pencil line */
+      '<filter id="glow" x="-1" y="-1" width="3" height="3"><feGaussianBlur stdDeviation="1.2"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>' +   /* soft halo for night windows */
+      (c.back || "") +
+      '<g fill="var(--scene-far)" opacity="0.75" filter="url(#wobble)">' + c.far + '</g>' +
+      '<g fill="var(--scene-near)" opacity="0.45" filter="url(#sketch)">' + (c.mid || "") + '</g>' +
+      '<g fill="var(--scene-near)" filter="url(#sketch)">' + (c.near || "") + '</g>' +
+      lights(c.lights) +
+      '<path ' + (name === "air" ? 'class="cloudsea" ' : '') + 'd="M-5 190 V168 Q70 150 160 166 Q250 180 395 160 V190Z" fill="' + (c.ground || "var(--scene-hill)") + '" filter="url(#wobble)"/>' +
+      (c.front || "") +
+      INK + ' opacity="0.4" stroke-width="0.7" filter="url(#loose)">' + c.ink + '</g>' +
+      INK + ' stroke-width="1.6" filter="url(#sketch)">' + c.ink + '</g>' +
+    '</svg>';
+  }
+
+  /* Anime-style "kira" shine: a thin cross-shaped glint with two tiny dots */
+  var KIRA = '<span class="kira" aria-hidden="true"><svg viewBox="0 0 20 20" fill="var(--sun)">' +
+    '<path d="M10 0 Q10.8 9.2 20 10 Q10.8 10.8 10 20 Q9.2 10.8 0 10 Q9.2 9.2 10 0Z"/>' +
+    '<circle cx="17" cy="3.5" r="1.3"/><circle cx="3.5" cy="16.5" r="0.9"/></svg></span>';
+  /* Snowflakes: each is [left %, start delay in seconds, seconds to fall] */
+  var FLAKES = [[8, 0, 9], [24, 3, 11], [41, 1.5, 8], [58, 5, 12], [73, 2.5, 10], [90, 6, 9]];
+  var MORE_FLAKES = [[3, 1, 7], [15, 4.5, 8], [19, 0.5, 9], [32, 2, 7.5], [36, 6, 8.5], [49, 3.5, 7], [53, 0.8, 9.5], [66, 4, 8], [81, 1.2, 7.5], [85, 5.5, 9], [96, 2.8, 8]];
+  function snowHtml(scene) {   /* light snow everywhere, heavy in Sapporo, none above the clouds */
+    if (scene === "air") return "";
+    /* The delay counts from page load (a negative delay = already partway through), so after a re-render
+       the flakes carry on where they were instead of all jumping back to the top. */
+    var t = performance.now() / 1000;
+    return '<div class="snow" aria-hidden="true">' + (scene === "sapporo" ? FLAKES.concat(MORE_FLAKES) : FLAKES).map(function (f) {
+      return '<i style="left:' + f[0] + '%;animation-delay:' + (f[1] - t).toFixed(2) + 's;animation-duration:' + f[2] + 's"></i>';
+    }).join("") + '</div>';
+  }
+
+  /* Split "Off We Go! ✈️" into the words and the trailing emoji, so the emoji skips the outline. */
+  function funTitle(title) {
+    var m = title.match(/^(.*?)\s*((?:\p{Extended_Pictographic}|️|‍)+)$/u);
+    var words = m ? m[1] : title, emoji = m ? m[2] : "";
+    var cut = words.lastIndexOf(" ") + 1;   /* the last word and the emoji stay together if the title wraps */
+    return '<div class="funtitle">' + esc(words.slice(0, cut)) + '<span class="nw">' + esc(words.slice(cut)) +
+      (emoji ? ' <span class="emoji">' + emoji + '</span>' : '') + KIRA + '</span></div>';
+  }
+
+  /* ================= 5. Pages ================= */
+  var isLarge = false;
+
+  /* The control bar. The middle button is always text size; the outer two change per page. */
+  function bar(left, right) {
+    return '<div class="bar">' + left +
+      '<button type="button" data-act="size" aria-pressed="' + isLarge + '">Aa ' + (isLarge ? "Large" : "Normal") + '</button>' +
+      right + '</div>';
+  }
+  var BTN_CAL = '<button type="button" data-act="cal">Calendar</button>';
+  var BTN_HELP = '<button type="button" data-act="help">Help &amp; phrases</button>';
+
+  /* One day's sliding header: its sky colours, stars, day number, date, cities, fun title and weather.
+     The page shows today's slide, with yesterday's and tomorrow's parked either side for the drag. */
+  function slide(i, where, topBar) {
+    var day = DAYS[i], weather = dayWeather(day);
+    var spacer = topBar.replace(/ data-act="[^"]*"/g, "").replace('class="bar"', 'class="bar bar-spacer"');
+    return '<div class="slide ' + where + '"' + (where === "cur" ? '' : ' aria-hidden="true"') + '>' +
+        skyLayers() +
+        '<div class="pc-top">' + spacer +
+          '<div class="daytitle"><div class="eyebrow">Day ' + (i + 1) + '</div>' + (where === "cur" ? '<h1>' : '<div class="h1" role="presentation">') +
+            longDate(day.date) + (where === "cur" ? '</h1>' : '</div>') +
+            '<div class="eyebrow">' + weather.map(function (w) { return esc(w.name); }).join(" → ") + '</div></div>' +
+          funTitle(day.title) +
+        '</div>' +
+        '<div class="scene' + (weather.length > 1 ? " multi" : "") + '">' + skySvg() + weatherFacts(weather) + '</div>' +
+      '</div>';
+  }
+
+  function dayPage(i) {
+    var day = DAYS[i];
+    var weather = dayWeather(day);
+    var hasMum = day.cards.some(function (c) { return c.people.indexOf("mum") !== -1; });
+    var many = day.cards.length > 1;
+    var topBar = bar(BTN_CAL, BTN_HELP);
+    return '<header class="postcard is-' + skyStateInJapan() + '">' +
+        '<div class="stage">' +
+          '<div class="track" id="track">' + (i > 0 ? slide(i - 1, "prev", topBar) : '') + slide(i, "cur", topBar) +
+            (i < DAYS.length - 1 ? slide(i + 1, "next", topBar) : '') + '</div>' +
+          '<div class="bodies">' + bodiesSvg() + '</div>' +
+          '<div class="landmarks" id="landmarks">' + landmarksHtml(day.scene) + '</div>' +
+          '<div class="focus"></div>' +
+          '<div class="bar-float">' + topBar + '</div>' +
+        '</div>' +
+        '<div class="pc-caption">' +
+          '<p><strong>What to wear:</strong> ' + wearFor(weather) + '</p>' +
+          (hasMum ? '<p class="mum">' + MUM_LINE + '</p>' : '') +
+          (day.wear ? '<div class="extra">' + esc(day.wear) + '</div>' : '') +
+        '</div>' +
+      '</header>' +
+      (many ? '<p class="pager" aria-live="polite"><span id="pagerText">1 of ' + day.cards.length + ' · ' + esc(day.cards[0].name) + '</span>' +
+        '<span class="dots" aria-hidden="true">' + day.cards.map(function (c, k) { return '<i' + (k ? '' : ' class="on"') + '></i>'; }).join("") + '</span></p>' : '') +
+      '<div class="panels' + (many ? '' : ' single') + '" id="panels"' + (many ? ' tabindex="0" aria-label="Group plans, scroll sideways"' : '') + '>' +
+        day.cards.map(function (c, k) { return groupPanel(c, k, day.date); }).join("") + '</div>';
+  }
+
+  /* Calendar: Dec 2026 and Jan 2027, Monday first. Only trip days are tappable. */
+  var WD_SHORT = ["M", "T", "W", "T", "F", "S", "S"];
+  function monthGrid(y, m) {
+    var lead = (new Date(Date.UTC(y, m - 1, 1)).getUTCDay() + 6) % 7;   /* blank cells before the 1st (Monday-first) */
+    var daysInMonth = new Date(Date.UTC(y, m, 0)).getUTCDate();
+    var today = todayInJapan();
+    var html = WD_SHORT.map(function (w) { return '<div class="wd" aria-hidden="true">' + w + '</div>'; }).join("");
+    for (var b = 0; b < lead; b++) html += '<div class="tile blank"></div>';
+    for (var d = 1; d <= daysInMonth; d++) {
+      var iso = y + "-" + String(m).padStart(2, "0") + "-" + String(d).padStart(2, "0");
+      var i = dayIndex(iso);
+      if (i === -1) { html += '<div class="tile off"><span class="tnum">' + d + '</span></div>'; continue; }
+      var day = DAYS[i], sticker = STICKERS[iso];
+      var words = day.title.replace(/[\s\p{Extended_Pictographic}️‍]+$/u, "");   /* title without its emoji */
+      html += '<a class="tile' + (iso === today ? " today" : iso < today ? " past" : "") + (sticker ? " special" : "") + '" href="#day-' + iso + '"' +
+        ' aria-label="' + esc(longDate(iso) + ", " + SCENE_LABELS[day.scene] + ": " + day.title) + '">' +
+        (iso === today ? '<i class="tape"></i>' : '') + (sticker ? '<span class="sticker" aria-hidden="true">' + sticker + '</span>' : '') +
+        '<span class="tnum">' + d + '</span>' + miniIcon(day.scene) + '<span class="tcity">' + SCENE_LABELS[day.scene] + '</span>' +
+        '<span class="ttitle">' + esc(words) + '</span></a>';
+    }
+    return '<section class="section month"><h2>' + MONTHS[m - 1] + ' ' + y +
+      ' <span class="sfx" lang="ja" aria-hidden="true">' + m + '月</span></h2><div class="cal">' + html + '</div></section>';
+  }
+  var STICKERS = { "2026-12-18": "🎂", "2026-12-25": "🎄", "2026-12-31": "🎆" };   /* special days get a tilted sticker */
+
+  /* Calendar tiles are narrow: shrink a city name or title only if one of its words doesn't fit. */
+  function fitTiles() {
+    var els = document.querySelectorAll(".tcity, .ttitle");
+    for (var n = 0; n < els.length; n++) {
+      var el = els[n];
+      el.style.fontSize = "";
+      var size = parseFloat(getComputedStyle(el).fontSize);
+      while (el.scrollWidth > el.clientWidth + 0.5 && size > 6) { size *= 0.92; el.style.fontSize = size + "px"; }
+    }
+  }
+  function fitAll() { fitTitle(); fitTiles(); }
+  function calendarPage() {
+    return '<header class="plainhead">' + bar('<button type="button" data-act="today">Today</button>', BTN_HELP) +
+      '<h1>Japan Trip 2026</h1><div class="eyebrow">16 Dec – 3 Jan · tap a day</div></header>' +
+      monthGrid(2026, 12) + monthGrid(2027, 1);
+  }
+
+  /* Help & phrases. Numbers are tel: links; the address and phrase buttons open the huge view. */
+  function telHref(n) { return "tel:" + n.replace(/[^\d+]/g, ""); }
+  function helpPage() {
+    return '<header class="plainhead">' + bar(BTN_CAL, '<button type="button" data-act="back">Back to day</button>') +
+      '<h1>Help &amp; phrases</h1></header>' +
+      '<section class="section"><h2>Emergency</h2>' + TRIP.emergency.map(function (e) {
+        return '<div class="row"><span>' + esc(e.label) + '</span><a class="tel" href="' + telHref(e.number) + '">' + esc(e.number) + '</a></div>';
+      }).join("") + '</section>' +
+      '<section class="section"><h2>Where we stay</h2>' + TRIP.stays.map(function (s, k) {
+        return '<div class="stay"><div class="eyebrow">' + esc(s.city) + ' · ' + esc(s.dates) + '</div>' +
+          '<div><strong>' + esc(s.name) + '</strong></div><div>' + esc(s.en) + '</div>' +
+          '<div class="ja" lang="ja">' + esc(s.ja) + '</div>' +
+          '<button type="button" class="btn btn-google" data-act="taxi" data-i="' + k + '">Show taxi driver</button></div>';
+      }).join("") + '</section>' +
+      '<section class="section"><h2>Phrases</h2><p class="note">Tap one to show it big.</p>' + TRIP.phrases.map(function (p, k) {
+        return '<button type="button" class="phrase" data-act="phrase" data-i="' + k + '">' +
+          '<span class="ja" lang="ja">' + esc(p.ja) + '</span><span class="say">' + esc(p.say) + '</span><span class="en">' + esc(p.en) + '</span></button>';
+      }).join("") + '</section>';
+  }
+
+  /* Matt's banner: a banknote with faint money patterns, "100" in each corner, and sparkles.
+     Each sparkle is [left %, top %, size in rem, animation delay in seconds]. */
+  var SPARKLES = [[-3, -18, 1.4, 0], [12, 88, 1, 0.3], [30, -22, 1, 0.6], [50, 94, 1.5, 0.15], [68, -20, 1.2, 0.45], [88, 90, 1, 0.7],
+                  [99, -12, 1.5, 0.25], [-4, 60, 1.1, 0.5], [100, 45, 1.2, 0.05], [22, 28, 0.8, 0.4], [76, 58, 0.9, 0.65], [48, -8, 0.8, 0.2]];
+  var BILL_ART =
+    '<svg class="bill-art" viewBox="0 0 300 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true" fill="none" stroke="var(--bill-ink)">' +
+      '<rect x="7" y="7" width="286" height="106" rx="3" stroke-dasharray="2 3"/>' +
+      '<ellipse cx="150" cy="60" rx="66" ry="38"/><ellipse cx="150" cy="60" rx="80" ry="44"/><ellipse cx="150" cy="60" rx="94" ry="50"/>' +
+      '<circle cx="36" cy="60" r="24"/><circle cx="36" cy="60" r="19"/><circle cx="264" cy="60" r="24"/><circle cx="264" cy="60" r="19"/>' +
+      '<g fill="var(--bill-ink)" stroke="none" font-size="28" font-family="Georgia, serif" text-anchor="middle"><text x="36" y="70">$</text><text x="264" y="70">$</text></g>' +
+    '</svg>';
+  function bannerHtml() {
+    var sparkles = SPARKLES.map(function (sp) {
+      return '<i class="sparkle" style="left:' + sp[0] + '%;top:' + sp[1] + '%;width:' + sp[2] + 'rem;height:' + sp[2] + 'rem;animation-delay:' + sp[3] + 's"></i>';
+    }).join("");
+    return '<span class="bill">' + BILL_ART +
+      '<b class="corner c1">100</b><b class="corner c2">100</b><b class="corner c3">100</b><b class="corner c4">100</b>' +
+      '<span class="bill-text">Thank you Matt for covering all expenses today! 🙏</span></span>' + sparkles;
+  }
+
+  /* ================= 6. Wiring: routing, banner, text size, swipes, huge view ================= */
+  var app = document.getElementById("app");
+  var matt = document.getElementById("matt");
+  var big = document.getElementById("big");
+  var mattTimer;
+  var current = { view: "", i: 0 };   /* what's on screen now */
+  var lastDay = 0;                    /* the day "Back to day" returns to */
+
+  /* Read the address bar: #day-2026-12-23, #calendar or #help. Anything else → the opening day. */
+  function route() {
+    var h = location.hash.slice(1);
+    if (h === "calendar" || h === "help") return { view: h };
+    var i = h.indexOf("day-") === 0 ? dayIndex(h.slice(4)) : -1;
+    if (i === -1) i = dayIndex(openingDate(todayInJapan()));
+    return { view: "day", i: i };
+  }
+
+  function render() {
+    var r = route();
+    current = r;
+    closeBig();
+    var lapseFrom = pendingLapse;
+    pendingLapse = null;
+    if (r.view === "calendar") { app.innerHTML = calendarPage(); fitTiles(); }
+    else if (r.view === "help") app.innerHTML = helpPage();
+    else {
+      lastDay = r.i;
+      app.innerHTML = dayPage(r.i);
+      fitTitle();
+      wirePager(DAYS[r.i]);
+      if (lapseFrom) startLapse(lapseFrom);
+    }
+    window.scrollTo(0, 0);
+  }
+
+  /* After a day change: the sky time-lapses through the night, and the old city's landmarks
+     swap for the new city's at the darkest moment (when the sun is lowest). */
+  var pendingLapse = null;   /* { scene, node }: the old day's landmarks, saved just before a swipe re-renders the page */
+  var lapseUntil = 0;        /* time the current lapse ends (so a late forecast redraw doesn't cut it off) */
+  function startLapse(from) {
+    lapseUntil = Date.now() + LAPSE_MS + 200;
+    var pc = document.querySelector(".postcard"), cur = document.querySelector(".slide.cur");
+    var newScene = DAYS[current.i].scene;
+    /* Put the OLD landmarks element (already painted) back in place of the new one, so nothing
+       changes on screen until the lapse swaps it at the darkest moment. */
+    var lm = document.getElementById("landmarks");
+    lm.replaceWith(from.node);
+    lm = from.node;
+    var snow = lm.querySelector(".snow");   /* moving an element restarts its CSS animations: re-sync the flakes to the clock */
+    if (snow) snow.outerHTML = snowHtml(from.scene);
+    var bodies = document.querySelector(".bodies-svg");
+    var st = {
+      m0: japanMinutes(),   /* the lapse runs from now, round a full day, back to now */
+      skies: { dusk: cur.querySelector(".sky-dusk"), night: cur.querySelector(".sky-night"), morning: cur.querySelector(".sky-morning") },
+      stars: cur.querySelector(".stars"), landmarks: lm, focus: pc.querySelector(".focus"),
+      sun: bodies.querySelector(".sun"), moon: bodies.querySelector(".moon")
+    };
+    /* The darkest moment is when the sun is lowest (middle of the night, 11:45pm). Swap the landmarks
+       when the lapse reaches it, however far into the lapse that is. */
+    var DARKEST = SUNSET + (1440 - (SUNSET - SUNRISE)) / 2;
+    var untilDarkest = ((DARKEST - st.m0) % 1440 + 1440) % 1440;
+    var swapped = from.scene === newScene, done = false, start = null;
+    function step(u) {
+      if (done || !pc.isConnected) return;   /* finished, or the page changed underneath us */
+      if (!swapped && 1440 * ease(u) >= untilDarkest) { lm.innerHTML = landmarksHtml(newScene); swapped = true; }
+      drawLapse(st, u);
+      if (u >= 1) { done = true; st.focus.style.opacity = ""; }   /* u = 1 is the resting picture again */
+    }
+    function frame(now) {
+      if (start === null) start = now;
+      step(Math.min(1, (now - start) / LAPSE_MS));
+      if (!done && pc.isConnected) requestAnimationFrame(frame);
+    }
+    step(0);   /* u = 0 is exactly what's on screen now, so there's nothing to flash */
+    requestAnimationFrame(frame);
+    setTimeout(function () { step(1); }, LAPSE_MS + 200);   /* if frames stopped (app in background), still end cleanly */
+  }
+
+  /* The "1 of 2 · name" indicator follows the sideways card scroll. */
+  function wirePager(day) {
+    if (day.cards.length < 2) return;
+    var panels = document.getElementById("panels");
+    panels.addEventListener("scroll", function () {
+      if (!panels.isConnected) return;   /* a late scroll event from a page that's already been replaced */
+      var k = Math.min(day.cards.length - 1, Math.round(panels.scrollLeft / panels.firstElementChild.offsetWidth));
+      document.getElementById("pagerText").textContent = (k + 1) + " of " + day.cards.length + " · " + day.cards[k].name;
+      var dots = document.querySelectorAll(".dots i");
+      for (var d = 0; d < dots.length; d++) dots[d].className = d === k ? "on" : "";
+    });
+  }
+
+  /* Long day titles: shrink the font a step at a time until the line fits. If it still doesn't fit at
+     70% size, let it wrap onto two lines instead, so the hero title never gets tiny. */
+  function fitTitle() {
+    var els = document.querySelectorAll(".funtitle");   /* today's, plus the neighbours waiting either side */
+    for (var n = 0; n < els.length; n++) fitOneTitle(els[n]);
+  }
+  function fitOneTitle(el) {
+    el.style.fontSize = el.style.whiteSpace = "";
+    var size = parseFloat(getComputedStyle(el).fontSize), floor = size * 0.7;
+    var tooWide = function () { return el.scrollWidth > el.clientWidth + 1; };
+    while (tooWide() && size > floor) { size *= 0.93; el.style.fontSize = size + "px"; }
+    if (tooWide()) el.style.whiteSpace = "normal";   /* allow two lines */
+    /* at most two lines (Large text wraps on its own): shrink a little more if it needs three */
+    while ((el.offsetHeight > size * 1.1 * 2 + 4 || tooWide()) && size > floor * 0.75) { size *= 0.95; el.style.fontSize = size + "px"; }
+  }
+
+  function showBanner() {
+    matt.innerHTML = bannerHtml();
+    matt.classList.remove("gone", "pop");
+    void matt.offsetWidth;          /* makes the browser notice the class was removed, so the pop animation restarts */
+    matt.classList.add("pop");
+    clearTimeout(mattTimer);
+    mattTimer = setTimeout(hideBanner, 5000);
+  }
+  function hideBanner() { clearTimeout(mattTimer); matt.classList.add("gone"); }
+  matt.addEventListener("click", hideBanner);
+
+  function setLarge(on) {
+    isLarge = on;
+    document.documentElement.classList.toggle("large", on);
+    var btns = document.querySelectorAll('[data-act="size"]');   /* the real bar and its invisible copies */
+    for (var n = 0; n < btns.length; n++) { btns[n].textContent = "Aa " + (on ? "Large" : "Normal"); btns[n].setAttribute("aria-pressed", on); }
+    try { localStorage.setItem("tripTextSize", on ? "large" : "normal"); } catch (e) { /* no storage: fine */ }
+    fitAll();
+  }
+
+  /* The huge view: Japanese text big enough to hold up to a taxi driver or shop counter. */
+  function openBig(html) {
+    big.innerHTML = html + '<small>Tap anywhere to close</small>';
+    big.hidden = false;
+    big.focus();
+  }
+  function closeBig() { big.hidden = true; }
+  big.tabIndex = -1;
+  big.addEventListener("click", closeBig);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeBig();
+    /* desktop: arrow keys change day, like a swipe */
+    if (current.view === "day" && big.hidden && !(e.target.closest && e.target.closest("input, textarea"))) {
+      if (e.key === "ArrowRight") changeDay(1);
+      if (e.key === "ArrowLeft") changeDay(-1);
+    }
+  });
+
+  /* One click listener for all the buttons render() creates. */
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-act]");
+    if (!btn) return;
+    var act = btn.getAttribute("data-act");
+    var k = Number(btn.getAttribute("data-i"));
+    if (act === "size") setLarge(!isLarge);
+    if (act === "cal") location.hash = "#calendar";
+    if (act === "help") location.hash = "#help";
+    if (act === "today") location.hash = "#day-" + openingDate(todayInJapan());
+    if (act === "back") location.hash = "#day-" + DAYS[lastDay].date;
+    if (act === "taxi") {
+      var s = TRIP.stays[k];
+      openBig('<div class="ja" lang="ja">この住所までお願いします</div><div class="ja" lang="ja">' + esc(s.ja) + '</div><div>' + esc(s.name) + '</div>');
+    }
+    if (act === "phrase") {
+      var p = TRIP.phrases[k];
+      openBig('<div class="ja" lang="ja">' + esc(p.ja) + '</div><div class="say">' + esc(p.say) + '</div><div>' + esc(p.en) + '</div>');
+    }
+  });
+
+  /* ---------- Changing day ---------- */
+  function reducedMotion() { return window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
+  /* Show day i. replaceState (not a new history entry) so swiping through days doesn't fill up the back button. */
+  function goToDay(i, withLapse) {
+    var oldLandmarks = document.getElementById("landmarks");
+    pendingLapse = withLapse && !reducedMotion() && oldLandmarks ? { scene: DAYS[current.i].scene, node: oldLandmarks } : null;
+    history.replaceState(null, "", "#day-" + DAYS[i].date);
+    render();
+  }
+  /* Move the sliding header. ms = 0 follows the finger exactly; ms > 0 eases there. */
+  function setTrack(x, ms) {
+    var track = document.getElementById("track");
+    if (!track) return;
+    track.style.transition = ms ? "transform " + ms + "ms ease-out" : "none";
+    track.style.transform = "translate3d(" + x + "px,0,0)";
+  }
+  var sliding = false;   /* true while the header glides to the next day, so a new drag can't interrupt */
+  function slideToDay(step) {   /* step = +1 next day, -1 previous */
+    var target = current.i + step;
+    if (sliding || target < 0 || target >= DAYS.length) return;
+    if (reducedMotion()) return goToDay(target, false);
+    sliding = true;
+    var track = document.getElementById("track"), finished = false;
+    /* Swap pages only once the glide has really finished (transitionend), not on a guessed timer:
+       on a slow phone the glide can run a frame late, and swapping early made the header jump. */
+    var finish = function () {
+      if (finished) return;
+      finished = true;
+      sliding = false;
+      goToDay(target, true);
+    };
+    track.addEventListener("transitionend", function onEnd(e) {
+      if (e.target !== track) return;   /* ignore transitions bubbling up from inside the header */
+      track.removeEventListener("transitionend", onEnd);
+      finish();
+    });
+    setTimeout(finish, 450);   /* safety net if transitionend never fires (e.g. already at the end) */
+    setTrack(-step * track.offsetWidth, 220);
+  }
+  function changeDay(step) { slideToDay(step); }   /* arrow keys on a computer */
+
+  /* ---------- Dragging the header between days (touch) ----------
+     Single-card days: a sideways drag anywhere on the page moves the header.
+     Split days: only on the postcard, because a sideways swipe on the cards moves between groups.
+     We only take over once the finger is clearly moving sideways, so vertical scrolling still works. */
+  var drag = null, panFrame = 0;
+  document.addEventListener("touchstart", function (e) {
+    drag = null;
+    if (current.view !== "day" || !big.hidden || e.touches.length > 1 || sliding) return;
+    if (DAYS[current.i].cards.length > 1 && !e.target.closest(".postcard")) return;
+    var t = e.touches[0];
+    drag = { x0: t.clientX, y0: t.clientY, dx: 0, dir: null, w: document.getElementById("track").offsetWidth,
+             recent: [[t.clientX, e.timeStamp]] };   /* last few positions, to measure flick speed */
+  }, { passive: true });
+
+  document.addEventListener("touchmove", function (e) {
+    if (!drag) return;
+    var t = e.touches[0], dx = t.clientX - drag.x0, dy = t.clientY - drag.y0;
+    if (!drag.dir) {
+      if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;   /* too small to tell yet */
+      drag.dir = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+    }
+    if (drag.dir === "y") { drag = null; return; }   /* vertical: leave it to the page scroll */
+    e.preventDefault();                               /* sideways: it's ours, don't scroll */
+    drag.dx = dx;
+    drag.recent.push([t.clientX, e.timeStamp]);
+    if (drag.recent.length > 5) drag.recent.shift();
+    if (!reducedMotion() && !panFrame) panFrame = requestAnimationFrame(function () {   /* at most one move per screen frame */
+      panFrame = 0;
+      if (drag) setTrack(rubberBand(drag.dx), 0);
+    });
+  }, { passive: false });   /* passive: false, or preventDefault() is ignored */
+
+  /* At the first/last day there's nothing to pull in, so the header only gives a little (rubber band). */
+  function rubberBand(dx) {
+    var target = current.i + (dx < 0 ? 1 : -1);
+    return target < 0 || target >= DAYS.length ? dx / 4 : dx;
+  }
+
+  function endDrag() {
+    var d = drag;
+    drag = null;
+    if (!d || d.dir !== "x") return;
+    var step = d.dx < 0 ? 1 : -1, target = current.i + step;
+    var a = d.recent[0], b = d.recent[d.recent.length - 1];
+    var speed = (b[0] - a[0]) / Math.max(1, b[1] - a[1]);   /* pixels per millisecond */
+    var flick = Math.abs(speed) > 0.5 && (speed < 0) === (d.dx < 0);
+    var go = target >= 0 && target < DAYS.length && (Math.abs(d.dx) > d.w * 0.25 || flick);
+    if (go) slideToDay(step);
+    else if (!reducedMotion()) setTrack(0, 200);   /* not far enough: snap back */
+  }
+  document.addEventListener("touchend", endDrag, { passive: true });
+  document.addEventListener("touchcancel", function () { if (drag && drag.dir === "x") setTrack(0, 200); drag = null; }, { passive: true });
+
+  window.addEventListener("hashchange", render);
+  window.addEventListener("resize", fitAll);
+  if (document.fonts) document.fonts.ready.then(fitAll);   /* re-fit once Figtree has loaded */
+
+  /* Start up */
+  try { isLarge = localStorage.getItem("tripTextSize") === "large"; } catch (e) { /* no storage: fine */ }
+  document.documentElement.classList.toggle("large", isLarge);
+  if (route().view === "day" && location.hash.indexOf("#day-") !== 0) {
+    history.replaceState(null, "", "#day-" + openingDate(todayInJapan()));   /* so the address shows the day */
+  }
+  render();
+  showBanner();   /* once per app open/reload only (not on day changes) */
+  /* Redraw with live temps once they arrive, but only if nobody's mid-use (scrolled, swiping, taxi view open).
+     Otherwise the next day change picks them up anyway. */
+  loadForecasts().then(function () {
+    if (!drag && !sliding && big.hidden && window.scrollY < 10 && Date.now() > lapseUntil) render();
+  });
+
+  /* Tiny self-check (shows in the console only if something is wrong) */
+  console.assert(openingDate("2026-11-14") === "2026-12-16", "before the trip → day 1");
+  console.assert(openingDate("2026-12-23") === "2026-12-23", "during the trip → today");
+  console.assert(openingDate("2027-02-01") === "2027-01-03", "after the trip → last day");
+  console.assert(longDate("2026-12-23") === "Wednesday 23 December", "weekday maths");
+  console.assert(wearFor([{ hi: -1, lo: -7 }]).indexOf("Freezing") === 0 && wearFor([{ hi: 12, lo: 3 }, { hi: 25, lo: 14 }]).indexOf("Cold") === 0, "wear rules use the colder city");
+  console.assert(SKY_STATES.indexOf(skyStateInJapan()) !== -1, "unknown sky state");
+  console.assert(arcPoint(0)[0] > 350 && arcPoint(1)[0] < 40 && arcPoint(0.5)[1] < arcPoint(0.1)[1], "sun/moon arc: rises right, peaks, sets left");
+  console.assert(skyMix(12 * 60).night === 0 && skyMix(23 * 60 + 45).night === 1 && skyMix(17 * 60 + 45).dusk > 0.5 && skyMix(6 * 60).morning > 0.5, "sky follows the sun: day at noon, night at midnight, tints at sunrise/sunset");
+  console.assert(sfxFor("2026-12-23", 0) === sfxFor("2026-12-23", 0) && sfxFor("2026-12-23", 0) !== sfxFor("2026-12-23", 1), "sound effects: stable, different per card");
+  console.assert(figuresRow({ name: "x", people: ["dad", "choleh", "mum", "darryl"] }).match(/<span class="fig[^"]*">(\w+)/g).join() ===
+    ['<span class="fig">Darryl', '<span class="fig child">Choleh', '<span class="fig">Mum', '<span class="fig">Dad'].join(), "figure order");
+  console.assert(DAYS.length === 19 && DAYS.every(function (d) {
+    return SCENES[d.scene] && d.weather.every(function (w) { return TRIP.cities[w]; }) &&
+      d.cards.every(function (c) { return c.people.every(function (p) { return PEOPLE[p]; }); });
+  }), "every day needs a known scene, cities and people");
+</script>
+</body>
+</html>
