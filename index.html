@@ -53,6 +53,7 @@
     --hair-dark: #453a36;
     --hair-brown: #5e3a22;
     --hair-darkbrown: #43281a;
+    --hair-light: #9a6a3e;   /* Dan */
     --metal: #6f7780;        /* Matt's glasses */
     --hair-blond: #dcb65c;
     --focus: #1f4f8a;
@@ -69,7 +70,7 @@
       --dusk-1: #7c3f2c; --dusk-2: #96562e; --night-1: #0a0e20; --night-2: #1a2040;
       --moon: #f4f0dc; --window-glow: #f6c453; --night-ink: #f5e9e3; --bill: #1c3626; --bill-ink: #a8e6bf; --on-accent: #2a0f0a; --btn2: #a9c4e6; --on-btn2: #14202e; --snow: #dfe8f2; --glow: #3ddc84; --sparkle: #fff3b0; --bill-text: #ffffff; --bill-outline: #000000; --scene-far: #263746; --scene-near: #161d26; --scene-hill: #4a2f2a;
       --fig-line: #140a08; --fig-body: #a88276; --maroon: #8f2540;   /* figures in dark: dark cartoon outlines, softer body */
-      --skin: #e9c9ad; --hair-black: #6b7480; --hair-dark: #8a776e; --hair-brown: #a06b45; --hair-darkbrown: #8f5e3f; --metal: #cfd6de; --hair-blond: #ebcb74;
+      --skin: #e9c9ad; --hair-black: #6b7480; --hair-dark: #8a776e; --hair-brown: #a06b45; --hair-darkbrown: #8f5e3f; --hair-light: #c9996a; --metal: #cfd6de; --hair-blond: #ebcb74;
       --focus: #9cc7ff; --shadow: rgba(0, 0, 0, 0.6);
       color-scheme: dark;
     }
@@ -83,7 +84,7 @@
     --dusk-1: #7c3f2c; --dusk-2: #96562e; --night-1: #0a0e20; --night-2: #1a2040;
     --moon: #f4f0dc; --window-glow: #f6c453; --night-ink: #f5e9e3; --bill: #1c3626; --bill-ink: #a8e6bf; --on-accent: #2a0f0a; --btn2: #a9c4e6; --on-btn2: #14202e; --snow: #dfe8f2; --glow: #3ddc84; --sparkle: #fff3b0; --bill-text: #ffffff; --bill-outline: #000000; --scene-far: #263746; --scene-near: #161d26; --scene-hill: #4a2f2a;
     --fig-line: #140a08; --fig-body: #a88276; --maroon: #8f2540;   /* figures in dark: dark cartoon outlines, softer body */
-    --skin: #e9c9ad; --hair-black: #6b7480; --hair-dark: #8a776e; --hair-brown: #a06b45; --hair-darkbrown: #8f5e3f; --metal: #cfd6de; --hair-blond: #ebcb74;
+    --skin: #e9c9ad; --hair-black: #6b7480; --hair-dark: #8a776e; --hair-brown: #a06b45; --hair-darkbrown: #8f5e3f; --hair-light: #c9996a; --metal: #cfd6de; --hair-blond: #ebcb74;
     --focus: #9cc7ff; --shadow: rgba(0, 0, 0, 0.6);
     color-scheme: dark;
   }
@@ -401,6 +402,31 @@
   .ttitle { margin-top: 0.1rem; font-size: 0.55rem; font-weight: 700; max-width: 100%; overflow: hidden; overflow-wrap: normal; word-break: normal; hyphens: manual;
             display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
 
+  /* ---------- Before you head out / rain / train cheat sheets ---------- */
+  .before { margin-top: 0.8rem; padding: 0.7rem 0.8rem; border: 2px dashed var(--ink-soft); border-radius: 0.8rem; background: var(--paper); }
+  .before h3 { font-size: 1rem; font-weight: 800; }
+  .before .lbl { margin-top: 0.5rem; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; color: var(--accent); }
+  .before ul { margin: 0.15rem 0 0; padding-left: 1.2rem; }
+  .before li { padding: 0.12rem 0; line-height: 1.3; }
+  .rain { margin-top: 0.15rem; font-weight: 700; }
+  .train { margin-top: 0.45rem; padding: 0.45rem 0.6rem; border-left: 4px solid #8b1d2c; background: var(--paper); border-radius: 0.2rem 0.6rem 0.6rem 0.2rem; font-size: 0.95em; line-height: 1.35; }
+  .train b { display: block; }
+  .train .sub { color: var(--ink-soft); }
+  /* meal photo: a small rounded square under the meal name, in the left column */
+  .mthumb { display: block; width: 100%; max-width: 4.2rem; aspect-ratio: 1; margin-top: 0.45rem; border-radius: 0.55rem; object-fit: cover; border: 2px solid var(--card); box-shadow: 0 1px 3px var(--shadow); }
+  /* Japan how-tos: tap a question to open it */
+  details.howto { border-top: 1px solid var(--line); padding: 0.55rem 0; }
+  details.howto:first-of-type { border-top: 0; }
+  details.howto summary { font-weight: 700; cursor: pointer; }
+  details.howto ul { margin-top: 0.4rem; padding-left: 1.1rem; }
+  /* Sis and Dan's cell: sits at the very bottom of every page, cut off so ~3/4 shows */
+  .jail { position: relative; width: 11rem; height: 7.6rem; margin: 2.5rem auto calc(-2.5rem - env(safe-area-inset-bottom, 0px)); overflow: hidden; }
+  .jail-in { position: relative; height: 10rem; }
+  .jail-back, .jail-front { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .jail-figs { position: absolute; left: 0; right: 0; top: 2.9rem; display: flex; justify-content: center; gap: 0.9rem; }
+  .jail .fig { font-size: 0; min-width: 0; }   /* names are chalked on the wall instead */
+  .jail .fig svg { width: 3.2rem; height: 4.5rem; }
+
   /* ---------- Help & phrases ---------- */
   .row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.3rem 0.8rem; padding: 0.5rem 0; border-top: 1px solid var(--line); }
   .row:first-of-type { border-top: 0; }
@@ -581,7 +607,7 @@
   function dayWeather(day) {
     return day.weather.map(function (key) {
       var c = TRIP.cities[key], w = L.pickWeather(c, day.date, FORECASTS[key]);
-      return { key: key, name: c.name, hi: w.hi, lo: w.lo, live: w.live };
+      return { key: key, name: c.name, hi: w.hi, lo: w.lo, live: w.live, rain: w.rain };
     });
   }
   /* One fetch per city on app open; if there's no signal we just keep the typical temps. */
@@ -590,7 +616,7 @@
     return Promise.all(keys.map(function (key) {
       var c = TRIP.cities[key];
       var url = "https://api.open-meteo.com/v1/forecast?latitude=" + c.lat + "&longitude=" + c.lon +
-        "&daily=temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&forecast_days=16";
+        "&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=16";
       return fetch(url).then(function (r) { return r.json(); })
         .then(function (j) { if (j && j.daily) FORECASTS[key] = j.daily; })
         .catch(function () { /* offline or blocked: typical temps stay */ });
@@ -606,6 +632,10 @@
     return "Mild: light layers";
   }
   var MUM_LINE = "Mum: add an extra layer — thermal top, gloves and a beanie.";
+  /* The day's highest live chance of rain across its cities, or 0 when there's no live forecast yet. */
+  function rainChance(weather) {
+    return Math.max.apply(null, weather.map(function (w) { return w.rain || 0; }));
+  }
 
   var SUN_CLOUD_ICON =
     '<svg viewBox="0 0 64 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
@@ -631,7 +661,9 @@
       temps = weather.map(function (w) { return '<span class="nw">' + esc(w.name) + ' ' + w.hi + '°</span>'; }).join(' → ');   /* nw: keep "Hong Kong 20°" together */
       sub = 'Lows ' + weather.map(function (w) { return w.lo + '°'; }).join(' → ');
     }
-    return '<div class="facts">' + weatherIcon(weather) + '<div><div class="temps">' + temps + '</div><div>' + sub + '</div></div></div>';
+    var rain = rainChance(weather);   /* only shown when it's likely, to keep the postcard clean */
+    return '<div class="facts">' + weatherIcon(weather) + '<div><div class="temps">' + temps + '</div><div>' + sub + '</div>' +
+      (rain >= 50 ? '<div class="rain">☔ ' + rain + '% chance of rain</div>' : '') + '</div></div>';
   }
 
   /* ================= 3. Small building blocks ================= */
@@ -649,7 +681,10 @@
   var CHLOE_WAVES = "M12.3 10 q-.3 1 0 2 q-3 3 0 6 q3 3 0 6 q-3 3 0 6 M27.7 10 q.3 1 0 2 q3 3 0 6 q-3 3 0 6 q3 3 0 6";
   /* Mum's version: same S-wave as Chloe's but half the swing, tucked in under her snugger crown */
   var MUM_WAVES = "M13.2 11 v1 q-1.5 3 0 6 q1.5 3 0 6 q-1.5 3 0 6 M26.8 11 v1 q1.5 3 0 6 q-1.5 3 0 6 q1.5 3 0 6";
-  var PEOPLE = {   /* keys match data.js */
+  /* Sis's white-rimmed cat-eye sunglasses: lenses whose outer top corners flick up, plus the bridge */
+  var CAT_EYES = "M13.2 10.2 Q16 11 19.3 11.4 Q19.4 14.3 17 14.3 Q14.8 14.3 14.4 12.2 Q14 11 13.2 10.2Z" +
+                 " M26.8 10.2 Q24 11 20.7 11.4 Q20.6 14.3 23 14.3 Q25.2 14.3 25.6 12.2 Q26 11 26.8 10.2Z M19.3 11.8 Q20 11.2 20.7 11.8";
+  var PEOPLE = {   /* keys match data.js (sis and dan only appear in the jail) */
     mum:    { name: "Mum", hair: "snug", colour: "var(--hair-darkbrown)",
               under: '<path d="' + MUM_WAVES + '" stroke-width="4"/>',
               /* thin maroon wayfarers: wider top, rounded corners, narrower round bottom */
@@ -674,6 +709,12 @@
     chloe:  { name: "Chloe", hair: "parted", colour: "var(--hair-black)",
               under: '<path d="' + CHLOE_WAVES + '" stroke-width="5.4"/>',
               extra: '<path d="' + CHLOE_WAVES + '" stroke="var(--hair-black)" stroke-width="3"/>' },
+    sis:    { name: "Sis", hair: "parted", colour: "var(--hair-black)",   /* Chloe's hair + cat-eye sunnies */
+              under: '<path d="' + CHLOE_WAVES + '" stroke-width="5.4"/>',
+              extra: '<path d="' + CHLOE_WAVES + '" stroke="var(--hair-black)" stroke-width="3"/>' +
+                     '<path d="' + CAT_EYES + '" fill="#1d1d22" stroke="var(--ink)" stroke-width="1.5"/>' +   /* ink copy underneath so the white rim shows on skin */
+                     '<path d="' + CAT_EYES + '" stroke="#ffffff" stroke-width="0.7"/>' },
+    dan:    { name: "Dan", hair: "messy", colour: "var(--hair-light)" },
     choleh: { name: "Choleh", hair: "straight", colour: "var(--hair-black)", child: true,
               /* anime emote: a little music note floating by her head */
               extra: '<text x="30" y="10" transform="rotate(12 30 10)" font-size="11" fill="var(--accent)" stroke="none">♪</text>' }
@@ -692,6 +733,8 @@
     curtains: "M10.8 10.4 Q13.4 9.6 13 7 Q12.4 1.8 16.8 .8 Q20 .2 21.2 3 Q21.6 -.2 24 .6 Q26.4 1.6 26.4 4 Q27.6 5.6 27.2 7.4 Q26.8 9.6 29.2 10.4 Q25.8 11.6 24.8 8.6 Q24.2 5.8 21.2 5.4 Q16.4 5.2 15.2 8.6 Q14.2 11.6 10.8 10.4Z",
     /* just the crown, with a middle parting (Chloe's wavy sides are added separately) */
     parted:   "M10.8 13 Q10.3 2.8 20 3 Q29.7 2.8 29.2 13 L25.5 13 Q24 8.5 20 5.5 Q16 8.5 14.5 13Z",
+    /* Dan: short, messy spikes going every which way */
+    messy:    "M12.4 11.6 Q11.6 7 13.6 5.4 L12.6 3.4 L15.6 4.2 L16 1.6 L18.4 3.4 L19.8 1 L21.4 3.2 L23.8 1.4 L24.2 4 L27 3.2 L26.2 5.6 Q28.4 7.4 27.6 11.6 Q26.4 8.6 24.4 8.2 L23.2 9.6 L22 7.8 L19.8 9.4 L18.6 7.8 L16.6 9.2 L15.6 7.8 Q13.4 8.6 12.4 11.6Z",
     /* straight, with a middle parting */
     straight: "M12 12 Q11.5 3 20 3.5 Q28.5 3 28 12 L28.5 28 L25.5 28 L25.5 13 Q24 8.5 20 5.5 Q16 8.5 14.5 13 L14.5 28 L11.5 28Z"
   };
@@ -725,11 +768,21 @@
       '</div></div>';
   }
 
+  /* One train leg from the Sheet, "Line · From → To · time · price": the line in bold, the route, then the rest smaller.
+     Legs without a separate route part ("JR Loop Line → Nishikujo, change… · ~25 min") just show line + rest. */
+  function trainSheet(leg) {
+    var p = leg.split(" · ");
+    var route = p.length > 2 ? '<div>' + esc(p[1]) + '</div>' : '';
+    var rest = p.slice(p.length > 2 ? 2 : 1).join(" · ");
+    return '<div class="train"><b>🚆 ' + esc(p[0]) + '</b>' + route + (rest ? '<div class="sub">' + esc(rest) + '</div>' : '') + '</div>';
+  }
+
   function timeline(activities) {
     return '<ol class="timeline">' + activities.map(function (a) {
       var html = '<div class="title">' + esc(a.title) + '</div>';
       if (a.note) html += '<div class="note">' + esc(a.note) + '</div>';
       if (a.ticket) html += '<div class="ticket">🎟️ ' + esc(a.ticket) + '</div>';
+      (a.train || []).forEach(function (leg) { html += trainSheet(leg); });
       if (a.place) html += dirLinks(a.place);
       return '<li><span class="rail" aria-hidden="true"><i class="line"></i><i class="dot"></i></span>' +
         '<div class="item"><div class="time">' + esc(a.time) + '</div>' + html + '</div></li>';
@@ -745,13 +798,23 @@
       '<path d="M12 26 v2 h10 v-2"/>' +                                          /* foot */
     '</svg>';
   /* The meals as a two-column grid: label column + content column. No meals → no section at all. */
-  function mealSection(meals) {
+  /* Meal photos in photos/ (see L.mealPhoto for the naming). Add a name here when you add a photo. */
+  var PHOTOS = ["0101-dinner", "0101-lunch", "1217-dinner", "1218-lunch", "1218-snack", "1219-dinner", "1220-breakfast", "1220-dinner",
+    "1220-lunch", "1221-dinner", "1221-lunch", "1222-lunch", "1223-dinner", "1223-lunch", "1224-dinner", "1224-lunch", "1225-dinner",
+    "1225-lunch", "1225-snack", "1226-dinner", "1226-lunch", "1227-breakfast", "1227-dinner", "1227-lunch", "1227-snack", "1228-dinner",
+    "1228-lunch", "1229-dinner", "1230-dinner", "1230-lunch", "1230-snack", "1231-breakfast", "1231-lunch", "1231-snack2"];
+  function mealSection(meals, date) {
     if (!meals || !meals.length) return "";
+    var mainMeals = DAYS[dayIndex(date)].cards[0].meals, seen = {};
     return '<h3 class="sep">' + BOWL_ICON + 'Meals</h3><div class="mgrid">' + meals.map(function (m) {
+      var nth = seen[m.meal] = (seen[m.meal] || 0) + 1;
+      var main = mainMeals.filter(function (x) { return x.meal === m.meal; })[nth - 1];
+      var photo = L.mealPhoto(date, m, nth, main, PHOTOS);
       var html = '<div class="meal-main">' + esc(m.what) + '</div>';
       if (m.detail) html += '<div class="meal-detail">' + esc(m.detail) + '</div>';
       if (m.place) html += dirLinks(m.place);
-      return '<div class="mrow"><div class="mlabel"><span class="meal-name">' + esc(m.meal) + '</span></div>' +
+      return '<div class="mrow"><div class="mlabel"><span class="meal-name">' + esc(m.meal) + '</span>' +
+        (photo ? '<img class="mthumb" src="photos/' + photo + '.jpg" alt="" loading="lazy">' : '') + '</div>' +
         '<div class="mcontent">' + html + '</div></div>';
     }).join("") + '</div>';
   }
@@ -773,7 +836,7 @@
     return '<div class="panel">' + figuresRow(card) +
       '<article class="card' + (i % 2 ? " card-md" : "") + '"><h2>' + esc(card.name) +
         '<span class="sfx" lang="ja" aria-hidden="true">' + sfxFor(date, i) + '</span></h2>' +
-        timeline(card.activities) + tips + mealSection(card.meals) +
+        timeline(card.activities) + tips + mealSection(card.meals, date) +
       '</article></div>';
   }
 
@@ -1063,6 +1126,36 @@
       '</div>';
   }
 
+  /* The day's to-dos and things to bring (Sheet columns L and M). Umbrellas and cash are added automatically. */
+  function beforeBox(day, weather) {
+    var b = day.before || {}, bring = (b.bring || []).slice(), rain = rainChance(weather);
+    if (rain >= 50) bring.unshift("☂️ Umbrellas (" + rain + "% rain)");
+    bring.push("💴 Cash: at least ¥10,000 in your wallet");
+    function list(items) { return '<ul>' + items.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join("") + '</ul>'; }
+    return '<div class="before"><h3>Before you head out</h3>' +
+      (b.do && b.do.length ? '<div class="lbl">DO</div>' + list(b.do) : '') +
+      '<div class="lbl">BRING</div>' + list(bring) + '</div>';
+  }
+
+  /* Sis and Dan, locked up in a cell that peeks up from the bottom of every page (they're not on the trip). */
+  function jailHtml() {
+    var back = '<svg class="jail-back" viewBox="0 0 110 100" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+      '<rect x="4" y="12" width="102" height="90" fill="var(--card)"/>' +                                 /* back wall */
+      '<rect x="48" y="17" width="14" height="11" fill="var(--paper)" stroke-width="1.4"/><path d="M52.7 17 V28 M57.3 17 V28" stroke-width="1.2"/>' +   /* little barred window */
+      '<path d="M9 18 v6 M11.5 18 v6 M14 18 v6 M16.5 18 v6 M7.5 22.5 L18 19.5" stroke="var(--ink-soft)" stroke-width="0.9"/>' +   /* tally marks */
+      '<g fill="var(--ink-soft)" stroke="none" font-size="5.5" font-weight="800" font-family="Figtree, sans-serif" text-anchor="middle">' +
+        '<text x="34.5" y="27">SIS</text><text x="75.5" y="27">DAN</text></g>' +                            /* chalk names */
+      '</svg>';
+    /* straight bars that dodge the two faces (Sis ~x35, Dan ~x76) */
+    var front = '<svg class="jail-front" viewBox="0 0 110 100" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M2 12 H108" stroke-width="3.5"/>' +
+      '<path d="M10 12 V100 M21 12 V100 M49 12 V100 M61 12 V100 M89 12 V100 M100 12 V100"/>' +
+      '<path d="M2 62 H108" stroke-width="2.4"/>' +
+      '</svg>';
+    return '<div class="jail" aria-hidden="true"><div class="jail-in">' + back +
+      '<div class="jail-figs">' + figure("sis") + figure("dan") + '</div>' + front + '</div></div>';
+  }
+
   function dayPage(i) {
     var day = DAYS[i];
     var weather = dayWeather(day);
@@ -1082,6 +1175,7 @@
           '<p><strong>What to wear:</strong> ' + wearFor(weather) + '</p>' +
           (hasMum ? '<p class="mum">' + MUM_LINE + '</p>' : '') +
           (day.wear ? '<div class="extra">' + esc(day.wear) + '</div>' : '') +
+          beforeBox(day, weather) +
         '</div>' +
       '</header>' +
       (many ? '<p class="pager" aria-live="polite"><span id="pagerText">1 of ' + day.cards.length + ' · ' + esc(day.cards[0].name) + '</span>' +
@@ -1146,6 +1240,9 @@
           '<div class="ja" lang="ja">' + esc(s.ja) + '</div>' +
           '<button type="button" class="btn btn-google" data-act="taxi" data-i="' + k + '">Show taxi driver</button></div>';
       }).join("") + '</section>' +
+      '<section class="section"><h2>Japan how-tos</h2>' + TRIP.howtos.map(function (h) {
+        return '<details class="howto"><summary>' + esc(h.q) + '</summary><ul>' + h.a.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("") + '</ul></details>';
+      }).join("") + '</section>' +
       '<section class="section"><h2>Phrases</h2><p class="note">Tap one to show it big.</p>' + TRIP.phrases.map(function (p, k) {
         return '<button type="button" class="phrase" data-act="phrase" data-i="' + k + '">' +
           '<span class="ja" lang="ja">' + esc(p.ja) + '</span><span class="say">' + esc(p.say) + '</span><span class="en">' + esc(p.en) + '</span></button>';
@@ -1195,11 +1292,11 @@
     closeBig();
     var lapseFrom = pendingLapse;
     pendingLapse = null;
-    if (r.view === "calendar") { app.innerHTML = calendarPage(); fitTiles(); }
-    else if (r.view === "help") app.innerHTML = helpPage();
+    if (r.view === "calendar") { app.innerHTML = calendarPage() + jailHtml(); fitTiles(); }
+    else if (r.view === "help") app.innerHTML = helpPage() + jailHtml();
     else {
       lastDay = r.i;
-      app.innerHTML = dayPage(r.i);
+      app.innerHTML = dayPage(r.i) + jailHtml();
       fitTitle();
       wirePager(DAYS[r.i]);
       if (lapseFrom) startLapse(lapseFrom);
