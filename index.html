@@ -684,6 +684,20 @@
   /* Sis's white-rimmed cat-eye sunglasses: lenses whose outer top corners flick up, plus the bridge */
   var CAT_EYES = "M13.2 10.2 Q16 11 19.3 11.4 Q19.4 14.3 17 14.3 Q14.8 14.3 14.4 12.2 Q14 11 13.2 10.2Z" +
                  " M26.8 10.2 Q24 11 20.7 11.4 Q20.6 14.3 23 14.3 Q25.2 14.3 25.6 12.2 Q26 11 26.8 10.2Z M19.3 11.8 Q20 11.2 20.7 11.8";
+  /* Claude's logo: an orange spark, 5 lines through the centre = 10 rounded rays */
+  function claudeLogo(cx, cy, r, w) {
+    var d = [90, 54, 18, -18, -54].map(function (a) {
+      var x = r * Math.cos(a * Math.PI / 180), y = r * Math.sin(a * Math.PI / 180);
+      return "M" + +(cx - x).toFixed(2) + " " + +(cy - y).toFixed(2) + " L" + +(cx + x).toFixed(2) + " " + +(cy + y).toFixed(2);
+    }).join(" ");
+    return '<path d="' + d + '" stroke="#D97757" stroke-width="' + w + '"/>';
+  }
+  /* Dan's laptop, held on his arm (viewer's left): silver lid with the logo, darker base edge, his hand underneath */
+  var DAN_LAPTOP =
+    '<rect x="5.6" y="20.4" width="12.4" height="8.6" rx="1.1" fill="#dfe2e6" stroke-width="1"/>' +
+    '<path d="M5.2 29.2 H18.6 L17.9 30.9 H5.9Z" fill="#b9bec6" stroke-width="1"/>' +
+    claudeLogo(11.8, 24.7, 2.3, 0.75) +
+    '<circle cx="11.8" cy="31.6" r="1.3" fill="var(--skin)" stroke-width="0.8"/>';
   var PEOPLE = {   /* keys match data.js (sis and dan only appear in the jail) */
     mum:    { name: "Mum", hair: "snug", colour: "var(--hair-darkbrown)",
               under: '<path d="' + MUM_WAVES + '" stroke-width="4"/>',
@@ -714,7 +728,7 @@
               extra: '<path d="' + CHLOE_WAVES + '" stroke="var(--hair-black)" stroke-width="3"/>' +
                      '<path d="' + CAT_EYES + '" fill="#1d1d22" stroke="var(--ink)" stroke-width="1.5"/>' +   /* ink copy underneath so the white rim shows on skin */
                      '<path d="' + CAT_EYES + '" stroke="#ffffff" stroke-width="0.7"/>' },
-    dan:    { name: "Dan", hair: "messy", colour: "var(--hair-light)" },
+    dan:    { name: "Dan", hair: "messy", colour: "var(--hair-light)", extra: DAN_LAPTOP },
     choleh: { name: "Choleh", hair: "straight", colour: "var(--hair-black)", child: true,
               /* anime emote: a little music note floating by her head */
               extra: '<text x="30" y="10" transform="rotate(12 30 10)" font-size="11" fill="var(--accent)" stroke="none">♪</text>' }
@@ -1137,6 +1151,19 @@
       '<div class="lbl">BRING</div>' + list(bring) + '</div>';
   }
 
+  /* Their ragdoll, sitting on the cross bar between them (cell coords). White with grey ears, a grey mask round
+     its blue eyes, and a long fluffy grey tail hanging down over the bar. Head is drawn around 0,0. */
+  var RAGDOLL = '<g fill="none" stroke="var(--fig-line)" stroke-width="0.8" transform="translate(55 51.2) scale(0.92)">' +
+    '<path d="M0.2 10 Q-0.8 12 -0.4 14 Q-1.5 15.5 -0.6 17 Q-1.7 18.6 -0.5 20.2 Q-0.7 22.8 1.6 23.2 Q3.9 22.8 3.7 20.2 Q4.9 18.6 3.8 17 Q4.8 15.4 3.6 14 Q4.2 12 3 10Z" fill="#8c7b75"/>' +   /* fluffy tail */
+    '<path d="M1.3 15.2 l0.3 1.2 M2 18.6 l-0.2 1.2" stroke="#6e605a" stroke-width="0.45"/>' +   /* fur tufts */
+    '<path d="M-3.3 2.4 Q-5.2 9 -3.4 10.5 H3.4 Q5.2 9 3.3 2.4Z" fill="#fffdf8"/>' +              /* body */
+    '<path d="M-1.6 5 l0.8 1 l0.8 -1 l0.8 1 l0.8 -1" stroke-width="0.5"/>' +                     /* fluffy chest */
+    '<path d="M-3.7 -1.3 L-3.5 -5 L-0.9 -3.2Z M3.7 -1.3 L3.5 -5 L0.9 -3.2Z" fill="#8c7b75"/>' +   /* grey ears */
+    '<ellipse cx="0" cy="0" rx="4" ry="3.5" fill="#fffdf8"/>' +
+    '<path d="M-3.3 -1.4 Q-2 -3.1 -0.5 -2.5 Q-0.5 0.5 -2.1 0.8 Q-3.6 0.4 -3.3 -1.4Z M3.3 -1.4 Q2 -3.1 0.5 -2.5 Q0.5 0.5 2.1 0.8 Q3.6 0.4 3.3 -1.4Z" fill="#a89b94" stroke="none"/>' +
+    '<circle cx="-1.7" cy="-0.6" r="0.6" fill="#3f7fd0" stroke="none"/><circle cx="1.7" cy="-0.6" r="0.6" fill="#3f7fd0" stroke="none"/>' +
+    '<path d="M-0.5 0.9 H0.5 L0 1.6Z" fill="#e58f8f" stroke="none"/></g>';
+
   /* Sis and Dan, locked up in a cell that peeks up from the bottom of every page (they're not on the trip). */
   function jailHtml() {
     var back = '<svg class="jail-back" viewBox="0 0 110 100" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
@@ -1150,7 +1177,7 @@
     var front = '<svg class="jail-front" viewBox="0 0 110 100" aria-hidden="true" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
       '<path d="M2 12 H108" stroke-width="3.5"/>' +
       '<path d="M10 12 V100 M21 12 V100 M49 12 V100 M61 12 V100 M89 12 V100 M100 12 V100"/>' +
-      '<path d="M2 62 H108" stroke-width="2.4"/>' +
+      '<path d="M2 62 H108" stroke-width="2.4"/>' + RAGDOLL +   /* the cat goes last: it sits ON the cross bar */
       '</svg>';
     return '<div class="jail" aria-hidden="true"><div class="jail-in">' + back +
       '<div class="jail-figs">' + figure("sis") + figure("dan") + '</div>' + front + '</div></div>';
