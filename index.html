@@ -52,6 +52,7 @@
     --hair-black: #22262b;
     --hair-dark: #453a36;
     --hair-brown: #5e3a22;
+    --hair-darkbrown: #43281a;
     --metal: #6f7780;        /* Matt's glasses */
     --hair-blond: #dcb65c;
     --focus: #1f4f8a;
@@ -68,7 +69,7 @@
       --dusk-1: #7c3f2c; --dusk-2: #96562e; --night-1: #0a0e20; --night-2: #1a2040;
       --moon: #f4f0dc; --window-glow: #f6c453; --night-ink: #f5e9e3; --bill: #1c3626; --bill-ink: #a8e6bf; --on-accent: #2a0f0a; --btn2: #a9c4e6; --on-btn2: #14202e; --snow: #dfe8f2; --glow: #3ddc84; --sparkle: #fff3b0; --bill-text: #ffffff; --bill-outline: #000000; --scene-far: #263746; --scene-near: #161d26; --scene-hill: #4a2f2a;
       --fig-line: #140a08; --fig-body: #a88276; --maroon: #8f2540;   /* figures in dark: dark cartoon outlines, softer body */
-      --skin: #e9c9ad; --hair-black: #6b7480; --hair-dark: #8a776e; --hair-brown: #a06b45; --metal: #cfd6de; --hair-blond: #ebcb74;
+      --skin: #e9c9ad; --hair-black: #6b7480; --hair-dark: #8a776e; --hair-brown: #a06b45; --hair-darkbrown: #8f5e3f; --metal: #cfd6de; --hair-blond: #ebcb74;
       --focus: #9cc7ff; --shadow: rgba(0, 0, 0, 0.6);
       color-scheme: dark;
     }
@@ -82,7 +83,7 @@
     --dusk-1: #7c3f2c; --dusk-2: #96562e; --night-1: #0a0e20; --night-2: #1a2040;
     --moon: #f4f0dc; --window-glow: #f6c453; --night-ink: #f5e9e3; --bill: #1c3626; --bill-ink: #a8e6bf; --on-accent: #2a0f0a; --btn2: #a9c4e6; --on-btn2: #14202e; --snow: #dfe8f2; --glow: #3ddc84; --sparkle: #fff3b0; --bill-text: #ffffff; --bill-outline: #000000; --scene-far: #263746; --scene-near: #161d26; --scene-hill: #4a2f2a;
     --fig-line: #140a08; --fig-body: #a88276; --maroon: #8f2540;   /* figures in dark: dark cartoon outlines, softer body */
-    --skin: #e9c9ad; --hair-black: #6b7480; --hair-dark: #8a776e; --hair-brown: #a06b45; --metal: #cfd6de; --hair-blond: #ebcb74;
+    --skin: #e9c9ad; --hair-black: #6b7480; --hair-dark: #8a776e; --hair-brown: #a06b45; --hair-darkbrown: #8f5e3f; --metal: #cfd6de; --hair-blond: #ebcb74;
     --focus: #9cc7ff; --shadow: rgba(0, 0, 0, 0.6);
     color-scheme: dark;
   }
@@ -646,10 +647,14 @@
   /* Chloe's wavy side hair: one thick line down each side. Drawn twice (see PEOPLE): a wider ink-coloured
      copy underneath gives it an outline, then the hair-coloured copy goes on top and hides the join with her crown. */
   var CHLOE_WAVES = "M12.3 10 q-.3 1 0 2 q-3 3 0 6 q3 3 0 6 q-3 3 0 6 M27.7 10 q.3 1 0 2 q3 3 0 6 q-3 3 0 6 q3 3 0 6";
+  /* Mum's version: same S-wave as Chloe's but half the swing, tucked in under her snugger crown */
+  var MUM_WAVES = "M13.2 11 v1 q-1.5 3 0 6 q1.5 3 0 6 q-1.5 3 0 6 M26.8 11 v1 q1.5 3 0 6 q-1.5 3 0 6 q1.5 3 0 6";
   var PEOPLE = {   /* keys match data.js */
-    mum:    { name: "Mum", hair: "shoulder", colour: "var(--hair-dark)",
+    mum:    { name: "Mum", hair: "snug", colour: "var(--hair-darkbrown)",
+              under: '<path d="' + MUM_WAVES + '" stroke-width="4"/>',
               /* thin maroon wayfarers: wider top, rounded corners, narrower round bottom */
-              extra: '<path d="M15.3 11.3 L19 11.5 Q19.5 11.55 19.4 12.2 Q19.1 14.2 17.4 14.2 Q15.4 14.2 14.8 12.2 Q14.6 11.3 15.3 11.3Z M24.7 11.3 L21 11.5 Q20.5 11.55 20.6 12.2 Q20.9 14.2 22.6 14.2 Q24.6 14.2 25.2 12.2 Q25.4 11.3 24.7 11.3Z M19.4 12 Q20 11.6 20.6 12 M14.7 11.6 l-1 -.2 M25.3 11.6 l1 -.2" stroke="var(--maroon)" stroke-width="0.5"/>' },
+              extra: '<path d="' + MUM_WAVES + '" stroke="var(--hair-darkbrown)" stroke-width="2"/>' +
+                     '<path d="M15.3 11.3 L19 11.5 Q19.5 11.55 19.4 12.2 Q19.1 14.2 17.4 14.2 Q15.4 14.2 14.8 12.2 Q14.6 11.3 15.3 11.3Z M24.7 11.3 L21 11.5 Q20.5 11.55 20.6 12.2 Q20.9 14.2 22.6 14.2 Q24.6 14.2 25.2 12.2 Q25.4 11.3 24.7 11.3Z M19.4 12 Q20 11.6 20.6 12 M14.7 11.6 l-1 -.2 M25.3 11.6 l1 -.2" stroke="var(--maroon)" stroke-width="0.5"/>' },
     dad:    { name: "Dad", hair: "short",    colour: "var(--hair-dark)",
               /* referee whistle: flat mouthpiece at his lips, round barrel, air slot on top, lanyard ring.
                  Then a tiny comic "TWEET!" with two motion lines, up and to the right. */
@@ -675,7 +680,8 @@
   };
   var HAIR_SHAPES = {
     short:    "M12.5 11.5 Q12.5 3.5 20 4 Q27.8 3.8 27.5 11.5 Q24 7.5 20 8 Q15.5 8 12.5 11.5Z",
-    shoulder: "M11.5 21 Q10.5 3 20 3.5 Q29.5 3 28.5 21 Q26.5 22 25.5 20 L25.5 12 Q20 6.5 14.5 12 L14.5 20 Q13.5 22 11.5 21Z",
+    /* Mum: Chloe's middle parting, but hugging the head instead of puffing out at the sides */
+    snug:     "M12 13 C12 7 15 3.4 20 3.4 C25 3.4 28 7 28 13 L25.5 13 Q24 8.5 20 5.5 Q16 8.5 14.5 13Z",
     /* tight squiggles down both sides to the shoulders, plus curls over the top */
     curly:    "M13 7 q2 -4 4.5 -1.5 q2.5 -3.5 5 0 q2.5 -2.5 4.5 1.5" +
               " M17 5.5 c-5 0 -6 3 -5 5 q-3.5 1.5 0 3 q-3.5 1.5 0 3 q-3.5 1.5 0 3 q-3.5 1.5 0 3" +
