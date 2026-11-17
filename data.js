@@ -37,12 +37,12 @@ window.TRIP = {
     },
     {
       date: "2026-12-17", title: "Hello Kyoto 😍⛩️", scene: "kyoto", weather: ["kyoto"],
-      before: { do: ["Show the Visit Japan Web QR at Narita", "Buy Welcome Suica cards at Narita"], bring: ["Passports"] },
+      before: { do: ["Show the Visit Japan Web QR at Narita", "Buy Welcome Suica cards at Narita"], bring: ["Passports", "N'EX QR code (screenshot it) + the Mastercard you paid with"] },
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
-          { time: "7:10am", title: "Land at Narita", note: "Buy a Welcome Suica card (Samsung can't do mobile Suica), then N'EX to Tokyo and the Nozomi to Kyoto (~3.5–4 hrs)", train: ["Narita Express · Narita Airport → Tokyo · ~55 min · ~¥3,070", "Tokaido Shinkansen (Nozomi) · Tokyo → Kyoto · ~2h15 · ~¥14,000"] },
-          { time: "~1:00pm", title: "Drop bags at the Kyoto hotel, nap", note: "Free bag storage. Early check-in from 2pm costs ¥2,000/hr", place: "509 Tsutsumicho, Higashiyama-ku, Kyoto", train: ["Kyoto subway · Kyoto Stn → Higashiyama (change at Karasuma Oike to the Tozai line) · ~15 min"] },
+          { time: "7:10am", title: "Land at Narita", ticket: "N'EX: Darryl has the QR (JR-EAST email). Collect at the JR machine before boarding", note: "Buy a Welcome Suica card (Samsung can't do mobile Suica), then N'EX to Tokyo and the Nozomi to Kyoto (~3.5–4 hrs)", train: ["Narita Express (N'EX) · N'EX 8 · Narita Airport T1 9:16am → Tokyo 10:17am · Car 4, seats 1A & 1B (big bags in the dial-lock racks in front of you)", "Tokaido Shinkansen Line · Nozomi 27 · Tokyo 11:12am → Kyoto 1:23pm · Car 5, seats 18-D & 18-E (big bags behind the seats)"] },
+          { time: "~1:00pm", title: "Drop bags at the Kyoto hotel, nap", note: "Free bag storage. Early check-in from 2pm costs ¥2,000/hr", place: "509 Tsutsumicho, Higashiyama-ku, Kyoto", train: ["Kyoto Subway · Kyoto Stn → Higashiyama · Change at Karasuma Oike to the Tozai Line"] },
           { time: "Evening", title: "Easy dinner near the hotel", note: "Red-eye day, so take it slow" },
         ],
         tips: ["Take the subway (not the bus) from Kyoto Station to Higashiyama with luggage."],
@@ -81,8 +81,8 @@ window.TRIP = {
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
           { time: "8:45am", title: "Nijo Castle", note: "Honmaru Palace ~9:30. Enter 20 min before your slot, socks required", place: "Nijo Castle, Kyoto" },
-          { time: "1:00pm", title: "Hozugawa river boat", note: "JR to Kameoka first. ~2 hrs down to Arashiyama", place: "Hozugawa River Boat Ride Kameoka", train: ["JR Sagano Line · Nijo → Kameoka · ~20 min · ~¥240"] },
-          { time: "~4:45pm", title: "Arashiyama bamboo grove + Togetsukyo at sunset", place: "Togetsukyo Bridge, Kyoto", train: ["Hankyu Arashiyama Line · Arashiyama → Kyoto-kawaramachi (change at Katsura) · ~25 min · ~¥240"] },
+          { time: "1:00pm", title: "Hozugawa river boat", note: "JR to Kameoka first. ~2 hrs down to Arashiyama", place: "Hozugawa River Boat Ride Kameoka", train: ["JR Sagano Line · Nijo → Kameoka · Aim to arrive by ~12:30pm (boat at 1pm)"] },
+          { time: "~4:45pm", title: "Arashiyama bamboo grove + Togetsukyo at sunset", place: "Togetsukyo Bridge, Kyoto", train: ["Hankyu Arashiyama Line · Arashiyama → Kyoto-kawaramachi · Change at Katsura. Aim to arrive by ~5:30pm (Koteppan walk-in)"] },
         ],
         meals: [
           { meal: "Breakfast", what: "Konbini" },
@@ -99,7 +99,7 @@ window.TRIP = {
           name: "Darryl & Josie", people: ["darryl", "josie"],
           activities: [
             { time: "Morning", title: "Check out, store bags, Nishiki Market", note: "Big lockers at Kyoto-Kawaramachi Stn before ~10am", place: "Nishiki Market, Kyoto" },
-            { time: "2:41pm", title: "Hankyu Kyo-train Garaku to Osaka-umeda", note: "Kyoto-styled train, regular fare, no booking (backup 4:41pm). Board early at Kawaramachi, bags by the doors. Then walk to JR Osaka → Loop Line to Ashiharabashi → walk to the villa", train: ["Hankyu Kyoto Line (maroon train) · Kyoto-kawaramachi → Osaka-umeda · Limited Express ~45 min · ~¥410"] },
+            { time: "2:41pm", title: "Hankyu Kyo-train Garaku to Osaka-umeda", note: "Kyoto-styled train, regular fare, no booking (backup 4:41pm). Board early at Kawaramachi, bags by the doors. Then walk to JR Osaka → Loop Line to Ashiharabashi → walk to the villa", train: ["Hankyu Kyoto Line · Kyo-train Garaku · Kyoto-kawaramachi 2:41pm → Osaka-umeda ~3:28pm · Backup 4:41pm", "JR Osaka Loop Line · Osaka → Ashiharabashi · Then walk to the villa"] },
             { time: "Evening", title: "Dinner with Mum & Dad", place: "Shinsekai, Osaka" },
           ],
           meals: [
@@ -128,7 +128,7 @@ window.TRIP = {
           name: "Darryl & Josie", people: ["darryl", "josie"],
           activities: [
             { time: "10:00am", title: "Osaka Aquarium Kaiyukan", note: "School holidays, so skip the walk-up queue", place: "Osaka Aquarium Kaiyukan" },
-            { time: "Afternoon", title: "Solaniwa Onsen", note: "3 stops on the Chuo line. Izakaya meal plan, last entry 10pm", ticket: "Darryl has the voucher (email)", place: "Solaniwa Onsen Osaka", train: ["Osaka Metro Chuo Line · Osakako → Bentencho · ~5 min · ~¥240"] },
+            { time: "Afternoon", title: "Solaniwa Onsen", note: "3 stops on the Chuo line. Izakaya meal plan, last entry 10pm", ticket: "Darryl has the voucher (email)", place: "Solaniwa Onsen Osaka", train: ["Osaka Metro Chuo Line · Osakako → Bentencho"] },
           ],
           tips: ["Buy 2 tattoo stickers at Solaniwa's front desk."],
           meals: [
@@ -155,9 +155,10 @@ window.TRIP = {
         {
           name: "Hiroshima crew", people: ["darryl", "josie", "mum", "dad", "choleh"],
           activities: [
-            { time: "~7:30am", title: "Leave the villa for the Shinkansen", note: "Reserved seats for 5. ~1h25 each way", train: ["Sanyo Shinkansen · Shin-Osaka → Hiroshima · ~1h25 · ~¥10,000"] },
+            { time: "~7:30am", title: "Leave the villa for the Shinkansen", note: "Reserved seats for 5. ~1h25 each way", train: ["Sanyo Shinkansen Line · Nozomi 1 · Shin-Osaka 8:24am → Hiroshima 9:49am"] },
             { time: "Midday", title: "Peace Park + Museum", place: "Hiroshima Peace Memorial Museum" },
-            { time: "Afternoon", title: "Miyajima (optional)", note: "Then back to Osaka for an early night. USJ tomorrow", place: "Miyajima Itsukushima Shrine", train: ["JR Sanyo Line + JR ferry · Hiroshima → Miyajimaguchi → Miyajima · ~30 min + 10 min ferry · Suica OK"] },
+            { time: "Afternoon", title: "Miyajima (optional)", note: "Then back to Osaka for an early night. USJ tomorrow", place: "Miyajima Itsukushima Shrine", train: ["JR Sanyo Line + JR ferry · Hiroshima → Miyajimaguchi → Miyajima · Suica OK"] },
+            { time: "6:43pm", title: "Shinkansen back to Shin-Osaka", note: "Reserved seats for 5", train: ["Sanyo Shinkansen Line · Nozomi 56 · Hiroshima 6:43pm → Shin-Osaka 8:04pm"] },
           ],
           meals: [
             { meal: "Breakfast", what: "Konbini or Shin-Osaka station" },
@@ -181,7 +182,7 @@ window.TRIP = {
         {
           name: "USJ crew", people: ["darryl", "josie", "matt", "chloe", "choleh"],
           activities: [
-            { time: "Before opening", title: "Universal Studios Japan", note: "Express Pass + Super Nintendo World timed entry", ticket: "Matt has everyone's tickets (Klook app)", place: "Universal Studios Japan, Osaka", train: ["JR Loop Line → Nishikujo, change to the Yumesaki Line → Universal City · ~25 min"] },
+            { time: "Before opening", title: "Universal Studios Japan", note: "Express Pass + Super Nintendo World timed entry", ticket: "Matt has everyone's tickets (Klook app)", place: "Universal Studios Japan, Osaka", train: ["JR Osaka Loop Line + JR Yumesaki Line · Change at Nishikujo → Universal City"] },
             { time: "Afternoon", title: "Split up by ride preference", note: "Regroup at set times" },
             { time: "Evening", title: "USJ night show", note: "Times posted the week before" },
           ],
@@ -234,10 +235,10 @@ window.TRIP = {
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
           { time: "Morning", title: "Check out of the villa" },
-          { time: "1:15pm", title: "Shinkansen Shin-Osaka → Tokyo", note: "Nozomi 254, arrives 3:45pm. All 7 together. Overnight bags only", train: ["Tokaido Shinkansen (Nozomi) · Shin-Osaka → Tokyo · ~2.5 hrs"] },
+          { time: "1:15pm", title: "Shinkansen Shin-Osaka → Tokyo", note: "Nozomi 254, arrives 3:45pm. All 7 together. Overnight bags only", train: ["Tokaido Shinkansen Line · Nozomi 254 · Shin-Osaka 1:15pm → Tokyo 3:45pm"] },
           { time: "~4:15pm", title: "Collect the big bags at Yamato", note: "Bunkyo Otowa office, open 8am–8pm. Bring Darryl's passport + the customer copies. Then ~12 min walk to the house", place: "1-19-22 Otowa, Bunkyo-ku, Tokyo" },
           { time: "~5:00pm", title: "Arrive at the Tokyo house", place: "361-1 Yamabukicho, Shinjuku-ku, Tokyo" },
-          { time: "Evening", title: "Tocho observation deck", note: "Oedo line from Iidabashi", place: "Tokyo Metropolitan Government Building", train: ["Toei Oedo Line · Iidabashi → Tochomae (for the Tocho deck) · ~15 min"] },
+          { time: "Evening", title: "Tocho observation deck", note: "Oedo line from Iidabashi", place: "Tokyo Metropolitan Government Building", train: ["Toei Oedo Line · Iidabashi → Tochomae"] },
           { time: "Night", title: "KFC Christmas at the house" },
         ],
         meals: [
@@ -254,8 +255,8 @@ window.TRIP = {
       cards: [{
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
-          { time: "Morning", title: "Free wander: Kichijoji or Shimokitazawa", note: "Pick on the day. Kichijoji: Inokashira Park, swan boats ~¥700/30 min", place: "Kichijoji Station", train: ["JR Chuo Line · Iidabashi → Kichijoji · ~25 min"] },
-          { time: "~4:30pm", title: "Train to Nakano", train: ["JR Chuo Line · Kichijoji → Nakano · ~10 min"] },
+          { time: "Morning", title: "Free wander: Kichijoji or Shimokitazawa", note: "Pick on the day. Kichijoji: Inokashira Park, swan boats ~¥700/30 min", place: "Kichijoji Station", train: ["JR Chuo Line · Iidabashi → Kichijoji"] },
+          { time: "~4:30pm", title: "Train to Nakano", train: ["JR Chuo Line · Kichijoji → Nakano · Aim to leave by ~4:30pm"] },
           { time: "~5:00pm", title: "Nakano Broadway", note: "Many shops close ~8pm. Darryl to buy Matt's birthday gift here", place: "Nakano Broadway" },
         ],
         meals: [
@@ -273,7 +274,7 @@ window.TRIP = {
         activities: [
           { time: "Morning", title: "Takeshita Street before 10am → Meiji Jingu / Yoyogi Park", note: "Cas:pace at the end of Takeshita St", place: "Takeshita Street, Harajuku" },
           { time: "2:30pm", title: "Chopstick-making workshop", note: "ZEN Chopsticks, Nishi-Shinjuku 10F. Arrive by 2:20pm, cashless", ticket: "Darryl has the voucher (Klook app)", place: "Shinjuku West Square Building, 7-4-5 Nishishinjuku" },
-          { time: "Late afternoon", title: "Pokémon Center Mega Tokyo", place: "Pokemon Center Mega Tokyo Ikebukuro", train: ["JR Yamanote Line · Shinjuku → Ikebukuro (for Pokémon Center) · ~10 min"] },
+          { time: "Late afternoon", title: "Pokémon Center Mega Tokyo", place: "Pokemon Center Mega Tokyo Ikebukuro", train: ["JR Yamanote Line · Shinjuku → Ikebukuro"] },
           { time: "6:00pm", title: "Unagi Hashimoto", note: "Booked. Pay at the restaurant", place: "Unagi Hashimoto Edogawabashi" },
         ],
         meals: [
@@ -290,7 +291,7 @@ window.TRIP = {
       cards: [{
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
-          { time: "Morning", title: "Toyosu: Senkyaku Banrai brunch", note: "Yurakucho line direct from the house", place: "Senkyaku Banrai Toyosu", train: ["Tokyo Metro Yurakucho Line · Edogawabashi → Toyosu, direct · ~25 min"] },
+          { time: "Morning", title: "Toyosu: Senkyaku Banrai brunch", note: "Yurakucho line direct from the house", place: "Senkyaku Banrai Toyosu", train: ["Tokyo Metro Yurakucho Line · Edogawabashi → Toyosu · Direct, no change"] },
           { time: "12:30pm", title: "teamLab Planets", note: "Wear trousers that roll up to the knee: you walk through water", ticket: "Darryl has the QR (appears after midnight)", place: "teamLab Planets Tokyo" },
           { time: "3:30pm", title: "Tokyo Skytree", note: "Sunset ~4:30pm", ticket: "Booked under Darryl", place: "Tokyo Skytree" },
           { time: "Evening", title: "Senso-ji at night", note: "~20 min walk from Skytree", place: "Senso-ji, Asakusa" },
@@ -308,7 +309,7 @@ window.TRIP = {
       cards: [{
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
-          { time: "11:00am", title: "Snoopy Museum Tokyo", note: "~1h15 each way", ticket: "Darryl has the QR codes (email)", place: "Snoopy Museum Tokyo", train: ["Tokyu Den-en-toshi Line → Minami-machida Grandberry Park · ~1h15 from the house"] },
+          { time: "11:00am", title: "Snoopy Museum Tokyo", note: "~1h15 each way", ticket: "Darryl has the QR codes (email)", place: "Snoopy Museum Tokyo", train: ["Tokyu Den-en-toshi Line · To Minami-machida Grandberry Park · Aim to arrive by ~10:45am (entry 11am)"] },
           { time: "Afternoon", title: "Grandberry Park", note: "Mall next door. Leave by ~5:30pm", place: "Grandberry Park" },
           { time: "7:00pm", title: "Last family dinner: Tobiuishi yakiniku", note: "Iidabashi. Booked, pay at the restaurant", place: "Wagyu Yakiniku Tobiuishi Iidabashi" },
         ],
@@ -326,8 +327,8 @@ window.TRIP = {
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
-          { time: "9:00am", title: "Harry Potter Studio Tour", note: "Carry the suitcases. Only 22 big lockers outside: arrive ~8:30", ticket: "Darryl has the tickets (email)", place: "Warner Bros. Studio Tour Tokyo", train: ["Toei Oedo Line · Iidabashi → Toshimaen · ~30 min"] },
-          { time: "2:30pm", title: "Limousine bus → Haneda T1", note: "Arrives ~3:55pm", train: ["Limousine bus · Studio → Haneda T1 · 2:30pm, ~85 min"] },
+          { time: "9:00am", title: "Harry Potter Studio Tour", note: "Carry the suitcases. Only 22 big lockers outside: arrive ~8:30", ticket: "Darryl has the tickets (email)", place: "Warner Bros. Studio Tour Tokyo", train: ["Toei Oedo Line · Iidabashi → Toshimaen · Aim to arrive by ~8:30am (only 22 big lockers)"] },
+          { time: "2:30pm", title: "Limousine bus → Haneda T1", note: "Arrives ~3:55pm", train: ["Limousine bus · Studio 2:30pm → Haneda T1 ~3:55pm"] },
           { time: "6:35pm", title: "Fly Haneda → Sapporo", note: "JL527, lands 8:10pm. Then the airport bus to Odori Park" },
         ],
         tips: ["Hardest day. JAL: 20 kg checked TOTAL per person + 10 kg carry-on, so heavy shopping goes in the carry-on."],
@@ -348,7 +349,7 @@ window.TRIP = {
         activities: [
           { time: "Morning", title: "Nijo Market", place: "Nijo Market, Sapporo" },
           { time: "Afternoon", title: "TV Tower + clock tower + Pokémon Center", place: "Sapporo TV Tower" },
-          { time: "Night", title: "Hokkaido Jingu for midnight ⛩️", note: "Subway likely not running late: ~40 min walk back", place: "Hokkaido Jingu", train: ["Tozai Line · Odori → Maruyama-koen (for the shrine) · ~10 min · walk back ~40 min"] },
+          { time: "Night", title: "Hokkaido Jingu for midnight ⛩️", note: "Subway likely not running late: ~40 min walk back", place: "Hokkaido Jingu", train: ["Tozai Line · Odori → Maruyama-koen · Walk back after midnight (~40 min)"] },
         ],
         meals: [
           { meal: "Breakfast", what: "Kaisendon at Donburi Chaya", detail: "Late brekky, Nijo Market, cards OK, check NYE hours. Backup: Keiran", place: "Donburi Chaya Nijo Market" },
@@ -365,7 +366,7 @@ window.TRIP = {
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
-          { time: "Late morning", title: "Skiing at Sapporo Teine (Olympia)", note: "Later start after the midnight shrine. JR to Teine, then the bus", place: "Sapporo Teine Olympia", train: ["JR Hakodate Line · Sapporo → Teine · ~15 min, then the bus to Olympia · ~15 min"] },
+          { time: "Late morning", title: "Skiing at Sapporo Teine (Olympia)", note: "Later start after the midnight shrine. JR to Teine, then the bus", place: "Sapporo Teine Olympia", train: ["JR Hakodate Line · Sapporo → Teine · Then the bus to Olympia"] },
           { time: "Afternoon", title: "Keep skiing", note: "Check the last bus back" },
           { time: "Evening", title: "Packing + easy dinner" },
         ],
@@ -382,7 +383,7 @@ window.TRIP = {
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
-          { time: "~5:30am", title: "Leave the hotel", note: "Check the first train/bus to the airport. This may be the one taxi", train: ["JR Rapid Airport · Sapporo → New Chitose Airport · ~40 min · ~¥1,230 (first train may be too late: taxi?)"] },
+          { time: "~5:30am", title: "Leave the hotel", note: "Check the first train/bus to the airport. This may be the one taxi", train: ["JR Rapid Airport · Sapporo → New Chitose Airport · Check the first train (flight 7:45am): may need a taxi"] },
           { time: "7:45am", title: "Fly Sapporo → Haneda", note: "JL500, lands 9:30am" },
           { time: "Midday", title: "Haneda Airport Garden", note: "Shops + hot-spring bath. Store bags" },
           { time: "6:00pm", title: "Fly Haneda → Beijing", note: "CA168, lands 9:20pm" },

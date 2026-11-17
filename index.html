@@ -782,13 +782,14 @@
       '</div></div>';
   }
 
-  /* One train leg from the Sheet, "Line · From → To · time · price": the line in bold, the route, then the rest smaller.
-     Legs without a separate route part ("JR Loop Line → Nishikujo, change… · ~25 min") just show line + rest. */
+  /* One train leg from the Sheet, "Line · Train · From time → To time · note": the line in bold, then each part on its own
+     line. A trailing note (seats, where to change, aim-for time: the last part, with no →) is shown smaller. */
   function trainSheet(leg) {
     var p = leg.split(" · ");
-    var route = p.length > 2 ? '<div>' + esc(p[1]) + '</div>' : '';
-    var rest = p.slice(p.length > 2 ? 2 : 1).join(" · ");
-    return '<div class="train"><b>🚆 ' + esc(p[0]) + '</b>' + route + (rest ? '<div class="sub">' + esc(rest) + '</div>' : '') + '</div>';
+    return '<div class="train"><b>🚆 ' + esc(p[0]) + '</b>' + p.slice(1).map(function (x, k) {
+      var note = p.length > 2 && k === p.length - 2 && x.indexOf("→") === -1;
+      return '<div' + (note ? ' class="sub"' : '') + '>' + esc(x) + '</div>';
+    }).join("") + '</div>';
   }
 
   function timeline(activities) {
