@@ -1,5 +1,5 @@
 // Japan trip app content. This is the ONLY file that changes when the plan changes.
-// Source: the "Final Itinerary" tab of the trip Sheet (read 16 Nov 2026). Columns L/M/N = before.do / before.bring / train.
+// Source: the "Final Itinerary" tab of the trip Sheet (read 19 Nov 2026). Columns L/M/N = before.do / before.bring / train.
 // Rules: no booking numbers, QR codes, phone numbers of people, or the birthday restaurant.
 // people keys: mum, dad, darryl, josie, matt, chloe, choleh
 // place = what the Directions buttons search for in Google/Apple Maps (leave out for no button).
@@ -55,19 +55,20 @@ window.TRIP = {
     },
     {
       date: "2026-12-18", title: "Josie's Secret Birthday Dinner 🤫🎂", scene: "kyoto", weather: ["kyoto"],
-      before: { do: ["Up early: Kiyomizu-dera opens 6am"], bring: ["Comfy walking shoes (lots of hills and stairs)"] },
+      before: { do: ["Leave the hotel ~6:25 (~35–40 min uphill walk to Kiyomizu-dera)"], bring: ["Comfy walking shoes (lots of hills and stairs)"] },
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
-          { time: "Early", title: "Kiyomizu-dera", note: "Opens 6am. Then Sannenzaka → Yasaka Shrine", place: "Kiyomizu-dera, Kyoto" },
-          { time: "Afternoon", title: "Kennin-ji → Chion-in", place: "Kennin-ji, Kyoto" },
+          { time: "~7:00am", title: "Kiyomizu-dera at sunrise", note: "Leave the hotel ~6:25. Then Sannenzaka + Ninenzaka", place: "Kiyomizu-dera, Kyoto" },
+          { time: "10:00am", title: "Kennin-ji", note: "Opens 10am", place: "Kennin-ji, Kyoto" },
+          { time: "~11:00am", title: "Soba lunch on Hanamikoji St → Yasaka Shrine → Chion-in", note: "Then rest at the hotel ~2–4pm", place: "Yasaka Shrine, Kyoto" },
           { time: "6:30pm", title: "Josie's secret birthday dinner 🤫", note: "Secret location. Darryl's leading the way" },
         ],
         tips: ["All walkable from the hotel."],
         meals: [
           { meal: "Breakfast", what: "Konbini", detail: "Before an early Kiyomizu-dera" },
           { meal: "Snack", what: "Sannenzaka street sweets", detail: "Dango, warabi mochi, taiyaki" },
-          { meal: "Lunch", what: "Snacks + soba around Higashiyama" },
+          { meal: "Lunch", what: "Soba on Hanamikoji St, ~11am", detail: "After Kennin-ji" },
           { meal: "Snack", what: "Matcha parfait or soft serve", detail: "e.g. Tsujiri" },
           { meal: "Dinner", what: "Birthday dinner 🤫" },
         ],
@@ -80,8 +81,8 @@ window.TRIP = {
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
-          { time: "8:45am", title: "Nijo Castle", note: "Honmaru Palace ~9:30. Enter 20 min before your slot, socks required", place: "Nijo Castle, Kyoto" },
-          { time: "1:00pm", title: "Hozugawa river boat", note: "JR to Kameoka first. ~2 hrs down to Arashiyama", place: "Hozugawa River Boat Ride Kameoka", train: ["JR Sagano Line · Nijo → Kameoka · Aim to arrive by ~12:30pm (boat at 1pm)"] },
+          { time: "8:45am", title: "Nijo Castle", note: "Entry + Ninomaru Palace booked: arrive ~8:45 at gate open. Then Honmaru Palace at 9:50 (booked): enter 20 min before your slot, socks required", ticket: "Darryl has both QRs: entry + Ninomaru, and Honmaru (2 Asoview emails, need mobile data)", place: "Nijo Castle, Kyoto" },
+          { time: "1:00pm", title: "Hozugawa river boat", note: "JR to Kameoka first. ~2 hrs down to Arashiyama. If the boat is cancelled: JR straight to Saga-Arashiyama instead", ticket: "Darryl has the voucher (email)", place: "Hozugawa River Boat Ride Kameoka", train: ["JR Sagano Line · Nijo → Kameoka · Aim to arrive by ~12:30pm (boat at 1pm)"] },
           { time: "~4:45pm", title: "Arashiyama bamboo grove + Togetsukyo at sunset", place: "Togetsukyo Bridge, Kyoto", train: ["Hankyu Arashiyama Line · Arashiyama → Kyoto-kawaramachi · Change at Katsura. Aim to arrive by ~5:30pm (Koteppan walk-in)"] },
         ],
         meals: [
@@ -150,12 +151,12 @@ window.TRIP = {
     },
     {
       date: "2026-12-22", title: "Hiroshima Daytrip 🕊️", scene: "hiroshima", weather: ["hiroshima", "osaka"],
-      before: { do: ["Leave the villa ~7:30am"], bring: ["Shinkansen tickets for 5 (Darryl has tickets)"] },
+      before: { do: ["Leave the villa ~7:00am (collect 5 paper tickets at Shin-Osaka)"], bring: ["Shinkansen tickets for 5 (Darryl has tickets)"] },
       cards: [
         {
           name: "Hiroshima crew", people: ["darryl", "josie", "mum", "dad", "choleh"],
           activities: [
-            { time: "~7:30am", title: "Leave the villa for the Shinkansen", note: "Reserved seats for 5. ~1h25 each way", train: ["Sanyo Shinkansen Line · Nozomi 1 · Shin-Osaka 8:24am → Hiroshima 9:49am"] },
+            { time: "~7:00am", title: "Leave the villa for the Shinkansen", note: "Collect the 5 paper tickets at Shin-Osaka. Reserved seats", train: ["Sanyo Shinkansen Line · Nozomi 1 · Shin-Osaka 8:24am → Hiroshima 9:49am"] },
             { time: "Midday", title: "Peace Park + Museum", place: "Hiroshima Peace Memorial Museum" },
             { time: "Afternoon", title: "Miyajima (optional)", note: "Then back to Osaka for an early night. USJ tomorrow", place: "Miyajima Itsukushima Shrine", train: ["JR Sanyo Line + JR ferry · Hiroshima → Miyajimaguchi → Miyajima · Suica OK"] },
             { time: "6:43pm", title: "Shinkansen back to Shin-Osaka", note: "Reserved seats for 5", train: ["Sanyo Shinkansen Line · Nozomi 56 · Hiroshima 6:43pm → Shin-Osaka 8:04pm"] },
@@ -207,14 +208,13 @@ window.TRIP = {
     },
     {
       date: "2026-12-24", title: "Osaka and King Crab 🦀", scene: "osaka", weather: ["osaka"],
-      before: { do: ["Pack an overnight bag for today/tomorrow, THEN send the big bags to the Tokyo house from a konbini"], bring: ["Big bags to the konbini", "Pokémon Cafe booking (if booked)"] },
+      before: { do: ["Pack an overnight bag for today/tomorrow, THEN send the big bags to the Otowa Yamato Transport Centre from a konbini"], bring: ["Big bags to the konbini", "Pokémon Cafe booking (if booked)"] },
       cards: [{
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
-          { time: "By ~10am", title: "Send the big bags to Tokyo (Yamato)", note: "FamilyMart Kitatsumori 3-chome. ~¥3,060 a bag, cash. Keep the customer copies (tracking numbers)", place: "FamilyMart Kitatsumori 3-chome, 3-1-43 Kitatsumori, Nishinari-ku, Osaka" },
-          { time: "Morning", title: "Tenjinbashi-suji shopping street", place: "Tenjinbashi-suji Shopping Street" },
+          { time: "~9:30am", title: "Send the big bags to Tokyo (Yamato)", note: "FamilyMart Kitatsumori 3-chome. ~¥3,060 a bag, cash. Keep the customer copies (tracking numbers)", place: "FamilyMart Kitatsumori 3-chome, 3-1-43 Kitatsumori, Nishinari-ku, Osaka" },
           { time: "~11:30am", title: "Pokémon Cafe", note: "Daimaru Shinsaibashi 9F (if booked)", place: "Pokemon Cafe Osaka" },
-          { time: "Afternoon", title: "Shinsekai → Dotonbori stroll + shopping", place: "Dotonbori, Osaka" },
+          { time: "Afternoon", title: "Dotonbori stroll + shopping → Doguyasuji → Shinsekai at dusk", note: "Sakaisuji line Nippombashi → Ebisucho (2 stops), then rest at the villa", place: "Dotonbori, Osaka" },
           { time: "7:30pm", title: "King crab buffet", note: "Soshite Kani Shinsaibashi. Booked, pay at the restaurant", place: "Soshite Kani Shinsaibashi" },
         ],
         tips: [
@@ -223,23 +223,22 @@ window.TRIP = {
         ],
         meals: [
           { meal: "Breakfast", what: "Light: konbini or Bre Clair Tennoji" },
-          { meal: "Lunch", what: "Pokémon Cafe ~11:30am", detail: "If booked, else Tenjinbashi-suji street food" },
+          { meal: "Lunch", what: "Pokémon Cafe ~11:30am", detail: "If booked, else Dotonbori street food" },
           { meal: "Dinner", what: "Soshite Kani crab buffet, 7:30pm", detail: "Booked" },
         ],
       }],
     },
     {
       date: "2026-12-25", title: "Merry Christmas! 🎄🍗", scene: "tokyo", weather: ["osaka", "tokyo"],
-      before: { do: ["Check out of the villa", "Buy 551 Horai buns OUTSIDE the Shinkansen gates"], bring: ["Shinkansen tickets for 7 (Darryl has tickets)", "Overnight bags"] },
+      before: { do: ["Check out of the villa by ~9:45", "Leave Tenjinbashi-suji by ~12:20", "Buy 551 Horai buns OUTSIDE the Shinkansen gates"], bring: ["Shinkansen tickets for 7 (Darryl has tickets)", "Overnight bags"] },
       cards: [{
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
-          { time: "Morning", title: "Check out of the villa" },
+          { time: "~9:45am", title: "Check out → Tenjinbashi-suji Shopping Street", note: "Overnight bags only. ~10:15–12:15: most shops open 10–11, Harukoma sushi opens 11", place: "Tenjinbashi-suji Shopping Street", train: ["Osaka Metro · Villa → Tenjinbashisuji 6-chome · Check the route on the day", "Tanimachi + Midosuji Lines · Tenjinbashisuji 6-chome → Shin-Osaka"] },
           { time: "1:15pm", title: "Shinkansen Shin-Osaka → Tokyo", note: "Nozomi 254, arrives 3:45pm. All 7 together. Overnight bags only", train: ["Tokaido Shinkansen Line · Nozomi 254 · Shin-Osaka 1:15pm → Tokyo 3:45pm"] },
           { time: "~4:15pm", title: "Collect the big bags at Yamato", note: "Bunkyo Otowa office, open 8am–8pm. Bring Darryl's passport + the customer copies. Then ~12 min walk to the house", place: "1-19-22 Otowa, Bunkyo-ku, Tokyo" },
           { time: "~5:00pm", title: "Arrive at the Tokyo house", place: "361-1 Yamabukicho, Shinjuku-ku, Tokyo" },
-          { time: "Evening", title: "Tocho observation deck", note: "Oedo line from Iidabashi", place: "Tokyo Metropolitan Government Building", train: ["Toei Oedo Line · Iidabashi → Tochomae"] },
-          { time: "Night", title: "KFC Christmas at the house" },
+          { time: "6:30pm", title: "KFC Christmas at the house", note: "Darryl picks up the order at KFC Waseda Ekimae", place: "KFC Waseda Ekimae", train: ["Walk · House ↔ KFC Waseda Ekimae · ~18 min each way"] },
         ],
         meals: [
           { meal: "Breakfast", what: "Konbini before check-out" },
@@ -251,13 +250,14 @@ window.TRIP = {
     },
     {
       date: "2026-12-26", title: "Exploration and Relax Day 🚶", scene: "tokyo", weather: ["tokyo"],
-      before: { do: ["Pick Kichijoji or Shimokitazawa"], bring: ["Cash for swan boats (~¥700)"] },
+      before: { do: ["Pick Kichijoji or Shimokitazawa", "Buy Josie's snow boots (she wears them on the 30 Dec flight, so they don't eat JAL's 20 kg)"], bring: ["Cash for swan boats (~¥700)"] },
       cards: [{
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
           { time: "Morning", title: "Free wander: Kichijoji or Shimokitazawa", note: "Pick on the day. Kichijoji: Inokashira Park, swan boats ~¥700/30 min", place: "Kichijoji Station", train: ["JR Chuo Line · Iidabashi → Kichijoji"] },
           { time: "~4:30pm", title: "Train to Nakano", train: ["JR Chuo Line · Kichijoji → Nakano · Aim to leave by ~4:30pm"] },
           { time: "~5:00pm", title: "Nakano Broadway", note: "Many shops close ~8pm. Darryl to buy Matt's birthday gift here", place: "Nakano Broadway" },
+          { time: "Evening", title: "Tocho observation deck night view", note: "After sushi dinner. Check evening + year-end hours", place: "Tokyo Metropolitan Government Building", train: ["JR Chuo Line · Nakano → Shinjuku · Then walk to Tocho", "Toei Oedo Line · Tochomae → Iidabashi · Home"] },
         ],
         meals: [
           { meal: "Breakfast", what: "Konbini" },
@@ -323,11 +323,11 @@ window.TRIP = {
     },
     {
       date: "2026-12-30", title: "Harry Potter Day ⚡", scene: "sapporo", weather: ["tokyo", "sapporo"],
-      before: { do: ["Out the door by ~7:45 (only 22 large lockers)", "Check out of the Tokyo house"], bring: ["All luggage", "Harry Potter tickets (email)", "Limousine bus fare (bring cash and Suica)"] },
+      before: { do: ["Out the door by ~7:45 (only 22 large lockers)", "Check out of the Tokyo house", "Buy anti-slip shoe grips at New Chitose on arrival (before walking Susukino)"], bring: ["All luggage", "Harry Potter tickets (email)", "Limousine bus fare (bring cash and Suica)"] },
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
-          { time: "9:00am", title: "Harry Potter Studio Tour", note: "Carry the suitcases. Only 22 big lockers outside: arrive ~8:30", ticket: "Darryl has the tickets (email)", place: "Warner Bros. Studio Tour Tokyo", train: ["Toei Oedo Line · Iidabashi → Toshimaen · Aim to arrive by ~8:30am (only 22 big lockers)"] },
+          { time: "9:00am", title: "Harry Potter Studio Tour", note: "Carry the suitcases. Only 22 big lockers outside: arrive ~8:30", ticket: "Darryl has the tickets (email)", place: "Warner Bros. Studio Tour Tokyo", train: ["Tokyo Metro Yurakucho Line · Edogawabashi → Nerima · Runs through onto the Seibu line", "Seibu Toshima Line · Nerima → Toshimaen · Aim to arrive by ~8:30am (only 22 big lockers)"] },
           { time: "2:30pm", title: "Limousine bus → Haneda T1", note: "Arrives ~3:55pm", train: ["Limousine bus · Studio 2:30pm → Haneda T1 ~3:55pm"] },
           { time: "6:35pm", title: "Fly Haneda → Sapporo", note: "JL527, lands 8:10pm. Then the airport bus to Odori Park" },
         ],
@@ -342,8 +342,8 @@ window.TRIP = {
     },
     {
       date: "2026-12-31", title: "NYE @ Hokkaido Jingu! 🎆⛩", scene: "sapporo", weather: ["sapporo"],
-      before: { do: ["Buy anti-slip shoe grips + hand warmers (kairo) at a konbini"], bring: ["Cash for Suage+ (cash only)", "Every warm layer you own"] },
-      wear: "−5 to −10°C at night. Buy anti-slip shoe grips at a konbini (~¥1,000).",
+      before: { do: ["Buy hand warmers (kairo) at a konbini (shoe grips already bought at New Chitose on 30 Dec)"], bring: ["Cash for Suage+ (cash only)", "Every warm layer you own"] },
+      wear: "−5 to −10°C at night. Wear the shoe grips from New Chitose.",
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
