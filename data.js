@@ -1,5 +1,6 @@
 // Japan trip app content. This is the ONLY file that changes when the plan changes.
-// Source: the "Final Itinerary" tab of the trip Sheet (read 19 Nov 2026). Columns L/M/N = before.do / before.bring / train.
+// Sources: the original trip itinerary and the "Japan_Korea Trip 2026 - M+C Itinerary" CSV.
+// Columns L/M/N = before.do / before.bring / train; booking references and QR codes are intentionally omitted.
 // Rules: no booking numbers, QR codes, phone numbers of people, or the birthday restaurant.
 // people keys: mum, dad, darryl, josie, matt, chloe, choleh
 // place = what the Directions buttons search for in Google/Apple Maps (leave out for no button).
@@ -15,6 +16,10 @@ window.TRIP = {
     tokyo:     { name: "Tokyo", lat: 35.68, lon: 139.65, hi: 12, lo: 3 },
     sapporo:   { name: "Sapporo", lat: 43.06, lon: 141.35, hi: -1, lo: -7 },
     beijing:   { name: "Beijing", lat: 39.90, lon: 116.41, hi: 2, lo: -8 },
+    perth:     { name: "Perth", lat: -31.95, lon: 115.86, hi: 31, lo: 18 },
+    jeju:      { name: "Jeju", lat: 33.50, lon: 126.53, hi: 9, lo: 4 },
+    busan:     { name: "Busan", lat: 35.18, lon: 129.08, hi: 8, lo: 1 },
+    seoul:     { name: "Seoul", lat: 37.57, lon: 126.98, hi: 1, lo: -6 },
   },
 
   days: [
@@ -208,7 +213,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-24", title: "Osaka and King Crab 🦀", scene: "osaka", weather: ["osaka"],
-      before: { do: ["Pack an overnight bag for today/tomorrow, THEN send the big bags to the Otowa Yamato Transport Centre from a konbini"], bring: ["Big bags to the konbini", "Pokémon Cafe booking (if booked)"] },
+      before: { do: ["Pack an overnight bag for today/tomorrow", "Send the big bags to the Otowa Yamato Transport Centre from a konbini"], bring: ["Big bags to the konbini", "Pokémon Cafe booking (if booked)"] },
       cards: [{
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
@@ -458,3 +463,304 @@ window.TRIP = {
     { en: "Please help me", ja: "助けてください", say: "Tasukete kudasai" },
   ],
 };
+
+// Each itinerary owns its dates and groups. TRIP.days is the shared source of truth;
+// shipment numbers/statuses are entered on the Help page.
+window.TRIP.itineraries = [
+  {
+    id: "darryl-josie",
+    name: "Darryl & Josie",
+    days: window.TRIP.days,
+    stays: window.TRIP.stays,
+    groups: [
+      { id: "darryl-josie", name: "Darryl & Josie" },
+      { id: "mum-dad", name: "Mum & Dad" },
+      { id: "matt-chloe", name: "Matt & Chloe" },
+      { id: "whole-family", name: "Whole family" },
+    ],
+    shipments: [
+      {
+        id: "osaka-tokyo-family",
+        label: "Osaka → Tokyo (family bags)",
+        carrier: "Yamato TA-Q-BIN",
+        groupIds: ["darryl-josie", "mum-dad", "matt-chloe"],
+        sent: "24 Dec",
+        expected: "25 Dec",
+      },
+    ],
+  },
+  {
+    id: "matt-chloe",
+    name: "Matt & Chloe",
+    days: [
+      {
+        date: "2026-12-19", title: "Off We Go! ✈️", scene: "air", weather: ["perth", "tokyo"],
+        before: { do: ["Complete Visit Japan Web immigration and customs forms"], bring: ["Passports", "Power bank and chargers in carry-on", "Japan plug adapter (Type A)"] },
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [
+            { time: "Evening", title: "Head to Perth Airport", note: "Direct overnight flight to Tokyo" },
+            { time: "9:55pm", title: "Fly Perth → Narita", note: "Arrive 8:30am on 20 December" },
+          ],
+          meals: [
+            { meal: "Dinner", what: "Airport or on the plane" },
+          ],
+        }],
+      },
+      {
+        date: "2026-12-20", title: "Hello Tokyo 🇯🇵", scene: "tokyo", weather: ["tokyo"],
+        before: { do: ["Show Visit Japan Web QR codes at Narita", "Drop bags and check in", "Forward large bags to the Osaka villa; keep the tracking receipt", "Confirm the villa can receive parcels", "Pack a small day bag for Kyoto"], bring: ["Passports", "Cash for luggage forwarding", "Villa address"] },
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [
+            { time: "8:30am", title: "Land at Narita", note: "Immigration and customs, then Narita Express to Tokyo Station" },
+            { time: "Morning", title: "Drop bags at Keio Presso Inn Tokyo Station Yaesu", place: "Keio Presso Inn Tokyo Station Yaesu" },
+            { time: "Afternoon", title: "Forward large bags to Villa Osaka", note: "Yamato TA-Q-BIN from the hotel desk or a convenience store. Keep the receipt and tracking number." },
+            { time: "Afternoon", title: "Tokyo Station ramen → Imperial Palace East Gardens", note: "East Gardens are free; check opening hours and last entry." },
+            { time: "Evening", title: "Marunouchi Illumination → Tsukishima Monja Street", note: "Early night before the Kyoto trip." },
+          ],
+          meals: [
+            { meal: "Breakfast", what: "Narita convenience store" },
+            { meal: "Lunch", what: "Tokyo Ramen Street" },
+            { meal: "Dinner", what: "Monjayaki and okonomiyaki", place: "Tsukishima Monja Street" },
+          ],
+        }],
+      },
+      {
+        date: "2026-12-21", title: "Meet in Kyoto 🚄", scene: "kyoto", weather: ["kyoto", "osaka"],
+        before: { groupId: "kyoto-family", do: ["Check out of Keio Presso Inn", "Choose Nozomi 245 seats D/E on Smart EX", "Check Kiyomizu-dera's closing time", "Be done with dinner by ~7:30pm for the JR to Osaka"], bring: ["Smart EX ticket for Nozomi 245 (booking 2007)", "Day bag only (big bags are at the villa)", "Phone torch for Fushimi Inari after dark", "IC card or coins for the bus, Keihan and JR"] },
+        cards: [{
+          id: "kyoto-family",
+          name: "Matt, Chloe, Mum, Dad & Choleh", groupId: "kyoto-family", people: ["matt", "chloe", "mum", "dad", "choleh"],
+          activities: [
+            { time: "9:09am", title: "Check out and ride Nozomi 245 Tokyo → Kyoto", note: "Shinkansen arrives Kyoto 11:21am. Smart EX booking 2007, seats D/E.", train: ["Tokaido Shinkansen Line · Nozomi 245 · Tokyo 9:09am → Kyoto 11:21am · Smart EX booking 2007, seats D/E"] },
+            { time: "11:21am", title: "Meet at Kyoto Station", note: "Travel to Kiyomizu-dera by Kyoto City Bus or taxi; allow 15–20 minutes.", place: "Kyoto Station", train: ["Kyoto City Bus (or taxi) · Kyoto Station → Kiyomizu-dera · 15–20 minutes"] },
+            { time: "~12:15pm", title: "Kiyomizu-dera", note: "Snack lunch on Kiyomizu-zaka. See the main hall stage, Jishu Shrine and Otowa Waterfall. Sunset is ~4:48pm and temples close around 4:30–5:00pm.", place: "Kiyomizu-dera, Kyoto", train: ["Walk · Kiyomizu-dera → Kiyomizu-Gojo station via Gojozaka · 15–20 minutes"] },
+            { time: "~3:30pm", title: "Fushimi Inari Taisha", note: "Walk up to the Yotsutsuji viewpoint for sunset. The upper trails get dark after sunset; use a phone torch.", place: "Fushimi Inari Taisha", train: ["Keihan Main Line · Kiyomizu-Gojo → Fushimi-Inari · 10 minutes", "JR Nara Line · Inari → Kyoto Station · 5 minutes"] },
+            { time: "6:15pm", title: "Dinner at Kyoto Station", note: "Finish dinner by ~7:30pm.", place: "Kyoto Station" },
+            { time: "~7:45pm", title: "JR Special Rapid Kyoto → Osaka", note: "Continue to Villa Osaka; the forwarded big bags are already waiting there. No reservation needed.", place: "Villa Osaka", train: ["JR Special Rapid · Kyoto → Osaka · ~30 minutes, every 10–15 minutes · No reservation", "JR Osaka Loop Line · Osaka → Ashiharabashi · Then walk to the villa"] },
+          ],
+          meals: [
+            { meal: "Lunch", what: "Snacks on Kiyomizu-zaka", detail: "Or a quick bite near Kyoto Station" },
+            { meal: "Snack", what: "Stalls near the Fushimi Inari entrance" },
+            { meal: "Dinner", what: "Kyoto Station restaurant floors", detail: "Around 6:15–7:30pm" },
+          ],
+        }],
+      },
+      {
+        date: "2026-12-22", title: "Wagyu & Osaka 🥩", scene: "osaka", weather: ["osaka"],
+        before: { do: ["Meet Daiki at Osaka-Namba Station at 10am", "Check Katsuoji and Minoh Falls opening hours"], bring: ["Wagyu lunch reservation details"] },
+        cards: [
+          {
+            id: "matt-chloe",
+            name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+            activities: [
+              { time: "10:00am", title: "Meet Daiki at Osaka-Namba Station" },
+              { time: "12:00pm", title: "Wagyu lunch", note: "Matsuzaka Gyu Yakiniku M Hozenji-Hanare" },
+              { time: "Afternoon", title: "Katsuoji Temple or Minoh Falls", note: "Daytime sights; sunset is early in late December." },
+              { time: "Evening", title: "Namba Yasaka Jinja or Shinsekai", note: "Kushikatsu in Shinsekai for dinner." },
+            ],
+            meals: [
+              { meal: "Lunch", what: "Matsuzaka Gyu Yakiniku M Hozenji-Hanare", detail: "12pm booking" },
+              { meal: "Dinner", what: "Kushikatsu", place: "Shinsekai, Osaka" },
+            ],
+          },
+          {
+            id: "hiroshima-family",
+            name: "Hiroshima group", groupId: "hiroshima-family", people: ["mum", "dad", "darryl", "josie", "choleh"],
+            activities: [
+              { time: "All day", title: "Hiroshima day trip", note: "Family plan; Matt and Chloe are in Osaka." },
+            ],
+            meals: [],
+          },
+        ],
+      },
+      {
+        date: "2026-12-30", title: "Tokyo → Jeju ✈️", scene: "air", weather: ["tokyo", "jeju"],
+        before: { do: ["Check out of the Tokyo house", "Check the best train to Narita; aim to arrive around noon"], bring: ["Passports", "Flight details", "Luggage within airline limits"] },
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [
+            { time: "Morning", title: "Travel to Narita Airport" },
+            { time: "2:50pm", title: "Fly Narita → Jeju", note: "Arrive around 5:45pm." },
+            { time: "Evening", title: "Check in at Ventimo Hotel & Residence", place: "Ventimo Hotel & Residence Jeju" },
+          ],
+          meals: [
+            { meal: "Breakfast", what: "Convenience store" },
+            { meal: "Lunch", what: "Narita Airport" },
+            { meal: "Dinner", what: "Jeju" },
+          ],
+        }],
+      },
+      {
+        date: "2026-12-31", title: "New Year's Eve in Jeju 🎆", scene: "jeju", weather: ["jeju"],
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [{ time: "All day", title: "Explore Jeju", note: "Stay at Ventimo Hotel & Residence." }],
+          meals: [],
+        }],
+      },
+      {
+        date: "2027-01-01", title: "Happy New Year! 🎉", scene: "jeju", weather: ["jeju"],
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [{ time: "All day", title: "Explore Jeju", note: "New Year's Day public holiday." }],
+          meals: [],
+        }],
+      },
+      {
+        date: "2027-01-02", title: "Jeju → Busan ✈️", scene: "air", weather: ["jeju", "busan"],
+        before: { do: ["Check out of Ventimo Hotel & Residence"], bring: ["Passports", "Flight details"] },
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [
+            { time: "Morning", title: "Travel to Jeju Airport" },
+            { time: "1:25pm", title: "Fly Jeju → Busan", note: "Arrive around 2:25pm." },
+            { time: "Afternoon", title: "Check in at Shilla Stay Busan Haeundae", place: "Shilla Stay Busan Haeundae" },
+          ],
+          meals: [],
+        }],
+      },
+      {
+        date: "2027-01-03", title: "Busan 🌊", scene: "busan", weather: ["busan"],
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [{ time: "All day", title: "Explore Busan", note: "Stay at Shilla Stay Busan Haeundae." }],
+          meals: [],
+        }],
+      },
+      {
+        date: "2027-01-04", title: "Busan 🌊", scene: "busan", weather: ["busan"],
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [{ time: "All day", title: "Explore Busan", note: "Stay at Shilla Stay Busan Haeundae." }],
+          meals: [],
+        }],
+      },
+      {
+        date: "2027-01-05", title: "Busan → Seoul 🚄", scene: "seoul", weather: ["busan", "seoul"],
+        before: { do: ["Check out of Shilla Stay Busan Haeundae"], bring: ["Passports", "KTX tickets"] },
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [
+            { time: "Morning", title: "Travel to Busan Station" },
+            { time: "12:00pm", title: "KTX Busan → Seoul", note: "Arrive around 2:51pm." },
+            { time: "Afternoon", title: "Check in at Crown Park Hotel Seoul Myeongdong", place: "Crown Park Hotel Seoul" },
+          ],
+          meals: [],
+        }],
+      },
+      {
+        date: "2027-01-06", title: "Seoul 🇰🇷", scene: "seoul", weather: ["seoul"],
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [{ time: "All day", title: "Explore Seoul", note: "Stay at Crown Park Hotel Seoul Myeongdong." }],
+          meals: [],
+        }],
+      },
+      {
+        date: "2027-01-07", title: "Seoul 🇰🇷", scene: "seoul", weather: ["seoul"],
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [{ time: "All day", title: "Explore Seoul", note: "Stay at Crown Park Hotel Seoul Myeongdong." }],
+          meals: [],
+        }],
+      },
+      {
+        date: "2027-01-08", title: "Seoul 🇰🇷", scene: "seoul", weather: ["seoul"],
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [{ time: "All day", title: "Explore Seoul", note: "Stay at Crown Park Hotel Seoul Myeongdong." }],
+          meals: [],
+        }],
+      },
+      {
+        date: "2027-01-09", title: "Seoul hotel change 🏨", scene: "seoul", weather: ["seoul"],
+        before: { do: ["Check out of Crown Park Hotel and into Fraser Place Namdaemun"] },
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [{ time: "Daytime", title: "Check in at Fraser Place Namdaemun", place: "Fraser Place Namdaemun" }],
+          meals: [],
+        }],
+      },
+      {
+        date: "2027-01-10", title: "Seoul 🇰🇷", scene: "seoul", weather: ["seoul"],
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [{ time: "All day", title: "Explore Seoul", note: "Stay at Fraser Place Namdaemun." }],
+          meals: [],
+        }],
+      },
+      {
+        date: "2027-01-11", title: "Homeward Bound ✈️", scene: "air", weather: ["seoul", "perth"],
+        before: { do: ["Check out of Fraser Place Namdaemun", "Leave early for Incheon Airport"], bring: ["Passports", "Flight details"] },
+        cards: [{
+          id: "matt-chloe",
+          name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
+          activities: [
+            { time: "11:35am", title: "Fly Incheon → Singapore", note: "Layover about 5 hours 50 minutes." },
+            { time: "11:00pm", title: "Fly Singapore → Perth", note: "Arrive 4:15am on 12 January." },
+          ],
+          meals: [
+            { meal: "Breakfast", what: "Seoul or Incheon Airport" },
+            { meal: "Lunch", what: "On the plane" },
+            { meal: "Dinner", what: "Changi Airport during the layover" },
+          ],
+        }],
+      },
+    ],
+    stays: [
+      { city: "Tokyo", dates: "20–21 Dec", name: "Keio Presso Inn Tokyo Station Yaesu", en: "1-4-1 Kyobashi, Tokyo" },
+      { city: "Osaka", dates: "21–25 Dec", name: "Villa Osaka", en: "3-chome-5-11 Naniwanishi, Osaka" },
+      { city: "Tokyo", dates: "25–30 Dec", name: "Japan House Edogawabashi", en: "Tokyo" },
+      { city: "Jeju", dates: "30 Dec – 2 Jan", name: "Ventimo Hotel & Residence" },
+      { city: "Busan", dates: "2–5 Jan", name: "Shilla Stay Busan Haeundae" },
+      { city: "Seoul", dates: "5–9 Jan", name: "Crown Park Hotel Seoul Myeongdong" },
+      { city: "Seoul", dates: "9–11 Jan", name: "Fraser Place Namdaemun" },
+    ],
+    emergency: [
+      { label: "Japan police", number: "110" },
+      { label: "Japan ambulance / fire", number: "119" },
+      { label: "Japan Visitor Hotline (English, 24/7)", number: "050-3816-2787" },
+    ],
+    groups: [
+      { id: "matt-chloe", name: "Matt & Chloe" },
+      { id: "kyoto-family", name: "Kyoto with Mum, Dad & Choleh" },
+      { id: "hiroshima-family", name: "Hiroshima group" },
+      { id: "usj-group", name: "Everyone except Mum & Dad" },
+      { id: "whole-family", name: "Whole group" },
+    ],
+    shipments: [
+      {
+        id: "tokyo-osaka",
+        label: "Tokyo → Osaka (Matt & Chloe bags)",
+        carrier: "Yamato TA-Q-BIN",
+        groupIds: ["matt-chloe"],
+        sent: "20 Dec",
+        expected: "21–22 Dec",
+      },
+      {
+        id: "osaka-tokyo-family",
+        label: "Osaka → Tokyo (shared family bags)",
+        carrier: "Yamato TA-Q-BIN",
+        groupIds: ["matt-chloe", "darryl-josie"],
+        sent: "24 Dec",
+        expected: "25 Dec",
+      },
+    ],
+  },
+];

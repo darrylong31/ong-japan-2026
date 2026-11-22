@@ -354,6 +354,7 @@
     font-family: "Yusei Magic", "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
     font-size: 0.72em; font-weight: 400; letter-spacing: -0.04em; color: var(--accent); opacity: 0.65;
   }
+  .origin { display: block; margin-top: 0.15rem; color: var(--ink-soft); font-size: 0.68rem; font-weight: 700; line-height: 1.2; }
   /* Concentration lines (shuchu-sen): thin lines pointing at the middle of the postcard.
      Only visible during the day-change time-lapse. The mask keeps the middle clear. */
   .focus {   /* kept light: a few thin lines, only near the edges */
@@ -373,6 +374,10 @@
   .plainhead h1 { margin-top: 0.9rem; }
   .section { margin-top: 1.2rem; padding: 1rem; background: var(--card); border: 3px solid var(--usj); border-radius: 1.1rem; overflow-wrap: anywhere; }
   .section h2 { margin-bottom: 0.6rem; }
+  .tracking-fields input, .tracking-fields select {
+    width: 100%; min-height: 44px; margin-top: 0.2rem; padding: 0.4rem 0.55rem;
+    color: var(--ink); background: var(--paper); border: 2px solid var(--line); border-radius: 0.55rem; font: inherit;
+  }
 
   /* ---------- Calendar ---------- */
   .month { padding: 0.75rem 0.45rem; }   /* thinner sides: each day tile gets every pixel it can */
@@ -473,7 +478,110 @@
 <script src="logic.js"></script>
 <script>
   var TRIP = window.TRIP;
-  var DAYS = TRIP.days;
+  var activeItinerary = TRIP.itineraries.filter(function (itinerary) { return itinerary.id === "darryl-josie"; })[0] || TRIP.itineraries[0];
+
+  function groupKey(card) {
+    return card.groupId || card.id || card.people.slice().sort().join("-");
+  }
+  function itineraryById(id) {
+    return TRIP.itineraries.filter(function (itinerary) { return itinerary.id === id; })[0] || TRIP.itineraries[0];
+  }
+  function itineraryGroupName(itinerary, id) {
+    var group = itinerary.groups.filter(function (item) { return item.id === id; })[0];
+    return group ? group.name : itinerary.name;
+  }
+  function isPlaceholderCard(card) {
+    if (card.activities.length !== 1) return false;
+    var activity = card.activities[0];
+    return /day trip|all day/i.test(activity.title) && /plan to come|family plan/i.test(activity.note || "");
+  }
+  function combineDays() {
+    var main = TRIP.itineraries.filter(function (itinerary) { return itinerary.id === "darryl-josie"; })[0] || TRIP.itineraries[0];
+    var mattChloe = TRIP.itineraries.filter(function (itinerary) { return itinerary.id === "matt-chloe"; })[0];
+    var byDate = {};
+    main.days.forEach(function (day) {
+      var copy = Object.assign({}, day);
+      copy.cards = day.cards.map(function (card) { return Object.assign({}, card); });
+      copy.before = Object.assign({}, day.before || {}, { do: (day.before && day.before.do || []).slice(), bring: (day.before && day.before.bring || []).slice() });
+      byDate[day.date] = copy;
+    });
+    if (mattChloe) {
+      mattChloe.days.forEach(function (extra) {
+        var day = byDate[extra.date];
+        if (!day) {
+          day = byDate[extra.date] = Object.assign({}, extra, {
+            cards: extra.cards.map(function (card) { return Object.assign({}, card); }),
+            before: Object.assign({}, extra.before || {}, { do: (extra.before && extra.before.do || []).slice(), bring: (extra.before && extra.before.bring || []).slice() }),
+            mattChloeOnly: true,
+          });
+        } else {
+          day.cards = day.cards.filter(function (card) { return !isPlaceholderCard(card); });
+          extra.cards.forEach(function (card) {
+            var duplicate = day.cards.some(function (existing) {
+              return existing.groupId === card.groupId ||
+                existing.people.slice().sort().join(",") === card.people.slice().sort().join(",");
+            });
+            if (!duplicate) day.cards.push(Object.assign({}, card));
+          });
+          day.mattChloeBefore = {
+            do: (extra.before && extra.before.do || []).slice(),
+            bring: (extra.before && extra.before.bring || []).slice(),
+          };
+        }
+      });
+    }
+    return Object.keys(byDate).sort().map(function (date) { return byDate[date]; });
+  }
+  function daysForSelection() {
+    return combineDays();
+  }
+  function visibleItineraries() {
+    return [activeItinerary];
+  }
+  function visibleStays() {
+    return visibleItineraries().reduce(function (stays, itinerary) { return stays.concat(itinerary.stays); }, []);
+  }
+  function visibleShipments() {
+    var seen = {};
+    return visibleItineraries().reduce(function (shipments, itinerary) {
+      (itinerary.shipments || []).forEach(function (shipment) {
+        if (!seen[shipment.id]) { seen[shipment.id] = true; shipments.push(shipment); }
+      });
+      return shipments;
+    }, []);
+  }
+  function visibleEmergency() {
+    var seen = {};
+    return visibleItineraries().reduce(function (contacts, itinerary) {
+      (itinerary.emergency || TRIP.emergency).forEach(function (contact) {
+        var key = contact.number;
+        if (!seen[key]) { seen[key] = true; contacts.push(contact); }
+      });
+      return contacts;
+    }, []);
+  }
+  var DAYS = daysForSelection();
+  function readStoredObject(key) {
+    try {
+      var value = localStorage.getItem(key);
+      return value ? JSON.parse(value) : {};
+    } catch (e) {
+      console.error("Could not read saved trip tracking data.", e);
+      return {};
+    }
+  }
+  function writeStoredObject(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); }
+    catch (e) { console.error("Could not save trip tracking data.", e); }
+  }
+  function shipmentStorageKey() { return "tripShipments"; }
+  function shipmentState() { return readStoredObject(shipmentStorageKey()); }
+  function saveShipment(shipmentId, field, value) {
+    var state = shipmentState();
+    state[shipmentId] = state[shipmentId] || {};
+    state[shipmentId][field] = value;
+    writeStoredObject(shipmentStorageKey(), state);
+  }
 
   /* ================= 1. Dates (all as "YYYY-MM-DD" text, never parsed as local time) ================= */
 
@@ -801,8 +909,8 @@
     }).join("") + '</div>';
   }
 
-  function timeline(activities) {
-    return '<ol class="timeline">' + activities.map(function (a) {
+  function timeline(activities, date, card) {
+    return '<ol class="timeline">' + activities.map(function (a, index) {
       var html = '<div class="title">' + esc(a.title) + '</div>';
       if (a.note) html += '<div class="note">' + esc(a.note) + '</div>';
       if (a.ticket) html += '<div class="ticket">🎟️ ' + esc(a.ticket) + '</div>';
@@ -853,14 +961,15 @@
     return SFX[(Number(date.replace(/-/g, "")) + i * 3) % SFX.length];
   }
 
-  function groupPanel(card, i, date) {
+  function groupPanel(card, i, date, showOrigin) {
+    var origin = "";
     var tips = card.tips && card.tips.length
       ? '<div class="tips">' + card.tips.map(function (t) { return '<div class="extra">' + esc(t) + '</div>'; }).join("") + '</div>'
       : "";
     return '<div class="panel">' + figuresRow(card) +
       '<article class="card' + (i % 2 ? " card-md" : "") + '"><h2>' + esc(card.name) +
-        '<span class="sfx" lang="ja" aria-hidden="true">' + sfxFor(date, i) + '</span></h2>' +
-        timeline(card.activities) + tips + mealSection(card.meals, date) +
+        origin + '<span class="sfx" lang="ja" aria-hidden="true">' + sfxFor(date, i) + '</span></h2>' +
+        timeline(card.activities, date, card) + tips + mealSection(card.meals, date) +
       '</article></div>';
   }
 
@@ -1051,9 +1160,12 @@
         '<path d="M160 127.8 h2 M167 126.8 h2 M174 125.8 h2 M181 124.8 h2 M188 123.8 h2 M195 122.8 h2 M202 121.8 h2 M214 120 l5 1.2" stroke="var(--ink)" stroke-width="1.3"/>'   /* windows + cockpit */
     }
   };
-  var SCENE_LABELS = { tokyo: "Tokyo", osaka: "Osaka", kyoto: "Kyoto", hiroshima: "Hiroshima", sapporo: "Sapporo", air: "Flying" };
+  SCENES.jeju = { far: "", mid: "", near: "", front: "", lights: [], ink: "" };
+  SCENES.busan = { far: "", mid: "", near: "", front: "", lights: [], ink: "" };
+  SCENES.seoul = { far: "", mid: "", near: "", front: "", lights: [], ink: "" };
+  var SCENE_LABELS = { tokyo: "Tokyo", osaka: "Osaka", kyoto: "Kyoto", hiroshima: "Hiroshima", sapporo: "Sapporo", jeju: "Jeju", busan: "Busan", seoul: "Seoul", air: "Flying" };
   /* The calendar's tiny landmark icons: the window ("viewBox") onto each city's red ink sketch. */
-  var ICON_BOX = { tokyo: "36 80 52 110", osaka: "34 80 48 110", sapporo: "34 80 52 110", kyoto: "2 144 50 46", hiroshima: "254 116 76 72", air: "132 104 98 52" };
+  var ICON_BOX = { tokyo: "36 80 52 110", osaka: "34 80 48 110", sapporo: "34 80 52 110", kyoto: "2 144 50 46", hiroshima: "254 116 76 72", jeju: "254 116 76 72", busan: "34 80 48 110", seoul: "36 80 52 110", air: "132 104 98 52" };
   function miniIcon(scene) {
     return '<svg class="ticon" viewBox="' + ICON_BOX[scene] + '" aria-hidden="true"><g fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
       SCENES[scene].ink + '</g></svg>';
@@ -1103,7 +1215,7 @@
   var FLAKES = [[8, 0, 9], [24, 3, 11], [41, 1.5, 8], [58, 5, 12], [73, 2.5, 10], [90, 6, 9]];
   var MORE_FLAKES = [[3, 1, 7], [15, 4.5, 8], [19, 0.5, 9], [32, 2, 7.5], [36, 6, 8.5], [49, 3.5, 7], [53, 0.8, 9.5], [66, 4, 8], [81, 1.2, 7.5], [85, 5.5, 9], [96, 2.8, 8]];
   function snowHtml(scene) {   /* light snow everywhere, heavy in Sapporo, none above the clouds */
-    if (scene === "air") return "";
+    if (scene === "air" || scene === "jeju" || scene === "busan" || scene === "seoul") return "";
     /* The delay counts from page load (a negative delay = already partway through), so after a re-render
        the flakes carry on where they were instead of all jumping back to the top. */
     var t = performance.now() / 1000;
@@ -1156,9 +1268,17 @@
     if (rain >= 50) bring.unshift("☂️ Umbrellas (" + rain + "% rain)");
     bring.push("💴 Cash: at least ¥10,000 in your wallet");
     function list(items) { return '<ul>' + items.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join("") + '</ul>'; }
+    var wholeLabel = day.mattChloeOnly ? "Matt & Chloe" : "Whole group";
+    var todos = (b.do || []).length ? '<div class="lbl">DO · ' + esc(wholeLabel) + '</div>' + list(b.do) : "";
+    var mc = day.mattChloeBefore || null;
+    if (mc && (mc.do.length || mc.bring.length)) {
+      todos += mc.do.length ? '<div class="lbl">DO · Matt &amp; Chloe</div>' + list(mc.do) : "";
+    }
+    var mattBring = mc ? mc.bring.slice() : [];
     return '<div class="before"><h3>Before you head out</h3>' +
-      (b.do && b.do.length ? '<div class="lbl">DO</div>' + list(b.do) : '') +
-      '<div class="lbl">BRING</div>' + list(bring) + '</div>';
+      todos +
+      '<div class="lbl">BRING · ' + esc(wholeLabel) + '</div>' + list(bring) +
+      (mattBring.length ? '<div class="lbl">BRING · Matt &amp; Chloe</div>' + list(mattBring) : '') + '</div>';
   }
 
   /* Their ragdoll, sitting on the cross bar between them (cell coords). White with grey ears, a grey mask round
@@ -1198,6 +1318,11 @@
     var weather = dayWeather(day);
     var hasMum = day.cards.some(function (c) { return c.people.indexOf("mum") !== -1; });
     var many = day.cards.length > 1;
+    var groupCounts = {};
+    day.cards.forEach(function (card) {
+      var people = card.people.slice().sort().join(",");
+      groupCounts[people] = (groupCounts[people] || 0) + 1;
+    });
     var topBar = bar(BTN_CAL, BTN_HELP);
     return '<header class="postcard is-' + skyStateInJapan() + '">' +
         '<div class="stage">' +
@@ -1218,10 +1343,10 @@
       (many ? '<p class="pager" aria-live="polite"><span id="pagerText">1 of ' + day.cards.length + ' · ' + esc(day.cards[0].name) + '</span>' +
         '<span class="dots" aria-hidden="true">' + day.cards.map(function (c, k) { return '<i' + (k ? '' : ' class="on"') + '></i>'; }).join("") + '</span></p>' : '') +
       '<div class="panels' + (many ? '' : ' single') + '" id="panels"' + (many ? ' tabindex="0" aria-label="Group plans, scroll sideways"' : '') + '>' +
-        day.cards.map(function (c, k) { return groupPanel(c, k, day.date); }).join("") + '</div>';
+        day.cards.map(function (c, k) { return groupPanel(c, k, day.date, groupCounts[c.people.slice().sort().join(",")] > 1); }).join("") + '</div>';
   }
 
-  /* Calendar: Dec 2026 and Jan 2027, Monday first. Only trip days are tappable. */
+  /* Calendar: Monday first; only dates in the current itinerary view are tappable. */
   var WD_SHORT = ["M", "T", "W", "T", "F", "S", "S"];
   function monthGrid(y, m) {
     var lead = (new Date(Date.UTC(y, m - 1, 1)).getUTCDay() + 6) % 7;   /* blank cells before the 1st (Monday-first) */
@@ -1258,9 +1383,18 @@
   }
   function fitAll() { fitTitle(); fitTiles(); }
   function calendarPage() {
+    var first = DAYS[0].date, last = DAYS[DAYS.length - 1].date;
+    var start = dateParts(first), end = dateParts(last), months = [];
+    var y = start.y, m = start.m;
+    while (y < end.y || (y === end.y && m <= end.m)) {
+      months.push(monthGrid(y, m));
+      m++;
+      if (m > 12) { m = 1; y++; }
+    }
+    var title = "Japan & Korea";
     return '<header class="plainhead">' + bar('<button type="button" data-act="today">Today</button>', BTN_HELP) +
-      '<h1>Japan Trip 2026</h1><div class="eyebrow">16 Dec – 3 Jan · tap a day</div></header>' +
-      monthGrid(2026, 12) + monthGrid(2027, 1);
+      '<h1>' + esc(title) + '</h1><div class="eyebrow">' + esc(longDate(first)) + ' ' + start.y + ' – ' + esc(longDate(last)) + ' ' + end.y + ' · tap a day</div></header>' +
+      months.join("");
   }
 
   /* Help & phrases. Numbers are tel: links; the address and phrase buttons open the huge view. */
@@ -1301,17 +1435,42 @@
     if (t.matches && t.matches("select[data-shipment]")) saveShipment(t.getAttribute("data-shipment"), "status", t.value);
   });
   function helpPage() {
+    var shipmentData = shipmentState();
+    var shipments = visibleShipments();
+    var emergency = visibleEmergency();
+    var stays = visibleStays();
+    var shipmentHtml = shipments.map(function (shipment) {
+      var state = shipmentData[shipment.id] || {};
+      var groupNames = (shipment.groupIds || []).map(function (groupId) {
+        for (var i = 0; i < TRIP.itineraries.length; i++) {
+          var group = TRIP.itineraries[i].groups.filter(function (item) { return item.id === groupId; })[0];
+          if (group) return group.name;
+        }
+        return "";
+      }).filter(function (name) { return !!name; });
+      return '<div class="tracking-item"><strong>' + esc(shipment.label) + '</strong>' +
+        '<div class="note">' + esc(shipment.carrier) + ' · Sent: ' + esc(shipment.sent) + ' · Expected: ' + esc(shipment.expected) +
+          (groupNames.length ? ' · Groups: ' + esc(groupNames.join(", ")) : '') + '</div>' +
+        '<div class="tracking-fields">' +
+          '<label>Tracking number<input type="text" inputmode="text" autocomplete="off" data-shipment="' + esc(shipment.id) + '" data-track-field="number" value="' + esc(state.number || "") + '"></label>' +
+          '<label>Status<select data-shipment="' + esc(shipment.id) + '" data-track-field="status">' +
+            ["Not sent", "Sent", "In transit", "Ready for collection", "Collected"].map(function (status) {
+              return '<option' + ((state.status || "Not sent") === status ? ' selected' : '') + '>' + status + '</option>';
+            }).join("") + '</select></label>' +
+        '</div></div>';
+    }).join("");
     return '<header class="plainhead">' + bar(BTN_CAL, '<button type="button" data-act="back">Back to day</button>') +
       '<h1>Help &amp; phrases</h1></header>' +
-      '<section class="section"><h2>Emergency</h2>' + TRIP.emergency.map(function (e) {
+      '<section class="section"><h2>Emergency</h2>' + emergency.map(function (e) {
         return '<div class="row"><span>' + esc(e.label) + '</span><a class="tel" href="' + telHref(e.number) + '">' + esc(e.number) + '</a></div>';
       }).join("") + '</section>' +
-      luggageSection() +
-      '<section class="section"><h2>Where we stay</h2>' + TRIP.stays.map(function (s, k) {
+      '<section class="section"><h2>Luggage tracking</h2>' +
+        (shipments.length ? shipmentHtml + '<p class="tracking-note">Tracking numbers and statuses are saved only in this browser on this device.</p>' : '<p>No luggage shipments are listed for this itinerary.</p>') +
+      '</section>' +
+      '<section class="section"><h2>Where we stay</h2>' + activeItinerary.stays.map(function (s, k) {
         return '<div class="stay"><div class="eyebrow">' + esc(s.city) + ' · ' + esc(s.dates) + '</div>' +
-          '<div><strong>' + esc(s.name) + '</strong></div><div>' + esc(s.en) + '</div>' +
-          '<div class="ja" lang="ja">' + esc(s.ja) + '</div>' +
-          '<button type="button" class="btn btn-google" data-act="taxi" data-i="' + k + '">Show taxi driver</button></div>';
+          '<div><strong>' + esc(s.name) + '</strong></div>' + (s.en ? '<div>' + esc(s.en) + '</div>' : '') +
+          (s.ja ? '<div class="ja" lang="ja">' + esc(s.ja) + '</div><button type="button" class="btn btn-google" data-act="taxi" data-i="' + k + '">Show taxi driver</button>' : '') + '</div>';
       }).join("") + '</section>' +
       '<section class="section"><h2>Japan how-tos</h2>' + TRIP.howtos.map(function (h) {
         return '<details class="howto"><summary>' + esc(h.q) + '</summary><ul>' + h.a.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("") + '</ul></details>';
@@ -1478,6 +1637,18 @@
   function closeBig() { big.hidden = true; }
   big.tabIndex = -1;
   big.addEventListener("click", closeBig);
+  document.addEventListener("change", function (e) {
+    var target = e.target;
+    if (target.matches("[data-shipment][data-track-field]")) {
+      saveShipment(target.getAttribute("data-shipment"), target.getAttribute("data-track-field"), target.value);
+    }
+  });
+  document.addEventListener("input", function (e) {
+    var target = e.target;
+    if (target.matches('[data-shipment][data-track-field="number"]')) {
+      saveShipment(target.getAttribute("data-shipment"), "number", target.value);
+    }
+  });
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeBig();
     /* desktop: arrow keys change day, like a swipe */
@@ -1499,7 +1670,7 @@
     if (act === "today") location.hash = "#day-" + openingDate(todayInJapan());
     if (act === "back") location.hash = "#day-" + DAYS[lastDay].date;
     if (act === "taxi") {
-      var s = TRIP.stays[k];
+      var s = visibleStays()[k];
       openBig('<div class="ja" lang="ja">この住所までお願いします</div><div class="ja" lang="ja">' + esc(s.ja) + '</div><div>' + esc(s.name) + '</div>');
     }
     if (act === "phrase") {
@@ -1621,9 +1792,9 @@
   });
 
   /* Tiny self-check (shows in the console only if something is wrong) */
-  console.assert(openingDate("2026-11-14") === "2026-12-16", "before the trip → day 1");
-  console.assert(openingDate("2026-12-23") === "2026-12-23", "during the trip → today");
-  console.assert(openingDate("2027-02-01") === "2027-01-03", "after the trip → last day");
+  console.assert(openingDate("1900-01-01") === DAYS[0].date, "before the itinerary → first day");
+  console.assert(openingDate(DAYS[0].date) === DAYS[0].date, "during the itinerary → today");
+  console.assert(openingDate("2999-01-01") === DAYS[DAYS.length - 1].date, "after the itinerary → last day");
   console.assert(longDate("2026-12-23") === "Wednesday 23 December", "weekday maths");
   console.assert(wearFor([{ hi: -1, lo: -7 }]).indexOf("Freezing") === 0 && wearFor([{ hi: 12, lo: 3 }, { hi: 25, lo: 14 }]).indexOf("Cold") === 0, "wear rules use the colder city");
   console.assert(SKY_STATES.indexOf(skyStateInJapan()) !== -1, "unknown sky state");
@@ -1632,10 +1803,29 @@
   console.assert(sfxFor("2026-12-23", 0) === sfxFor("2026-12-23", 0) && sfxFor("2026-12-23", 0) !== sfxFor("2026-12-23", 1), "sound effects: stable, different per card");
   console.assert(figuresRow({ name: "x", people: ["dad", "choleh", "mum", "darryl"] }).match(/<span class="fig[^"]*">(\w+)/g).join() ===
     ['<span class="fig">Darryl', '<span class="fig child">Choleh', '<span class="fig">Mum', '<span class="fig">Dad'].join(), "figure order");
-  console.assert(DAYS.length === 19 && DAYS.every(function (d) {
-    return SCENES[d.scene] && d.weather.every(function (w) { return TRIP.cities[w]; }) &&
-      d.cards.every(function (c) { return c.people.every(function (p) { return PEOPLE[p]; }); });
-  }), "every day needs a known scene, cities and people");
+  console.assert(TRIP.itineraries.length > 1 && TRIP.itineraries.every(function (itinerary) {
+    return itinerary.days.length > 0 && itinerary.days.every(function (d) {
+      return SCENES[d.scene] && d.weather.every(function (w) { return TRIP.cities[w]; }) &&
+        d.cards.length > 0 && d.cards.every(function (c) { return c.people.every(function (p) { return PEOPLE[p]; }); });
+    });
+  }), "every itinerary day needs a known scene, cities and people");
+  var allDaysCheck = combineDays();
+  var kyotoCheck = allDaysCheck.filter(function (day) { return day.date === "2026-12-21"; })[0];
+  console.assert(allDaysCheck.every(function (day) {
+    var people = [];
+    return day.cards.every(function (card) {
+      return card.people.every(function (person) {
+        if (people.indexOf(person) !== -1) return false;
+        people.push(person);
+        return true;
+      });
+    }) && people.length <= 7;
+  }), "combined itinerary should include each traveller at most once per day");
+  console.assert(allDaysCheck.length === 27 && allDaysCheck[0].date === "2026-12-16" &&
+    allDaysCheck[allDaysCheck.length - 1].date === "2027-01-11", "all itinerary dates merge into one calendar range");
+  console.assert(kyotoCheck && kyotoCheck.cards.length === 2 &&
+    kyotoCheck.cards.some(function (card) { return card.people.length === 5 && card.activities.some(function (activity) { return activity.title.indexOf("Osaka") !== -1; }); }),
+    "shared Kyoto day combines the family plan without duplicating its placeholder");
 </script>
 </body>
 </html>
