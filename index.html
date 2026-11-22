@@ -315,10 +315,6 @@
   .timeline li:last-child .item { padding-bottom: 0; }
   .time { font-weight: 800; font-size: calc(0.85rem * var(--s)); letter-spacing: 0.03em; color: var(--usj); }
   .card-md .time { color: var(--md); }
-  .progress-check { display: inline-flex; align-items: flex-start; gap: 0.5rem; min-height: 2rem; }
-  .progress-check input { flex: none; width: 1.15rem; height: 1.15rem; margin: 0.12rem 0 0; accent-color: var(--accent); }
-  .timeline .progress-check { margin-top: 0.35rem; }
-  .before .progress-check { padding: 0.12rem 0; line-height: 1.3; }
   .title { font-weight: 700; font-size: calc(1.12rem * var(--s)); line-height: 1.25; }
   .note { color: var(--ink-soft); }
   .ticket { margin-top: 0.3rem; font-weight: 700; }
@@ -378,9 +374,7 @@
   .plainhead h1 { margin-top: 0.9rem; }
   .section { margin-top: 1.2rem; padding: 1rem; background: var(--card); border: 3px solid var(--usj); border-radius: 1.1rem; overflow-wrap: anywhere; }
   .section h2 { margin-bottom: 0.6rem; }
-  .itinerary-picker { margin: 1.2rem 0 0.75rem; padding: 0.6rem 0.75rem; background: var(--card); border: 2px solid var(--ink); border-radius: 0.8rem; }
-  .itinerary-picker label { display: block; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; }
-  .itinerary-picker select, .tracking-fields input, .tracking-fields select {
+  .tracking-fields input, .tracking-fields select {
     width: 100%; min-height: 44px; margin-top: 0.2rem; padding: 0.4rem 0.55rem;
     color: var(--ink); background: var(--paper); border: 2px solid var(--line); border-radius: 0.55rem; font: inherit;
   }
@@ -484,11 +478,7 @@
 <script src="logic.js"></script>
 <script>
   var TRIP = window.TRIP;
-  var ITINERARY_STORAGE_KEY = "tripItineraryView";
-  var selectedItineraryId = "all";
-  try { selectedItineraryId = localStorage.getItem(ITINERARY_STORAGE_KEY) || ""; } catch (e) { console.error("Could not read the selected itinerary.", e); }
-  if (selectedItineraryId !== "all" && !TRIP.itineraries.some(function (itinerary) { return itinerary.id === selectedItineraryId; })) selectedItineraryId = "all";
-  var activeItinerary = TRIP.itineraries.filter(function (itinerary) { return itinerary.id === selectedItineraryId; })[0] || TRIP.itineraries[0];
+  var activeItinerary = TRIP.itineraries.filter(function (itinerary) { return itinerary.id === "darryl-josie"; })[0] || TRIP.itineraries[0];
 
   function groupKey(card) {
     return card.groupId || card.id || card.people.slice().sort().join("-");
@@ -500,294 +490,53 @@
     var group = itinerary.groups.filter(function (item) { return item.id === id; })[0];
     return group ? group.name : itinerary.name;
   }
-  function taggedDays(itinerary) {
-    return itinerary.days.map(function (day) {
-      var tagged = Object.assign({}, day);
-      tagged.cards = day.cards.map(function (card) {
-        var source = Object.assign({}, card, { sourceItineraryId: itinerary.id, sourceItineraryName: itinerary.name });
-        source.activities = card.activities.map(function (activity, index) {
-          var progressGroupId = groupKey(card);
-          return Object.assign({}, activity, {
-            sourceItineraryId: itinerary.id,
-            sourceItineraryName: itinerary.name,
-            progressGroupId: progressGroupId,
-            progressIndex: index,
-            progressSources: [{ itineraryId: itinerary.id, groupId: progressGroupId, index: index }],
-          });
-        });
-        return source;
-      });
-      tagged.before = Object.assign({}, day.before || {});
-      var defaultGroupId = tagged.before.groupId || (tagged.cards.length === 1 && tagged.cards[0].groupId) ||
-        (itinerary.groups.length ? itinerary.groups[0].id : itinerary.id);
-      tagged.before.do = (tagged.before.do || []).map(function (task, index) {
-        return {
-          text: typeof task === "string" ? task : task.text,
-          groupId: typeof task === "string" ? defaultGroupId : (task.groupId || defaultGroupId),
-          groupName: typeof task === "string" ? itineraryGroupName(itinerary, defaultGroupId) : (task.groupName || itineraryGroupName(itinerary, task.groupId || defaultGroupId)),
-          sourceItineraryId: itinerary.id,
-          sourceItineraryName: itinerary.name,
-          index: index,
-          progressSources: [{ itineraryId: itinerary.id, groupId: typeof task === "string" ? defaultGroupId : (task.groupId || defaultGroupId), index: index }],
-        };
-      });
-      return tagged;
-    });
-  }
   function isPlaceholderCard(card) {
     if (card.activities.length !== 1) return false;
     var activity = card.activities[0];
     return /day trip|all day/i.test(activity.title) && /plan to come|family plan/i.test(activity.note || "");
   }
-  function normalizedText(value) {
-    return String(value || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, " ").trim();
-  }
-  function mergeProgressSources(first, second) {
-    var sources = (first || []).slice();
-    (second || []).forEach(function (source) {
-      var exists = sources.some(function (item) {
-        return item.itineraryId === source.itineraryId && item.groupId === source.groupId && item.index === source.index;
-      });
-      if (!exists) sources.push(source);
-    });
-    return sources;
-  }
-  function taskKey(text) {
-    var normalized = normalizedText(text);
-    if (/christmas eve.*(busy|date night)/.test(normalized)) return "christmas-eve-crowds";
-    if (/overnight bag.*(?:big|large) bags.*tokyo/.test(normalized)) return "overnight-bags-and-forwarding";
-    if (/send.*bags.*yamato|send.*bags.*tokyo|forward.*bags.*tokyo/.test(normalized)) return "send-bags-to-tokyo";
-    if (/check out/.test(normalized)) return "check-out";
-    if (/leave.*(tenjinbashi|house|villa)/.test(normalized)) return "leave-lodging";
-    if (/551.*horai.*buns/.test(normalized)) return "551-buns";
-    if (/pack.*overnight/.test(normalized)) return "pack-overnight";
-    if (/takeshita.*before 10/.test(normalized)) return "takeshita-before-10";
-    if (/zen chopsticks.*2 20|chopsticks.*2 20/.test(normalized)) return "zen-chopsticks-arrival";
-    if (/teamlab.*qr/.test(normalized)) return "teamlab-qr";
-    if (/leave.*9 30/.test(normalized)) return "leave-9-30";
-    if (/pack tonight.*tomorrow|pack.*early start.*tomorrow/.test(normalized)) return "pack-tonight";
-    return normalized;
-  }
-  function mergePrepTask(first, second) {
-    var task = Object.assign({}, first);
-    task.text = first.text.length >= second.text.length ? first.text : second.text;
-    task.progressSources = mergeProgressSources(first.progressSources, second.progressSources);
-    return task;
-  }
-  function bringKey(item) {
-    var normalized = normalizedText(item).replace(/\bconvenience store\b/g, "konbini").replace(/\blarge\b/g, "big");
-    if (/snoopy museum/.test(normalized)) return "snoopy-museum-tickets";
-    if (/teamlab.*(qr|ticket)|skytree.*booking/.test(normalized)) return "teamlab-skytree-tickets";
-    if (/pokemon cafe.*booking/.test(normalized)) return "pokemon-cafe-booking";
-    if (/chopstick.*voucher/.test(normalized)) return "chopstick-voucher";
-    if (/overnight bags/.test(normalized)) return "overnight-bags";
-    if (/shinkansen tickets/.test(normalized)) return "shinkansen-tickets";
-    if (/big bags.*konbini/.test(normalized)) return "bags-to-convenience-store";
-    return normalized;
-  }
-  function activityKey(activity) {
-    var title = normalizedText(activity.title);
-    if (/nakano broadway/.test(title)) return "nakano-broadway";
-    if (/observation deck|tocho/.test(title)) return "tokyo-observation-deck";
-    if (/send.*bags.*tokyo|forward.*bags.*tokyo/.test(title)) return "send-bags-to-tokyo";
-    if (/collect.*bags.*yamato|collect.*(?:big|large) bags/.test(title)) return "collect-forwarded-bags";
-    if (/toyosu|senkyaku banrai/.test(title)) return "toyosu-seafood-market";
-    if (/universal studios|usj/.test(title)) return "universal-studios-japan";
-    if (/pokemon cafe/.test(title)) return "pokemon-cafe";
-    if (/crab buffet|soshite kani/.test(title)) return "crab-dinner";
-    if (/dotonbori.*doguyasuji.*shinsekai/.test(title)) return "dotonbori-doguyasuji-shinsekai";
-    if (/tenjinbashisuji|tenjinbashi suji/.test(title)) return "tenjinbashisuji-shopping";
-    if (/takeshita.*meiji jingu/.test(title)) return "takeshita-meiji-yoyogi";
-    if (/chopstick.*workshop/.test(title)) return "chopstick-workshop";
-    if (/unagi hashimoto/.test(title)) return "unagi-hashimoto";
-    if (/tobiuishi/.test(title)) return "tobiuishi-dinner";
-    if (/teamlab/.test(title)) return "teamlab-planets";
-    if (/snoopy museum/.test(title)) return "snoopy-museum";
-    if (/grandberry park/.test(title)) return "grandberry-park";
-    if (/senso ji/.test(title)) return "senso-ji";
-    if (/tokyo skytree/.test(title)) return "tokyo-skytree";
-    if (/christmas dinner at the house|kfc christmas/.test(title)) return "christmas-dinner";
-    return "title:" + title;
-  }
-  function mergeText(first, second) {
-    if (!first) return second || "";
-    if (!second || first === second || first.indexOf(second) !== -1) return first;
-    if (second.indexOf(first) !== -1) return second;
-    var firstWords = normalizedText(first).split(" ");
-    var secondWords = normalizedText(second).split(" ");
-    var shared = firstWords.filter(function (word, index) {
-      return firstWords.indexOf(word) === index && secondWords.indexOf(word) !== -1;
-    }).length;
-    var firstTime = (normalizedText(first).match(/\b\d{1,2} \d{2}|\b\d{1,2}\b/) || [])[0];
-    var secondTime = (normalizedText(second).match(/\b\d{1,2} \d{2}|\b\d{1,2}\b/) || [])[0];
-    if (shared / Math.max(firstWords.length, secondWords.length) >= 0.6 ||
-        (/leave/.test(normalizedText(first)) && /leave/.test(normalizedText(second)) && firstTime === secondTime) ||
-        (/rest at the villa/.test(normalizedText(first)) && /rest at the villa/.test(normalizedText(second))) ||
-        (/christmas eve/.test(normalizedText(first)) && /christmas eve/.test(normalizedText(second))) ||
-        (/\bbooked?\b|\bbooking\b/.test(normalizedText(first)) && /\bbooked?\b|\bbooking\b/.test(normalizedText(second)))) {
-      return first.length >= second.length ? first : second;
-    }
-    return first + " · " + second;
-  }
-  function mergeActivity(first, second) {
-    var merged = Object.assign({}, first);
-    if ((second.title || "").length > (merged.title || "").length) merged.title = second.title;
-    if (!merged.time || (/:\d\d/.test(second.time || "") && !/:\d\d/.test(merged.time))) merged.time = second.time;
-    merged.note = mergeText(merged.note, second.note);
-    merged.ticket = mergeText(merged.ticket, second.ticket);
-    merged.place = merged.place || second.place;
-    merged.train = (merged.train || []).concat((second.train || []).filter(function (leg) {
-      return (merged.train || []).indexOf(leg) === -1;
-    }));
-    merged.progressSources = mergeProgressSources(first.progressSources, second.progressSources);
-    return merged;
-  }
-  function mergeMeals(cards) {
-    var meals = [];
-    cards.forEach(function (card) {
-      (card.meals || []).forEach(function (meal) {
-        var key = normalizedText(meal.meal);
-        var existing = meals.filter(function (item) { return item.key === key; })[0];
-        if (existing) {
-          existing.meal.what = mergeText(existing.meal.what, meal.what);
-          existing.meal.detail = mergeText(existing.meal.detail, meal.detail);
-          existing.meal.place = existing.meal.place || meal.place;
-        } else meals.push({ key: key, meal: Object.assign({}, meal) });
-      });
-    });
-    return meals.map(function (item) { return item.meal; });
-  }
-  function activityMinutes(activity) {
-    var time = (activity.time || "").toLowerCase();
-    var match = time.match(/(\d{1,2})(?::(\d{2}))?\s*(am|pm)/);
-    if (match) {
-      var hour = Number(match[1]) % 12;
-      return hour * 60 + Number(match[2] || 0) + (match[3] === "pm" ? 720 : 0);
-    }
-    if (/before opening/.test(time)) return 420;
-    if (/morning/.test(time)) return 540;
-    if (/midday|daytime/.test(time)) return 720;
-    if (/afternoon/.test(time)) return 840;
-    if (/evening/.test(time)) return 1080;
-    if (/night/.test(time)) return 1260;
-    return 900;
-  }
-  function mergeCardGroup(cards) {
-    if (cards.length === 1) return cards[0];
-    var people = [];
-    cards.forEach(function (card) {
-      card.people.forEach(function (person) { if (people.indexOf(person) === -1) people.push(person); });
-    });
-    var activities = [], activityIndexes = {};
-    cards.forEach(function (card) {
-      card.activities.forEach(function (activity) {
-        var key = activityKey(activity);
-        if (activityIndexes[key] != null) activities[activityIndexes[key]] = mergeActivity(activities[activityIndexes[key]], activity);
-        else { activityIndexes[key] = activities.length; activities.push(Object.assign({}, activity)); }
-      });
-    });
-    activities.sort(function (a, b) { return activityMinutes(a) - activityMinutes(b); });
-    var names = [];
-    cards.forEach(function (card) { if (names.indexOf(card.name) === -1) names.push(card.name); });
-    var name = people.length === 7 ? "Everyone" : (cards.every(function (card) { return card.people.length === people.length; }) ? cards[0].name : names.join(" + "));
-    var groupId = "combined-" + people.slice().sort().join("-");
-    return Object.assign({}, cards[0], {
-      id: groupId,
-      groupId: groupId,
-      name: name,
-      people: people,
-      activities: activities,
-      meals: mergeMeals(cards),
-      tips: cards.reduce(function (tips, card) {
-        (card.tips || []).forEach(function (tip) {
-          var key = taskKey(tip);
-          var index = tips.map(taskKey).indexOf(key);
-          if (index === -1) tips.push(tip);
-          else tips[index] = mergeText(tips[index], tip);
-        });
-        return tips;
-      }, []),
-      sourceItineraryName: "",
-    });
-  }
-  function mergeOverlappingCards(cards) {
-    var parent = cards.map(function (_, index) { return index; });
-    function root(index) {
-      while (parent[index] !== index) { parent[index] = parent[parent[index]]; index = parent[index]; }
-      return index;
-    }
-    for (var i = 0; i < cards.length; i++) {
-      for (var j = i + 1; j < cards.length; j++) {
-        if (cards[i].people.some(function (person) { return cards[j].people.indexOf(person) !== -1; })) {
-          var left = root(i), right = root(j);
-          if (left !== right) parent[right] = left;
-        }
-      }
-    }
-    var groups = {};
-    cards.forEach(function (card, index) {
-      var key = root(index);
-      if (!groups[key]) groups[key] = [];
-      groups[key].push(card);
-    });
-    return Object.keys(groups).map(function (key) { return mergeCardGroup(groups[key]); });
-  }
   function combineDays() {
+    var main = TRIP.itineraries.filter(function (itinerary) { return itinerary.id === "darryl-josie"; })[0] || TRIP.itineraries[0];
+    var mattChloe = TRIP.itineraries.filter(function (itinerary) { return itinerary.id === "matt-chloe"; })[0];
     var byDate = {};
-    TRIP.itineraries.forEach(function (itinerary) {
-      taggedDays(itinerary).forEach(function (day) {
-        var merged = byDate[day.date];
-        if (!merged) {
-          merged = byDate[day.date] = {
-            date: day.date, title: day.title, scene: day.scene, weather: [],
-            before: { do: [], bring: [] }, cards: [], wear: day.wear,
+    main.days.forEach(function (day) {
+      var copy = Object.assign({}, day);
+      copy.cards = day.cards.map(function (card) { return Object.assign({}, card); });
+      copy.before = Object.assign({}, day.before || {}, { do: (day.before && day.before.do || []).slice(), bring: (day.before && day.before.bring || []).slice() });
+      byDate[day.date] = copy;
+    });
+    if (mattChloe) {
+      mattChloe.days.forEach(function (extra) {
+        var day = byDate[extra.date];
+        if (!day) {
+          day = byDate[extra.date] = Object.assign({}, extra, {
+            cards: extra.cards.map(function (card) { return Object.assign({}, card); }),
+            before: Object.assign({}, extra.before || {}, { do: (extra.before && extra.before.do || []).slice(), bring: (extra.before && extra.before.bring || []).slice() }),
+            mattChloeOnly: true,
+          });
+        } else {
+          day.cards = day.cards.filter(function (card) { return !isPlaceholderCard(card); });
+          extra.cards.forEach(function (card) {
+            var duplicate = day.cards.some(function (existing) {
+              return existing.groupId === card.groupId ||
+                existing.people.slice().sort().join(",") === card.people.slice().sort().join(",");
+            });
+            if (!duplicate) day.cards.push(Object.assign({}, card));
+          });
+          day.mattChloeBefore = {
+            do: (extra.before && extra.before.do || []).slice(),
+            bring: (extra.before && extra.before.bring || []).slice(),
           };
         }
-        day.weather.forEach(function (city) { if (merged.weather.indexOf(city) === -1) merged.weather.push(city); });
-        day.before.do.forEach(function (task) { merged.before.do.push(task); });
-        (day.before.bring || []).forEach(function (item) {
-          if (merged.before.bring.indexOf(item) === -1) merged.before.bring.push(item);
-        });
-        day.cards.forEach(function (card) { merged.cards.push(card); });
       });
-    });
-    return Object.keys(byDate).sort().map(function (date) {
-      var day = byDate[date];
-      var cards = day.cards.filter(function (card) {
-        if (!isPlaceholderCard(card)) return true;
-        var people = card.people.slice().sort().join(",");
-        return !day.cards.some(function (other) {
-          return other !== card && other.people.slice().sort().join(",") === people && other.activities.length > card.activities.length;
-        });
-      });
-      day.cards = mergeOverlappingCards(cards);
-      var tasks = [], taskIndexes = {};
-      day.before.do.forEach(function (task) {
-        var key = taskKey(task.text);
-        if (taskIndexes[key] == null) {
-          taskIndexes[key] = tasks.length;
-          tasks.push(task);
-        } else tasks[taskIndexes[key]] = mergePrepTask(tasks[taskIndexes[key]], task);
-      });
-      day.before.do = tasks;
-      var bring = [], bringIndexes = {};
-      day.before.bring.forEach(function (item) {
-        var key = bringKey(item);
-        if (bringIndexes[key] == null) {
-          bringIndexes[key] = bring.length;
-          bring.push(item);
-        } else if (item.length > bring[bringIndexes[key]].length) bring[bringIndexes[key]] = item;
-      });
-      day.before.bring = bring;
-      return day;
-    });
+    }
+    return Object.keys(byDate).sort().map(function (date) { return byDate[date]; });
   }
   function daysForSelection() {
-    return selectedItineraryId === "all" ? combineDays() : taggedDays(activeItinerary);
+    return combineDays();
   }
   function visibleItineraries() {
-    return selectedItineraryId === "all" ? TRIP.itineraries : [activeItinerary];
+    return [activeItinerary];
   }
   function visibleStays() {
     return visibleItineraries().reduce(function (stays, itinerary) { return stays.concat(itinerary.stays); }, []);
@@ -824,15 +573,6 @@
   function writeStoredObject(key, value) {
     try { localStorage.setItem(key, JSON.stringify(value)); }
     catch (e) { console.error("Could not save trip tracking data.", e); }
-  }
-  function progressStorageKey(itineraryId) { return "tripProgress:" + itineraryId; }
-  function progressItemKey(date, groupId, kind, index) { return [date, groupId, kind, index].join("|"); }
-  function progressChecked(key, itineraryId) { return readStoredObject(progressStorageKey(itineraryId))[key] === true; }
-  function saveProgress(key, checked, itineraryId) {
-    var progress = readStoredObject(progressStorageKey(itineraryId));
-    if (checked) progress[key] = true;
-    else delete progress[key];
-    writeStoredObject(progressStorageKey(itineraryId), progress);
   }
   function shipmentStorageKey() { return "tripShipments"; }
   function shipmentState() { return readStoredObject(shipmentStorageKey()); }
@@ -1176,19 +916,6 @@
       if (a.ticket) html += '<div class="ticket">🎟️ ' + esc(a.ticket) + '</div>';
       (a.train || []).forEach(function (leg) { html += trainSheet(leg); });
       if (a.place) html += dirLinks(a.place);
-      var sourceId = a.sourceItineraryId || card.sourceItineraryId || activeItinerary.id;
-      var progressGroupId = a.progressGroupId || groupKey(card);
-      var progressIndex = a.progressIndex == null ? index : a.progressIndex;
-      var key = progressItemKey(date, progressGroupId, "activity", progressIndex);
-      var progressSources = a.progressSources || [{ itineraryId: sourceId, groupId: progressGroupId, index: progressIndex }];
-      var progressEntries = progressSources.map(function (source) {
-        return { itineraryId: source.itineraryId, key: progressItemKey(date, source.groupId, "activity", source.index) };
-      });
-      var checked = progressEntries.some(function (entry) { return progressChecked(entry.key, entry.itineraryId); });
-      html += '<label class="progress-check"><input type="checkbox" data-progress-key="' + esc(key) + '"' +
-        ' data-progress-itinerary="' + esc(sourceId) + '"' +
-        ' data-progress-sources="' + esc(JSON.stringify(progressEntries)) + '"' +
-        (checked ? ' checked' : '') + '><span>Mark complete</span></label>';
       return '<li><span class="rail" aria-hidden="true"><i class="line"></i><i class="dot"></i></span>' +
         '<div class="item"><div class="time">' + esc(a.time) + '</div>' + html + '</div></li>';
     }).join("") + '</ol>';
@@ -1235,9 +962,7 @@
   }
 
   function groupPanel(card, i, date, showOrigin) {
-    var origin = selectedItineraryId === "all" && showOrigin && card.sourceItineraryName
-      ? '<span class="origin">' + esc(card.sourceItineraryName) + '</span>'
-      : "";
+    var origin = "";
     var tips = card.tips && card.tips.length
       ? '<div class="tips">' + card.tips.map(function (t) { return '<div class="extra">' + esc(t) + '</div>'; }).join("") + '</div>'
       : "";
@@ -1435,9 +1160,9 @@
         '<path d="M160 127.8 h2 M167 126.8 h2 M174 125.8 h2 M181 124.8 h2 M188 123.8 h2 M195 122.8 h2 M202 121.8 h2 M214 120 l5 1.2" stroke="var(--ink)" stroke-width="1.3"/>'   /* windows + cockpit */
     }
   };
-  SCENES.jeju = SCENES.hiroshima;
-  SCENES.busan = SCENES.osaka;
-  SCENES.seoul = SCENES.tokyo;
+  SCENES.jeju = { far: "", mid: "", near: "", front: "", lights: [], ink: "" };
+  SCENES.busan = { far: "", mid: "", near: "", front: "", lights: [], ink: "" };
+  SCENES.seoul = { far: "", mid: "", near: "", front: "", lights: [], ink: "" };
   var SCENE_LABELS = { tokyo: "Tokyo", osaka: "Osaka", kyoto: "Kyoto", hiroshima: "Hiroshima", sapporo: "Sapporo", jeju: "Jeju", busan: "Busan", seoul: "Seoul", air: "Flying" };
   /* The calendar's tiny landmark icons: the window ("viewBox") onto each city's red ink sketch. */
   var ICON_BOX = { tokyo: "36 80 52 110", osaka: "34 80 48 110", sapporo: "34 80 52 110", kyoto: "2 144 50 46", hiroshima: "254 116 76 72", jeju: "254 116 76 72", busan: "34 80 48 110", seoul: "36 80 52 110", air: "132 104 98 52" };
@@ -1490,7 +1215,7 @@
   var FLAKES = [[8, 0, 9], [24, 3, 11], [41, 1.5, 8], [58, 5, 12], [73, 2.5, 10], [90, 6, 9]];
   var MORE_FLAKES = [[3, 1, 7], [15, 4.5, 8], [19, 0.5, 9], [32, 2, 7.5], [36, 6, 8.5], [49, 3.5, 7], [53, 0.8, 9.5], [66, 4, 8], [81, 1.2, 7.5], [85, 5.5, 9], [96, 2.8, 8]];
   function snowHtml(scene) {   /* light snow everywhere, heavy in Sapporo, none above the clouds */
-    if (scene === "air") return "";
+    if (scene === "air" || scene === "jeju" || scene === "busan" || scene === "seoul") return "";
     /* The delay counts from page load (a negative delay = already partway through), so after a re-render
        the flakes carry on where they were instead of all jumping back to the top. */
     var t = performance.now() / 1000;
@@ -1520,15 +1245,6 @@
   var BTN_CAL = '<button type="button" data-act="cal">Calendar</button>';
   var BTN_HELP = '<button type="button" data-act="help">Help &amp; phrases</button>';
 
-  function itineraryPicker() {
-    return '<div class="itinerary-picker"><label for="itinerarySelect">ITINERARY OPTIONS</label>' +
-      '<select id="itinerarySelect" data-itinerary-select><option value="all"' + (selectedItineraryId === "all" ? ' selected' : '') + '>All itineraries</option>' +
-      TRIP.itineraries.map(function (itinerary) {
-        return '<option value="' + esc(itinerary.id) + '"' + (itinerary.id === selectedItineraryId ? ' selected' : '') + '>' +
-          esc(itinerary.name) + '</option>';
-      }).join("") + '</select></div>';
-  }
-
   /* One day's sliding header: its sky colours, stars, day number, date, cities, fun title and weather.
      The page shows today's slide, with yesterday's and tomorrow's parked either side for the drag. */
   function slide(i, where, topBar) {
@@ -1552,33 +1268,17 @@
     if (rain >= 50) bring.unshift("☂️ Umbrellas (" + rain + "% rain)");
     bring.push("💴 Cash: at least ¥10,000 in your wallet");
     function list(items) { return '<ul>' + items.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join("") + '</ul>'; }
-    var todoGroups = {};
-    (b.do || []).forEach(function (task) {
-      var key = selectedItineraryId === "all" && day.cards.length === 1 ? "combined" : task.sourceItineraryId + "|" + task.groupId;
-      if (!todoGroups[key]) todoGroups[key] = { itineraryId: task.sourceItineraryId, itineraryName: task.sourceItineraryName, groupId: task.groupId, groupName: task.groupName, tasks: [] };
-      todoGroups[key].tasks.push(task);
-    });
-    var todos = Object.keys(todoGroups).map(function (key) {
-      var group = todoGroups[key];
-      var label = selectedItineraryId === "all" && day.cards.length === 1 ? day.cards[0].name :
-        (group.itineraryName === group.groupName ? group.groupName : group.itineraryName + " · " + group.groupName);
-      return '<div class="lbl">DO · ' + esc(label) + '</div><ul>' +
-        group.tasks.map(function (task) {
-          var progressKey = progressItemKey(day.date, task.groupId, "prep", task.index);
-          var progressSources = task.progressSources || [{ itineraryId: task.sourceItineraryId, groupId: task.groupId, index: task.index }];
-          var progressEntries = progressSources.map(function (source) {
-            return { itineraryId: source.itineraryId, key: progressItemKey(day.date, source.groupId, "prep", source.index) };
-          });
-          var checked = progressEntries.some(function (entry) { return progressChecked(entry.key, entry.itineraryId); });
-          return '<li><label class="progress-check"><input type="checkbox" data-progress-key="' + esc(progressKey) +
-            '" data-progress-itinerary="' + esc(task.sourceItineraryId) + '"' +
-            ' data-progress-sources="' + esc(JSON.stringify(progressEntries)) + '"' +
-            (checked ? ' checked' : '') + '><span>' + esc(task.text) + '</span></label></li>';
-        }).join("") + '</ul>';
-    }).join("");
+    var wholeLabel = day.mattChloeOnly ? "Matt & Chloe" : "Whole group";
+    var todos = (b.do || []).length ? '<div class="lbl">DO · ' + esc(wholeLabel) + '</div>' + list(b.do) : "";
+    var mc = day.mattChloeBefore || null;
+    if (mc && (mc.do.length || mc.bring.length)) {
+      todos += mc.do.length ? '<div class="lbl">DO · Matt &amp; Chloe</div>' + list(mc.do) : "";
+    }
+    var mattBring = mc ? mc.bring.slice() : [];
     return '<div class="before"><h3>Before you head out</h3>' +
       todos +
-      '<div class="lbl">BRING</div>' + list(bring) + '</div>';
+      '<div class="lbl">BRING · ' + esc(wholeLabel) + '</div>' + list(bring) +
+      (mattBring.length ? '<div class="lbl">BRING · Matt &amp; Chloe</div>' + list(mattBring) : '') + '</div>';
   }
 
   /* Their ragdoll, sitting on the cross bar between them (cell coords). White with grey ears, a grey mask round
@@ -1691,7 +1391,7 @@
       m++;
       if (m > 12) { m = 1; y++; }
     }
-    var title = selectedItineraryId === "all" ? "All itineraries" : activeItinerary.name;
+    var title = "Japan & Korea";
     return '<header class="plainhead">' + bar('<button type="button" data-act="today">Today</button>', BTN_HELP) +
       '<h1>' + esc(title) + '</h1><div class="eyebrow">' + esc(longDate(first)) + ' ' + start.y + ' – ' + esc(longDate(last)) + ' ' + end.y + ' · tap a day</div></header>' +
       months.join("");
@@ -1824,11 +1524,11 @@
     closeBig();
     var lapseFrom = pendingLapse;
     pendingLapse = null;
-    if (r.view === "calendar") { app.innerHTML = calendarPage() + itineraryPicker() + jailHtml(); fitTiles(); }
-    else if (r.view === "help") app.innerHTML = helpPage() + itineraryPicker() + jailHtml();
+    if (r.view === "calendar") { app.innerHTML = calendarPage() + jailHtml(); fitTiles(); }
+    else if (r.view === "help") app.innerHTML = helpPage() + jailHtml();
     else {
       lastDay = r.i;
-      app.innerHTML = dayPage(r.i) + itineraryPicker() + jailHtml();
+      app.innerHTML = dayPage(r.i) + jailHtml();
       fitTitle();
       wirePager(DAYS[r.i]);
       if (lapseFrom) startLapse(lapseFrom);
@@ -1937,35 +1637,8 @@
   function closeBig() { big.hidden = true; }
   big.tabIndex = -1;
   big.addEventListener("click", closeBig);
-  function selectItinerary(id) {
-    if (id !== "all" && !TRIP.itineraries.some(function (itinerary) { return itinerary.id === id; })) return;
-    if (id === selectedItineraryId) return;
-    selectedItineraryId = id;
-    activeItinerary = itineraryById(id);
-    DAYS = daysForSelection();
-    try { localStorage.setItem(ITINERARY_STORAGE_KEY, selectedItineraryId); }
-    catch (e) { console.error("Could not save the selected itinerary.", e); }
-    var target = "#day-" + openingDate(todayInJapan());
-    if (location.hash === target) render();
-    else location.hash = target;
-  }
   document.addEventListener("change", function (e) {
     var target = e.target;
-    if (target.matches("[data-itinerary-select]")) {
-      selectItinerary(target.value);
-      return;
-    }
-    if (target.matches("[data-progress-key]")) {
-      var progressSources = target.getAttribute("data-progress-sources");
-      if (progressSources) {
-        JSON.parse(progressSources).forEach(function (source) {
-          saveProgress(source.key, target.checked, source.itineraryId);
-        });
-      } else {
-        saveProgress(target.getAttribute("data-progress-key"), target.checked, target.getAttribute("data-progress-itinerary"));
-      }
-      return;
-    }
     if (target.matches("[data-shipment][data-track-field]")) {
       saveShipment(target.getAttribute("data-shipment"), target.getAttribute("data-track-field"), target.value);
     }

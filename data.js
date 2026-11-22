@@ -4,7 +4,6 @@
 // Rules: no booking numbers, QR codes, phone numbers of people, or the birthday restaurant.
 // people keys: mum, dad, darryl, josie, matt, chloe, choleh
 // place = what the Directions buttons search for in Google/Apple Maps (leave out for no button).
-// Progress is per itinerary/group; shipment IDs are global and shared IDs share saved tracking details.
 
 window.TRIP = {
   // hi/lo = typical late-Dec temps (°C), shown until a live forecast is in range (~16 days out).
@@ -465,8 +464,8 @@ window.TRIP = {
   ],
 };
 
-// Each itinerary owns its dates, groups, stays and luggage shipments. Progress is stored
-// separately by itinerary and group; shipment numbers/statuses are entered on the Help page.
+// Each itinerary owns its dates and groups. TRIP.days is the shared source of truth;
+// shipment numbers/statuses are entered on the Help page.
 window.TRIP.itineraries = [
   {
     id: "darryl-josie",
@@ -539,13 +538,13 @@ window.TRIP.itineraries = [
             { time: "Morning", title: "Mum, Dad & Choleh: travel Osaka → Kyoto", note: "Meet Matt & Chloe at Kyoto Station when their Shinkansen arrives." },
             { time: "9:09am → 11:21am", title: "Matt & Chloe: Shinkansen Tokyo → Kyoto", note: "Nozomi 245." },
             { time: "11:21am", title: "Meet at Kyoto Station", note: "Start the Kyoto day trip together." },
-            { time: "Daytime", title: "Explore Kyoto together", note: "Choose from Fushimi Inari, Kiyomizu-dera, Gion and Pontocho." },
+            { time: "Daytime", title: "Explore Kyoto together", note: "Choose from Fushimi Inari, Kiyomizu-dera, Gion – Higashiyama and Pontocho." },
             { time: "Evening", title: "Hankyu Kyoto → Osaka", note: "Check the timetable; Kyo-train Garaku may not run on weekdays." },
             { time: "Night", title: "Continue to Villa Osaka", note: "Matt & Chloe's forwarded large bags should be waiting there." },
           ],
           meals: [
             { meal: "Lunch", what: "Choose together in Kyoto" },
-            { meal: "Dinner", what: "Pontocho or Gion", detail: "Pick a place with the family" },
+            { meal: "Dinner", what: "Pontocho or Gion – Higashiyama", detail: "Pick a place with the family" },
           ],
         }],
       },
@@ -576,151 +575,6 @@ window.TRIP.itineraries = [
             meals: [],
           },
         ],
-      },
-      {
-        date: "2026-12-23", title: "Universal Studios! 🎢", scene: "osaka", weather: ["osaka"],
-        before: { do: ["Leave by about 7:15am", "Check the park's night-show times"], bring: ["Everyone's park tickets", "Power banks"] },
-        cards: [
-          {
-            id: "usj-group",
-            name: "Everyone except Mum & Dad", groupId: "usj-group", people: ["darryl", "josie", "matt", "chloe", "choleh"],
-            activities: [
-              { time: "Before opening", title: "Universal Studios Japan", note: "Express Pass and timed Nintendo World entry." },
-              { time: "Afternoon", title: "Split by ride preference", note: "Agree on regroup times." },
-              { time: "Evening", title: "Night show → TAKOPA takoyaki", note: "CityWalk 4F; Darryl asks for no mayonnaise." },
-            ],
-            meals: [
-              { meal: "Breakfast", what: "Convenience store on the way" },
-              { meal: "Lunch", what: "In the park" },
-              { meal: "Dinner", what: "TAKOPA takoyaki", detail: "CityWalk 4F" },
-            ],
-          },
-          {
-            id: "mum-dad",
-            name: "Mum & Dad", groupId: "mum-dad", people: ["mum", "dad"],
-            activities: [
-              { time: "Daytime", title: "Free day" },
-              { time: "By 9:15pm", title: "Meet everyone at TAKOPA", place: "Universal CityWalk Osaka" },
-            ],
-            meals: [{ meal: "Dinner", what: "TAKOPA takoyaki", detail: "Meet the group at CityWalk 4F" }],
-          },
-        ],
-      },
-      {
-        date: "2026-12-24", title: "Osaka & King Crab 🦀", scene: "osaka", weather: ["osaka"],
-        before: { do: ["Pack overnight bags", "Send large bags from FamilyMart to the Yamato Bunkyo Otowa collection office; keep tracking receipts"], bring: ["Large bags to the convenience store", "Pokémon Cafe booking details"] },
-        cards: [{
-          id: "whole-family",
-          name: "Whole group", groupId: "whole-family", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
-          activities: [
-            { time: "Morning", title: "Send large bags to Tokyo", note: "Matt and Chloe's bags travel with Darryl's; each bag needs its own tracking receipt." },
-            { time: "~11:30am", title: "Pokémon Cafe", note: "Daimaru Shinsaibashi 9F, if booked." },
-            { time: "Afternoon", title: "Dotonbori → Doguyasuji → Shinsekai", note: "Rest at the villa before dinner." },
-            { time: "7:30pm", title: "Crab buffet", note: "Soshite Kani Shinsaibashi" },
-          ],
-          tips: ["Everyone packs an overnight bag; large bags go ahead to Tokyo.", "Christmas Eve is a busy dining night."],
-          meals: [
-            { meal: "Breakfast", what: "Light convenience-store breakfast or bakery" },
-            { meal: "Lunch", what: "Pokémon Cafe", detail: "If booked; otherwise Dotonbori street food" },
-            { meal: "Dinner", what: "Soshite Kani crab buffet", detail: "7:30pm booking" },
-          ],
-        }],
-      },
-      {
-        date: "2026-12-25", title: "Merry Christmas! 🎄", scene: "tokyo", weather: ["osaka", "tokyo"],
-        before: { do: ["Check out by about 9:45am", "Leave Tenjinbashisuji by about 12:20pm", "Buy 551 Horai buns outside the Shinkansen gates", "Collect forwarded bags from Yamato in Bunkyo"], bring: ["Shinkansen tickets", "Overnight bags", "Luggage tracking receipts"] },
-        cards: [{
-          id: "whole-family",
-          name: "Whole group", groupId: "whole-family", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
-          activities: [
-            { time: "10:15am", title: "Tenjinbashisuji Shopping Street", note: "Most shops open between 10 and 11." },
-            { time: "1:15pm", title: "Shinkansen Shin-Osaka → Tokyo", note: "Nozomi 254; large bags travel separately." },
-            { time: "Afternoon", title: "Collect large bags at Yamato Bunkyo Otowa", note: "Bring the collection receipts and identification." },
-            { time: "Evening", title: "Christmas dinner at the house", note: "KFC pickup by Darryl." },
-          ],
-          meals: [
-            { meal: "Breakfast", what: "Convenience store before check-out" },
-            { meal: "Lunch", what: "551 Horai buns and ekiben" },
-            { meal: "Snack", what: "Kagurazaka bakery", detail: "Check closing time" },
-            { meal: "Dinner", what: "Christmas meal at the house" },
-          ],
-        }],
-      },
-      {
-        date: "2026-12-26", title: "Ghibli & Nakano 🏙️", scene: "tokyo", weather: ["tokyo"],
-        before: { do: ["Confirm Ghibli Museum tickets", "Choose Kichijoji or the Edo-Tokyo Open Air Architectural Museum for the afternoon"], bring: ["Ghibli Museum tickets", "Cash for park boats"] },
-        cards: [{
-          id: "whole-family",
-          name: "Whole group", groupId: "whole-family", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
-          activities: [
-            { time: "Morning", title: "Ghibli Museum", note: "Timed entry." },
-            { time: "Afternoon", title: "Kichijoji or Edo-Tokyo Open Air Museum", note: "Kichijoji options include Inokashira Park and Harmonica Yokocho." },
-            { time: "~5:00pm", title: "Nakano Broadway", note: "Many shops close around 8pm." },
-            { time: "Evening", title: "Sushi dinner → Tokyo Metropolitan Government observation deck", note: "Check year-end opening hours." },
-          ],
-          meals: [
-            { meal: "Breakfast", what: "Convenience store" },
-            { meal: "Lunch", what: "Kichijoji area" },
-            { meal: "Dinner", what: "Conveyor-belt sushi around Nakano" },
-          ],
-        }],
-      },
-      {
-        date: "2026-12-27", title: "Chopsticks & Unagi 🥢", scene: "tokyo", weather: ["tokyo"],
-        before: { do: ["Visit Takeshita Street before 10am", "Arrive at ZEN Chopsticks by 2:20pm"], bring: ["Chopstick workshop voucher", "Credit or debit card (cashless workshop)"] },
-        cards: [{
-          id: "whole-family",
-          name: "Whole group", groupId: "whole-family", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
-          activities: [
-            { time: "Morning", title: "Takeshita Street → Meiji Jingu and Yoyogi Park", place: "Takeshita Street, Harajuku" },
-            { time: "2:30pm", title: "Chopstick-making workshop", note: "ZEN Chopsticks, Nishi-Shinjuku." },
-            { time: "Afternoon", title: "Pokémon Center Mega Tokyo", place: "Pokemon Center Mega Tokyo Ikebukuro" },
-            { time: "6:00pm", title: "Unagi Hashimoto", note: "Booked dinner." },
-          ],
-          meals: [
-            { meal: "Breakfast", what: "Amam Dacotan Omotesando" },
-            { meal: "Snack", what: "Harajuku crepes" },
-            { meal: "Lunch", what: "Mentaiko udon or tonkatsu near Shinjuku" },
-            { meal: "Dinner", what: "Unagi Hashimoto", detail: "6pm booking" },
-          ],
-        }],
-      },
-      {
-        date: "2026-12-28", title: "teamLab & Skytree ✨", scene: "tokyo", weather: ["tokyo"],
-        before: { do: ["Check that the teamLab QR code has arrived"], bring: ["Trousers that roll up to the knee", "teamLab and Skytree tickets"] },
-        cards: [{
-          id: "whole-family",
-          name: "Whole group", groupId: "whole-family", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
-          activities: [
-            { time: "Morning", title: "Toyosu Market and Senkyaku Banrai", note: "Brunch at the seafood market." },
-            { time: "12:30pm", title: "teamLab Planets", note: "Wear trousers that roll up to the knee." },
-            { time: "3:30pm", title: "Tokyo Skytree", note: "Sunset is around 4:30pm." },
-            { time: "Evening", title: "Senso-ji at night", note: "About 20 minutes' walk from Skytree." },
-          ],
-          meals: [
-            { meal: "Breakfast", what: "Skip; brunch at Toyosu" },
-            { meal: "Lunch", what: "Senkyaku Banrai seafood brunch" },
-            { meal: "Dinner", what: "Tempura near Asakusa", detail: "Check walk-in availability; nearby backup is Owariya Honten" },
-          ],
-        }],
-      },
-      {
-        date: "2026-12-29", title: "Snoopy & Wagyu 🐶", scene: "tokyo", weather: ["tokyo"],
-        before: { do: ["Leave the house around 9:30am", "Pack tonight for tomorrow's flight to Jeju"], bring: ["Snoopy Museum tickets"] },
-        cards: [{
-          id: "whole-family",
-          name: "Whole group", groupId: "whole-family", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
-          activities: [
-            { time: "11:00am", title: "Snoopy Museum Tokyo" },
-            { time: "Afternoon", title: "Grandberry Park", note: "Leave around 5:30pm." },
-            { time: "7:00pm", title: "Last family dinner: Tobiuishi yakiniku", note: "Iidabashi." },
-          ],
-          meals: [
-            { meal: "Breakfast", what: "Kagurazaka bakery or convenience store" },
-            { meal: "Lunch", what: "Grandberry Park food court" },
-            { meal: "Dinner", what: "Tobiuishi yakiniku", detail: "7pm booking" },
-          ],
-        }],
       },
       {
         date: "2026-12-30", title: "Tokyo → Jeju ✈️", scene: "air", weather: ["tokyo", "jeju"],
