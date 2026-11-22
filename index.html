@@ -435,6 +435,15 @@
   .stay:first-of-type { border-top: 0; }
   .ja { font-family: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif; }
   .stay .ja { font-size: 1.1rem; font-weight: 700; margin: 0.2rem 0 0.5rem; }
+  .tracking-item { padding: 0.75rem 0; border-top: 1px solid var(--line); }
+  .tracking-item:first-of-type { border-top: 0; }
+  .tracking-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.4rem; }
+  .tracking-fields label { min-width: 0; font-size: 0.78rem; font-weight: 700; }
+  .tracking-fields input, .tracking-fields select {
+    width: 100%; min-height: 44px; margin-top: 0.2rem; padding: 0.4rem 0.55rem; font: inherit; font-size: 0.9rem;
+    color: var(--ink); background: var(--paper); border: 2px solid var(--line); border-radius: 0.55rem;
+  }
+  .tracking-note { margin-top: 0.5rem; color: var(--ink-soft); font-size: 0.82rem; }
   .phrase { display: block; width: 100%; text-align: left; margin-top: 0.5rem; padding: 0.6rem 0.75rem; background: var(--paper); border: 2px solid var(--line); border-radius: 0.8rem; }
   .phrase .ja { display: block; font-size: 1.35rem; font-weight: 700; line-height: 1.3; }
   .say { display: block; font-weight: 700; color: var(--accent); }
@@ -1256,12 +1265,48 @@
 
   /* Help & phrases. Numbers are tel: links; the address and phrase buttons open the huge view. */
   function telHref(n) { return "tel:" + n.replace(/[^\d+]/g, ""); }
+
+  /* Luggage tracking (from Matt's branch): type the tracking numbers and pick a status per shipment.
+     shortcut: saved only on this phone (localStorage), so each person keeps their own; move to the Sheet if we need it shared. */
+  var SHIP_KEY = "tripShipments", SHIP_STATUSES = ["Not sent", "Sent", "In transit", "Ready for collection", "Collected"];
+  function shipmentState() {
+    try { return JSON.parse(localStorage.getItem(SHIP_KEY) || "{}"); } catch (e) { return {}; }
+  }
+  function saveShipment(id, field, value) {
+    var state = shipmentState();
+    state[id] = state[id] || {};
+    state[id][field] = value;
+    try { localStorage.setItem(SHIP_KEY, JSON.stringify(state)); } catch (e) { /* private mode: just don't save */ }
+  }
+  function luggageSection() {
+    var state = shipmentState();
+    return '<section class="section"><h2>Luggage tracking</h2>' + (TRIP.shipments || []).map(function (s) {
+      var st = state[s.id] || {};
+      return '<div class="tracking-item"><strong>' + esc(s.label) + '</strong>' +
+        '<div class="note">' + esc(s.carrier) + ' · Sent: ' + esc(s.sent) + ' · Expected: ' + esc(s.expected) + '</div>' +
+        '<div class="tracking-fields">' +
+          '<label>Tracking numbers<input type="text" autocomplete="off" data-shipment="' + esc(s.id) + '" data-track-field="number" value="' + esc(st.number || "") + '"></label>' +
+          '<label>Status<select data-shipment="' + esc(s.id) + '" data-track-field="status">' + SHIP_STATUSES.map(function (x) {
+            return '<option' + ((st.status || "Not sent") === x ? ' selected' : '') + '>' + x + '</option>';
+          }).join("") + '</select></label>' +
+        '</div></div>';
+    }).join("") + '<p class="tracking-note">Saved only on this phone.</p></section>';
+  }
+  document.addEventListener("input", function (e) {
+    var t = e.target;
+    if (t.matches && t.matches("[data-shipment][data-track-field]")) saveShipment(t.getAttribute("data-shipment"), t.getAttribute("data-track-field"), t.value);
+  });
+  document.addEventListener("change", function (e) {
+    var t = e.target;
+    if (t.matches && t.matches("select[data-shipment]")) saveShipment(t.getAttribute("data-shipment"), "status", t.value);
+  });
   function helpPage() {
     return '<header class="plainhead">' + bar(BTN_CAL, '<button type="button" data-act="back">Back to day</button>') +
       '<h1>Help &amp; phrases</h1></header>' +
       '<section class="section"><h2>Emergency</h2>' + TRIP.emergency.map(function (e) {
         return '<div class="row"><span>' + esc(e.label) + '</span><a class="tel" href="' + telHref(e.number) + '">' + esc(e.number) + '</a></div>';
       }).join("") + '</section>' +
+      luggageSection() +
       '<section class="section"><h2>Where we stay</h2>' + TRIP.stays.map(function (s, k) {
         return '<div class="stay"><div class="eyebrow">' + esc(s.city) + ' · ' + esc(s.dates) + '</div>' +
           '<div><strong>' + esc(s.name) + '</strong></div><div>' + esc(s.en) + '</div>' +

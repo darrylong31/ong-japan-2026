@@ -413,6 +413,11 @@ window.TRIP = {
     },
   ],
 
+  // Help page "Luggage tracking": tracking numbers + status are typed in on each phone (saved on that phone only).
+  shipments: [
+    { id: "osaka-tokyo", label: "Osaka → Tokyo (everyone's big bags)", carrier: "Yamato TA-Q-BIN", sent: "24 Dec, FamilyMart Kitatsumori", expected: "25 Dec, collect at the Bunkyo Otowa office" },
+  ],
+
   // Help card. Kyoto + Sapporo addresses from the Booking.com confirmations (14 Nov).
   stays: [
     { city: "Kyoto", dates: "17–20 Dec", name: "Rinn Shirakawa South", en: "509 Tsutsumicho, Higashiyama-ku, Kyoto 605-0025", ja: "〒605-0025 京都府京都市東山区堤町509" },
