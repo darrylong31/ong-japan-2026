@@ -214,7 +214,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-24", title: "Osaka and King Crab 🦀", scene: "osaka", weather: ["osaka"],
-      before: { do: ["Pack an overnight bag for today/tomorrow, THEN send the big bags to the Otowa Yamato Transport Centre from a konbini"], bring: ["Big bags to the konbini", "Pokémon Cafe booking (if booked)"] },
+      before: { do: ["Pack an overnight bag for today/tomorrow", "Send the big bags to the Otowa Yamato Transport Centre from a konbini"], bring: ["Big bags to the konbini", "Pokémon Cafe booking (if booked)"] },
       cards: [{
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
