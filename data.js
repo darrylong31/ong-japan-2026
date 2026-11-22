@@ -128,7 +128,7 @@ window.TRIP = {
         {
           name: "Darryl & Josie", people: ["darryl", "josie"],
           activities: [
-            { time: "10:00am", title: "Osaka Aquarium Kaiyukan", note: "School holidays, so skip the walk-up queue", place: "Osaka Aquarium Kaiyukan" },
+            { time: "10:30am", title: "Osaka Aquarium Kaiyukan", note: "Booked entry 10:30–10:45. No re-entry", ticket: "Darryl has the QR tickets (email + PDF)", place: "Osaka Aquarium Kaiyukan" },
             { time: "Afternoon", title: "Solaniwa Onsen", note: "3 stops on the Chuo line. Izakaya meal plan, last entry 10pm", ticket: "Darryl has the voucher (email)", place: "Solaniwa Onsen Osaka", train: ["Osaka Metro Chuo Line · Osakako → Bentencho"] },
           ],
           tips: ["Buy 2 tattoo stickers at Solaniwa's front desk."],
