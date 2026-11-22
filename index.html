@@ -543,7 +543,7 @@
   }
   function visibleShipments() {
     var seen = {};
-    return visibleItineraries().reduce(function (shipments, itinerary) {
+    return TRIP.itineraries.reduce(function (shipments, itinerary) {   /* everyone sees every shipment (one shared view) */
       (itinerary.shipments || []).forEach(function (shipment) {
         if (!seen[shipment.id]) { seen[shipment.id] = true; shipments.push(shipment); }
       });
@@ -932,7 +932,7 @@
   /* The meals as a two-column grid: label column + content column. No meals → no section at all. */
   /* Meal photos in photos/ (see L.mealPhoto for the naming). Add a name here when you add a photo. */
   var PHOTOS = ["0101-dinner", "0101-lunch", "1217-dinner", "1218-lunch", "1218-snack", "1219-dinner", "1220-breakfast", "1220-dinner",
-    "1220-lunch", "1221-dinner", "1221-lunch", "1222-lunch", "1223-dinner", "1223-lunch", "1224-dinner", "1224-lunch", "1225-dinner",
+    "1220-lunch", "1221-dinner", "1221-lunch", "1222-lunch", "1223-dinner", "1223-lunch", "1224-dinner", "1225-dinner",
     "1225-lunch", "1225-snack", "1226-dinner", "1226-lunch", "1227-breakfast", "1227-dinner", "1227-lunch", "1227-snack", "1228-dinner",
     "1228-lunch", "1229-dinner", "1230-dinner", "1230-lunch", "1230-snack", "1231-breakfast", "1231-lunch", "1231-snack2"];
   function mealSection(meals, date) {
@@ -1263,22 +1263,35 @@
   }
 
   /* The day's to-dos and things to bring (Sheet columns L and M). Umbrellas and cash are added automatically. */
+  /* Who each Do/Bring item is for. The day's list belongs to before.who (from the Sheet's "Who" column, e.g. "Darryl & Josie",
+     "Hiroshima crew", "Everyone"); an item starting "(Darryl & Josie) ..." in the Sheet belongs to that group instead.
+     Matt & Chloe's own lists (from their tab) always sit under "Matt & Chloe". */
+  function splitByWho(items, defaultWho, groups, kind) {
+    (items || []).forEach(function (text) {
+      var m = /^\(([^)]+)\)\s*(.+)$/.exec(text);
+      var who = m ? m[1] : defaultWho;
+      if (!groups[who]) groups[who] = { do: [], bring: [] }, groups.order.push(who);
+      groups[who][kind].push(m ? m[2] : text);
+    });
+  }
   function beforeBox(day, weather) {
-    var b = day.before || {}, bring = (b.bring || []).slice(), rain = rainChance(weather);
-    if (rain >= 50) bring.unshift("☂️ Umbrellas (" + rain + "% rain)");
-    bring.push("💴 Cash: at least ¥10,000 in your wallet");
+    var b = day.before || {}, rain = rainChance(weather);
+    var mainWho = day.mattChloeOnly ? "Matt & Chloe" : (b.who || "Everyone");
+    var groups = { order: [] };
+    groups[mainWho] = { do: [], bring: [] }; groups.order.push(mainWho);
+    splitByWho(b.do, mainWho, groups, "do");
+    splitByWho(b.bring, mainWho, groups, "bring");
+    if (rain >= 50) groups[mainWho].bring.unshift("☂️ Umbrellas (" + rain + "% rain)");
+    if (!day.mattChloeOnly) groups[mainWho].bring.push("💴 Cash: at least ¥10,000 in your wallet");   /* yen: Japan days only */
+    var mc = day.mattChloeBefore;
+    if (mc) { splitByWho(mc.do, "Matt & Chloe", groups, "do"); splitByWho(mc.bring, "Matt & Chloe", groups, "bring"); }
     function list(items) { return '<ul>' + items.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join("") + '</ul>'; }
-    var wholeLabel = day.mattChloeOnly ? "Matt & Chloe" : "Whole group";
-    var todos = (b.do || []).length ? '<div class="lbl">DO · ' + esc(wholeLabel) + '</div>' + list(b.do) : "";
-    var mc = day.mattChloeBefore || null;
-    if (mc && (mc.do.length || mc.bring.length)) {
-      todos += mc.do.length ? '<div class="lbl">DO · Matt &amp; Chloe</div>' + list(mc.do) : "";
-    }
-    var mattBring = mc ? mc.bring.slice() : [];
-    return '<div class="before"><h3>Before you head out</h3>' +
-      todos +
-      '<div class="lbl">BRING · ' + esc(wholeLabel) + '</div>' + list(bring) +
-      (mattBring.length ? '<div class="lbl">BRING · Matt &amp; Chloe</div>' + list(mattBring) : '') + '</div>';
+    if (!groups.order.some(function (who) { return groups[who].do.length || groups[who].bring.length; })) return "";   /* nothing to do or bring: no box */
+    return '<div class="before"><h3>Before you head out</h3>' + groups.order.map(function (who) {
+      var g = groups[who];
+      return (g.do.length ? '<div class="lbl">DO · ' + esc(who) + '</div>' + list(g.do) : '') +
+             (g.bring.length ? '<div class="lbl">BRING · ' + esc(who) + '</div>' + list(g.bring) : '');
+    }).join("") + '</div>';
   }
 
   /* Their ragdoll, sitting on the cross bar between them (cell coords). White with grey ears, a grey mask round
@@ -1400,40 +1413,6 @@
   /* Help & phrases. Numbers are tel: links; the address and phrase buttons open the huge view. */
   function telHref(n) { return "tel:" + n.replace(/[^\d+]/g, ""); }
 
-  /* Luggage tracking (from Matt's branch): type the tracking numbers and pick a status per shipment.
-     shortcut: saved only on this phone (localStorage), so each person keeps their own; move to the Sheet if we need it shared. */
-  var SHIP_KEY = "tripShipments", SHIP_STATUSES = ["Not sent", "Sent", "In transit", "Ready for collection", "Collected"];
-  function shipmentState() {
-    try { return JSON.parse(localStorage.getItem(SHIP_KEY) || "{}"); } catch (e) { return {}; }
-  }
-  function saveShipment(id, field, value) {
-    var state = shipmentState();
-    state[id] = state[id] || {};
-    state[id][field] = value;
-    try { localStorage.setItem(SHIP_KEY, JSON.stringify(state)); } catch (e) { /* private mode: just don't save */ }
-  }
-  function luggageSection() {
-    var state = shipmentState();
-    return '<section class="section"><h2>Luggage tracking</h2>' + (TRIP.shipments || []).map(function (s) {
-      var st = state[s.id] || {};
-      return '<div class="tracking-item"><strong>' + esc(s.label) + '</strong>' +
-        '<div class="note">' + esc(s.carrier) + ' · Sent: ' + esc(s.sent) + ' · Expected: ' + esc(s.expected) + '</div>' +
-        '<div class="tracking-fields">' +
-          '<label>Tracking numbers<input type="text" autocomplete="off" data-shipment="' + esc(s.id) + '" data-track-field="number" value="' + esc(st.number || "") + '"></label>' +
-          '<label>Status<select data-shipment="' + esc(s.id) + '" data-track-field="status">' + SHIP_STATUSES.map(function (x) {
-            return '<option' + ((st.status || "Not sent") === x ? ' selected' : '') + '>' + x + '</option>';
-          }).join("") + '</select></label>' +
-        '</div></div>';
-    }).join("") + '<p class="tracking-note">Saved only on this phone.</p></section>';
-  }
-  document.addEventListener("input", function (e) {
-    var t = e.target;
-    if (t.matches && t.matches("[data-shipment][data-track-field]")) saveShipment(t.getAttribute("data-shipment"), t.getAttribute("data-track-field"), t.value);
-  });
-  document.addEventListener("change", function (e) {
-    var t = e.target;
-    if (t.matches && t.matches("select[data-shipment]")) saveShipment(t.getAttribute("data-shipment"), "status", t.value);
-  });
   function helpPage() {
     var shipmentData = shipmentState();
     var shipments = visibleShipments();

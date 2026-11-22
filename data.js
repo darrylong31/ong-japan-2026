@@ -1,6 +1,6 @@
 // Japan trip app content. This is the ONLY file that changes when the plan changes.
 // Sources: the original trip itinerary and the "Japan_Korea Trip 2026 - M+C Itinerary" CSV.
-// Columns L/M/N = before.do / before.bring / train; booking references and QR codes are intentionally omitted.
+// Columns L/M/N = before.do / before.bring / train; before.who = column J (who the day's Do/Bring is for), "(Name) item" = just that group; booking references and QR codes are intentionally omitted.
 // Rules: no booking numbers, QR codes, phone numbers of people, or the birthday restaurant.
 // people keys: mum, dad, darryl, josie, matt, chloe, choleh
 // place = what the Directions buttons search for in Google/Apple Maps (leave out for no button).
@@ -25,7 +25,7 @@ window.TRIP = {
   days: [
     {
       date: "2026-12-16", title: "Off We Go! ✈️", scene: "air", weather: ["melbourne", "hongkong"],
-      before: { do: ["Fill in Visit Japan Web (immigration + customs QR codes)", "Leave for the airport by ~9:15am (check)"], bring: ["Passports", "Power bank + chargers in carry-on", "Japan plug adapter (Type A)"] },
+      before: { who: "Darryl & Josie", do: ["Fill in Visit Japan Web (immigration + customs QR codes)", "Leave for the airport by ~9:15am (check)"], bring: ["Passports", "Power bank + chargers in carry-on", "Japan plug adapter (Type A)"] },
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
@@ -42,7 +42,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-17", title: "Hello Kyoto 😍⛩️", scene: "kyoto", weather: ["kyoto"],
-      before: { do: ["Show the Visit Japan Web QR at Narita", "Buy Welcome Suica cards at Narita"], bring: ["Passports", "N'EX QR code (screenshot it) + the Mastercard you paid with"] },
+      before: { who: "Darryl & Josie", do: ["Show the Visit Japan Web QR at Narita", "Buy Welcome Suica cards at Narita"], bring: ["Passports", "N'EX QR code (screenshot it) + the Mastercard you paid with"] },
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
@@ -60,7 +60,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-18", title: "Josie's Secret Birthday Dinner 🤫🎂", scene: "kyoto", weather: ["kyoto"],
-      before: { do: ["Leave the hotel ~6:25 (~35–40 min uphill walk to Kiyomizu-dera)"], bring: ["Comfy walking shoes (lots of hills and stairs)"] },
+      before: { who: "Darryl & Josie", do: ["Leave the hotel ~6:25 (~35–40 min uphill walk to Kiyomizu-dera)"], bring: ["Comfy walking shoes (lots of hills and stairs)"] },
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
@@ -81,7 +81,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-19", title: "Castle & River Day 🛶", scene: "kyoto", weather: ["kyoto"],
-      before: { do: ["At Nijo Castle by 8:45am", "Check the Hozugawa boat is running (winter boats can be cancelled)"], bring: ["Socks (no bare feet in the palace)", "Extra warm layers + gloves for the open boat"] },
+      before: { who: "Darryl & Josie", do: ["At Nijo Castle by 8:45am", "Check the Hozugawa boat is running (winter boats can be cancelled)"], bring: ["Socks (no bare feet in the palace)", "Extra warm layers + gloves for the open boat"] },
       wear: "The river boat is open to the cold this winter. Dress extra warm.",
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
@@ -99,7 +99,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-20", title: "Off to Osaka 🚃", scene: "osaka", weather: ["kyoto", "osaka"],
-      before: { do: ["Check out (time: Latest 10:00am)", "Lock big bags at Kawaramachi Stn before ~10am"], bring: ["Suica cards, topped up"] },
+      before: { who: "Darryl & Josie", do: ["Check out (time: Latest 10:00am)", "Lock big bags at Kawaramachi Stn before ~10am"], bring: ["Suica cards, topped up"] },
       cards: [
         {
           name: "Darryl & Josie", people: ["darryl", "josie"],
@@ -128,7 +128,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-21", title: "Aquarium & Onsen Rest Day ♨️", scene: "osaka", weather: ["osaka", "kyoto"],
-      before: { do: ["Buy 2 tattoo stickers at Solaniwa's front desk"], bring: ["Cash for Grill Miyako (cash only)", "Solaniwa voucher (email)"] },
+      before: { who: "Darryl & Josie", do: ["Buy 2 tattoo stickers at Solaniwa's front desk"], bring: ["Cash for Grill Miyako (cash only)", "Solaniwa voucher (email)"] },
       cards: [
         {
           name: "Darryl & Josie", people: ["darryl", "josie"],
@@ -156,7 +156,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-22", title: "Hiroshima Daytrip 🕊️", scene: "hiroshima", weather: ["hiroshima", "osaka"],
-      before: { do: ["Leave the villa ~7:00am (collect 5 paper tickets at Shin-Osaka)"], bring: ["Shinkansen tickets for 5 (Darryl has tickets)"] },
+      before: { who: "Hiroshima crew", do: ["Leave the villa ~7:00am (collect 5 paper tickets at Shin-Osaka)"], bring: ["Shinkansen tickets for 5 (Darryl has tickets)"] },
       cards: [
         {
           name: "Hiroshima crew", people: ["darryl", "josie", "mum", "dad", "choleh"],
@@ -183,7 +183,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-23", title: "USJ Day! 🎢", scene: "osaka", weather: ["osaka"],
-      before: { do: ["Out the door by ~7:15am (check vs gate time)", "Check tonight's show times in the USJ app"], bring: ["Matt: everyone's tickets (Klook app)", "Power banks (the USJ app drains phones)"] },
+      before: { who: "USJ crew", do: ["Out the door by ~7:15am (check vs gate time)", "Check tonight's show times in the USJ app"], bring: ["Matt: everyone's tickets (Klook app)", "Power banks (the USJ app drains phones)"] },
       cards: [
         {
           name: "USJ crew", people: ["darryl", "josie", "matt", "chloe", "choleh"],
@@ -213,12 +213,12 @@ window.TRIP = {
     },
     {
       date: "2026-12-24", title: "Osaka and King Crab 🦀", scene: "osaka", weather: ["osaka"],
-      before: { do: ["Pack an overnight bag for today/tomorrow", "Send the big bags to the Otowa Yamato Transport Centre from a konbini"], bring: ["Big bags to the konbini", "Pokémon Cafe booking (if booked)"] },
+      before: { who: "Everyone", do: ["Pack an overnight bag for today/tomorrow, THEN send the big bags to the Otowa Yamato Transport Centre from a konbini"], bring: ["Big bags to the konbini"] },
       cards: [{
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
-          { time: "~9:30am", title: "Send the big bags to Tokyo (Yamato)", note: "FamilyMart Kitatsumori 3-chome. ~¥3,060 a bag, cash. Keep the customer copies (tracking numbers)", place: "FamilyMart Kitatsumori 3-chome, 3-1-43 Kitatsumori, Nishinari-ku, Osaka" },
-          { time: "~11:30am", title: "Pokémon Cafe", note: "Daimaru Shinsaibashi 9F (if booked)", place: "Pokemon Cafe Osaka" },
+          { time: "Morning", title: "Slow morning after USJ", note: "Sleep in, late breakfast. Head out ~11:30" },
+          { time: "By ~10am", title: "Send the big bags to Tokyo (Yamato)", note: "FamilyMart Kitatsumori 3-chome. ~¥3,060 a bag, cash. Keep the customer copies (tracking numbers)", place: "FamilyMart Kitatsumori 3-chome, 3-1-43 Kitatsumori, Nishinari-ku, Osaka" },
           { time: "Afternoon", title: "Dotonbori stroll + shopping → Doguyasuji → Shinsekai at dusk", note: "Sakaisuji line Nippombashi → Ebisucho (2 stops), then rest at the villa", place: "Dotonbori, Osaka" },
           { time: "7:30pm", title: "King crab buffet", note: "Soshite Kani Shinsaibashi. Booked, pay at the restaurant", place: "Soshite Kani Shinsaibashi" },
         ],
@@ -227,15 +227,15 @@ window.TRIP = {
           "Christmas Eve is Japan's big date night: busy everywhere.",
         ],
         meals: [
-          { meal: "Breakfast", what: "Light: konbini or Bre Clair Tennoji" },
-          { meal: "Lunch", what: "Pokémon Cafe ~11:30am", detail: "If booked, else Dotonbori street food" },
+          { meal: "Breakfast", what: "Slow: konbini or Bre Clair Tennoji" },
+          { meal: "Lunch", what: "Dotonbori street food", detail: "Takoyaki, okonomiyaki" },
           { meal: "Dinner", what: "Soshite Kani crab buffet, 7:30pm", detail: "Booked" },
         ],
       }],
     },
     {
       date: "2026-12-25", title: "Merry Christmas! 🎄🍗", scene: "tokyo", weather: ["osaka", "tokyo"],
-      before: { do: ["Check out of the villa by ~9:45", "Leave Tenjinbashi-suji by ~12:20", "Buy 551 Horai buns OUTSIDE the Shinkansen gates"], bring: ["Shinkansen tickets for 7 (Darryl has tickets)", "Overnight bags"] },
+      before: { who: "Everyone", do: ["Check out of the villa by ~9:45", "Leave Tenjinbashi-suji by ~12:20", "Buy 551 Horai buns OUTSIDE the Shinkansen gates"], bring: ["Shinkansen tickets for 7 (Darryl has 4, Matt has 3)", "Overnight bags"] },
       cards: [{
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
@@ -255,7 +255,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-26", title: "Exploration and Relax Day 🚶", scene: "tokyo", weather: ["tokyo"],
-      before: { do: ["Pick Kichijoji or Shimokitazawa", "Buy Josie's snow boots (she wears them on the 30 Dec flight, so they don't eat JAL's 20 kg)"], bring: ["Cash for swan boats (~¥700)"] },
+      before: { who: "Everyone", do: ["Pick Kichijoji or Shimokitazawa", "(Darryl & Josie) Buy Josie's snow boots (she wears them on the 30 Dec flight, so they don't eat JAL's 20 kg)"], bring: ["Cash for swan boats (~¥700)"] },
       cards: [{
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
@@ -273,7 +273,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-27", title: "Chopsticks & Unagi 🥢", scene: "tokyo", weather: ["tokyo"],
-      before: { do: ["Be on Takeshita Street before 10am", "At ZEN Chopsticks by 2:20pm"], bring: ["Chopstick voucher (Darryl, Klook app)", "A credit/debit card (the workshop is cashless)"] },
+      before: { who: "Everyone", do: ["Be on Takeshita Street before 10am", "At ZEN Chopsticks by 2:20pm"], bring: ["Chopstick voucher (Darryl, Klook app)", "A credit/debit card (the workshop is cashless)"] },
       cards: [{
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
@@ -292,7 +292,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-28", title: "teamLab & Skytree ✨🗼", scene: "tokyo", weather: ["tokyo"],
-      before: { do: ["Check the teamLab QR arrived (after midnight)"], bring: ["Trousers that roll up to the knee", "teamLab QR (Darryl)", "Skytree booking (Darryl)"] },
+      before: { who: "Everyone", do: ["Check the teamLab QR arrived (after midnight)"], bring: ["Trousers that roll up to the knee", "teamLab QR (Darryl)", "Skytree booking (Darryl)"] },
       cards: [{
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
@@ -310,7 +310,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-29", title: "Snoopy & Wagyu Yakiniku 🐶🍖", scene: "tokyo", weather: ["tokyo"],
-      before: { do: ["Leave the house ~9:30am", "Pack tonight: early start tomorrow"], bring: ["Snoopy Museum QR codes (Darryl, email)"] },
+      before: { who: "Everyone", do: ["Leave the house ~9:30am", "(Darryl & Josie) Pack tonight: early start tomorrow"], bring: ["Snoopy Museum QR codes (Darryl, email)"] },
       cards: [{
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
@@ -328,7 +328,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-30", title: "Harry Potter Day ⚡", scene: "sapporo", weather: ["tokyo", "sapporo"],
-      before: { do: ["Out the door by ~7:45 (only 22 large lockers)", "Check out of the Tokyo house", "Buy anti-slip shoe grips at New Chitose on arrival (before walking Susukino)"], bring: ["All luggage", "Harry Potter tickets (email)", "Limousine bus fare (bring cash and Suica)"] },
+      before: { who: "Darryl & Josie", do: ["Out the door by ~7:45 (only 22 large lockers)", "Check out of the Tokyo house", "Buy anti-slip shoe grips at New Chitose on arrival (before walking Susukino)"], bring: ["All luggage", "Harry Potter tickets (email)", "Limousine bus fare (bring cash and Suica)"] },
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
@@ -347,7 +347,7 @@ window.TRIP = {
     },
     {
       date: "2026-12-31", title: "NYE @ Hokkaido Jingu! 🎆⛩", scene: "sapporo", weather: ["sapporo"],
-      before: { do: ["Buy hand warmers (kairo) at a konbini (shoe grips already bought at New Chitose on 30 Dec)"], bring: ["Cash for Suage+ (cash only)", "Every warm layer you own"] },
+      before: { who: "Darryl & Josie", do: ["Buy hand warmers (kairo) at a konbini (shoe grips already bought at New Chitose on 30 Dec)"], bring: ["Cash for Suage+ (cash only)", "Every warm layer you own"] },
       wear: "−5 to −10°C at night. Wear the shoe grips from New Chitose.",
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
@@ -366,7 +366,7 @@ window.TRIP = {
     },
     {
       date: "2027-01-01", title: "Mt. Teine Skiing! ⛷️", scene: "sapporo", weather: ["sapporo"],
-      before: { do: ["Check the last bus back from Teine", "Pack tonight: leaving at 5:30am tomorrow"], bring: ["Ski jackets, snow pants, thermals, any other ski gear"] },
+      before: { who: "Darryl & Josie", do: ["Check the last bus back from Teine", "Pack tonight: leaving at 5:30am tomorrow"], bring: ["Ski jackets, snow pants, thermals, any other ski gear"] },
       wear: "Ski day: your own jackets and snow pants, plus thermals. Rent skis, goggles and gloves at the Olympia shop.",
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
@@ -384,7 +384,7 @@ window.TRIP = {
     },
     {
       date: "2027-01-02", title: "Wally Bound ✈️", scene: "air", weather: ["sapporo", "tokyo"],
-      before: { do: ["Leave the hotel ~5:30am", "Check out"], bring: ["Passports", "Everything!"] },
+      before: { who: "Darryl & Josie", do: ["Leave the hotel ~5:30am", "Check out"], bring: ["Passports", "Everything!"] },
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
@@ -403,7 +403,7 @@ window.TRIP = {
     },
     {
       date: "2027-01-03", title: "Home Sweet Home! 🏠", scene: "air", weather: ["beijing", "melbourne"],
-      before: { do: [], bring: ["Passports"] },
+      before: { who: "Darryl & Josie", do: [], bring: ["Passports"] },
       cards: [{
         name: "Darryl & Josie", people: ["darryl", "josie"],
         activities: [
@@ -416,11 +416,6 @@ window.TRIP = {
         ],
       }],
     },
-  ],
-
-  // Help page "Luggage tracking": tracking numbers + status are typed in on each phone (saved on that phone only).
-  shipments: [
-    { id: "osaka-tokyo", label: "Osaka → Tokyo (everyone's big bags)", carrier: "Yamato TA-Q-BIN", sent: "24 Dec, FamilyMart Kitatsumori", expected: "25 Dec, collect at the Bunkyo Otowa office" },
   ],
 
   // Help card. Kyoto + Sapporo addresses from the Booking.com confirmations (14 Nov).
@@ -501,7 +496,7 @@ window.TRIP.itineraries = [
           name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
           activities: [
             { time: "Evening", title: "Head to Perth Airport", note: "Direct overnight flight to Tokyo" },
-            { time: "9:55pm", title: "Fly Perth → Narita", note: "Arrive 8:30am on 20 December" },
+            { time: "9:55pm", title: "Fly Perth → Narita", note: "NH882, direct, lands 8:30am on 20 Dec" },
           ],
           meals: [
             { meal: "Dinner", what: "Airport or on the plane" },
@@ -515,11 +510,11 @@ window.TRIP.itineraries = [
           id: "matt-chloe",
           name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
           activities: [
-            { time: "8:30am", title: "Land at Narita", note: "Immigration and customs, then Narita Express to Tokyo Station" },
+            { time: "8:30am", title: "Land at Narita", note: "Immigration and customs (show the Visit Japan Web QR), then Narita Express to Tokyo Station", train: ["Narita Express (N'EX) · Narita Airport → Tokyo Station · Check times + tickets"] },
             { time: "Morning", title: "Drop bags at Keio Presso Inn Tokyo Station Yaesu", place: "Keio Presso Inn Tokyo Station Yaesu" },
             { time: "Afternoon", title: "Forward large bags to Villa Osaka", note: "Yamato TA-Q-BIN from the hotel desk or a convenience store. Keep the receipt and tracking number." },
             { time: "Afternoon", title: "Tokyo Station ramen → Imperial Palace East Gardens", note: "East Gardens are free; check opening hours and last entry." },
-            { time: "Evening", title: "Marunouchi Illumination → Tsukishima Monja Street", note: "Early night before the Kyoto trip." },
+            { time: "Evening", title: "Marunouchi Illumination → Tsukishima Monja Street", note: "Early night: Nozomi 245 leaves Tokyo at 9:09am tomorrow.", train: ["Tokyo Metro Yurakucho Line · Ginza-itchome → Tsukishima · 2 stops"] },
           ],
           meals: [
             { meal: "Breakfast", what: "Narita convenience store" },
@@ -530,12 +525,12 @@ window.TRIP.itineraries = [
       },
       {
         date: "2026-12-21", title: "Meet in Kyoto 🚄", scene: "kyoto", weather: ["kyoto", "osaka"],
-        before: { groupId: "kyoto-family", do: ["Check out of Keio Presso Inn", "Choose Nozomi 245 seats D/E on Smart EX", "Check Kiyomizu-dera's closing time", "Be done with dinner by ~7:30pm for the JR to Osaka"], bring: ["Smart EX ticket for Nozomi 245 (booking 2007)", "Day bag only (big bags are at the villa)", "Phone torch for Fushimi Inari after dark", "IC card or coins for the bus, Keihan and JR"] },
+        before: { groupId: "kyoto-family", do: ["Check out of Keio Presso Inn", "Choose Nozomi 245 seats D/E on Smart EX", "Check Kiyomizu-dera's closing time", "Be done with dinner by ~7:30pm for the JR to Osaka"], bring: ["Smart EX ticket for Nozomi 245", "Day bag only (big bags are at the villa)", "Phone torch for Fushimi Inari after dark", "IC card or coins for the bus, Keihan and JR"] },
         cards: [{
           id: "kyoto-family",
           name: "Matt, Chloe, Mum, Dad & Choleh", groupId: "kyoto-family", people: ["matt", "chloe", "mum", "dad", "choleh"],
           activities: [
-            { time: "9:09am", title: "Check out and ride Nozomi 245 Tokyo → Kyoto", note: "Shinkansen arrives Kyoto 11:21am. Smart EX booking 2007, seats D/E.", train: ["Tokaido Shinkansen Line · Nozomi 245 · Tokyo 9:09am → Kyoto 11:21am · Smart EX booking 2007, seats D/E"] },
+            { time: "9:09am", title: "Check out and ride Nozomi 245 Tokyo → Kyoto", note: "Shinkansen arrives Kyoto 11:21am. Seats D/E.", train: ["Tokaido Shinkansen Line · Nozomi 245 · Tokyo 9:09am → Kyoto 11:21am · Seats D/E"] },
             { time: "11:21am", title: "Meet at Kyoto Station", note: "Travel to Kiyomizu-dera by Kyoto City Bus or taxi; allow 15–20 minutes.", place: "Kyoto Station", train: ["Kyoto City Bus (or taxi) · Kyoto Station → Kiyomizu-dera · 15–20 minutes"] },
             { time: "~12:15pm", title: "Kiyomizu-dera", note: "Snack lunch on Kiyomizu-zaka. See the main hall stage, Jishu Shrine and Otowa Waterfall. Sunset is ~4:48pm and temples close around 4:30–5:00pm.", place: "Kiyomizu-dera, Kyoto", train: ["Walk · Kiyomizu-dera → Kiyomizu-Gojo station via Gojozaka · 15–20 minutes"] },
             { time: "~3:30pm", title: "Fushimi Inari Taisha", note: "Walk up to the Yotsutsuji viewpoint for sunset. The upper trails get dark after sunset; use a phone torch.", place: "Fushimi Inari Taisha", train: ["Keihan Main Line · Kiyomizu-Gojo → Fushimi-Inari · 10 minutes", "JR Nara Line · Inari → Kyoto Station · 5 minutes"] },
@@ -585,7 +580,7 @@ window.TRIP.itineraries = [
           name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
           activities: [
             { time: "Morning", title: "Travel to Narita Airport" },
-            { time: "2:50pm", title: "Fly Narita → Jeju", note: "Arrive around 5:45pm." },
+            { time: "2:50pm", title: "Fly Narita → Jeju", note: "KE2126, lands 5:45pm. Checked bags 20 kg." },
             { time: "Evening", title: "Check in at Ventimo Hotel & Residence", place: "Ventimo Hotel & Residence Jeju" },
           ],
           meals: [
@@ -621,7 +616,7 @@ window.TRIP.itineraries = [
           name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
           activities: [
             { time: "Morning", title: "Travel to Jeju Airport" },
-            { time: "1:25pm", title: "Fly Jeju → Busan", note: "Arrive around 2:25pm." },
+            { time: "1:25pm", title: "Fly Jeju → Busan", note: "KE1530, lands 2:25pm. Checked bags 20 kg." },
             { time: "Afternoon", title: "Check in at Shilla Stay Busan Haeundae", place: "Shilla Stay Busan Haeundae" },
           ],
           meals: [],
@@ -653,7 +648,7 @@ window.TRIP.itineraries = [
           name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
           activities: [
             { time: "Morning", title: "Travel to Busan Station" },
-            { time: "12:00pm", title: "KTX Busan → Seoul", note: "Arrive around 2:51pm." },
+            { time: "12:00pm", title: "KTX Busan → Seoul", note: "Arrives Seoul 2:51pm.", train: ["KTX · KTX034 · Busan 12:00pm → Seoul 2:51pm"] },
             { time: "Afternoon", title: "Check in at Crown Park Hotel Seoul Myeongdong", place: "Crown Park Hotel Seoul" },
           ],
           meals: [],
@@ -712,8 +707,8 @@ window.TRIP.itineraries = [
           id: "matt-chloe",
           name: "Matt & Chloe", groupId: "matt-chloe", people: ["matt", "chloe"],
           activities: [
-            { time: "11:35am", title: "Fly Incheon → Singapore", note: "Layover about 5 hours 50 minutes." },
-            { time: "11:00pm", title: "Fly Singapore → Perth", note: "Arrive 4:15am on 12 January." },
+            { time: "11:35am", title: "Fly Incheon → Singapore", note: "TR843 (Scoot), lands 5:10pm. ~5h50 layover at Changi." },
+            { time: "11:00pm", title: "Fly Singapore → Perth", note: "TR28, lands Perth 4:15am on 12 Jan." },
           ],
           meals: [
             { meal: "Breakfast", what: "Seoul or Incheon Airport" },
