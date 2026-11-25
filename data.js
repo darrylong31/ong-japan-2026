@@ -156,15 +156,16 @@ window.TRIP = {
     },
     {
       date: "2026-12-22", title: "Hiroshima Daytrip 🕊️", scene: "hiroshima", weather: ["hiroshima", "osaka"],
-      before: { who: "Hiroshima crew", do: ["Leave the villa ~7:00am (collect 5 paper tickets at Shin-Osaka)"], bring: ["Shinkansen tickets for 5 (Darryl has tickets)"] },
+      before: { who: "Hiroshima crew", do: ["Leave the villa ~7:00am", "At Shin-Osaka, collect ONLY the Nozomi 1 tickets. Collect the return (Nozomi 56) tickets at Hiroshima Stn later"], bring: ["Shinkansen tickets for 5 (Darryl has tickets)"] },
       cards: [
         {
           name: "Hiroshima crew", people: ["darryl", "josie", "mum", "dad", "choleh"],
           activities: [
-            { time: "~7:00am", title: "Leave the villa for the Shinkansen", note: "Collect the 5 paper tickets at Shin-Osaka. Reserved seats", train: ["Sanyo Shinkansen Line · Nozomi 1 · Shin-Osaka 8:24am → Hiroshima 9:49am"] },
+            { time: "~7:00am", title: "Leave the villa for the Shinkansen", note: "Collect only these outbound tickets at Shin-Osaka. Leave the return ones until Hiroshima: they can be changed free in the smartEX app until printed", train: ["Sanyo Shinkansen Line · Nozomi 1 · Shin-Osaka 8:24am → Hiroshima 9:49am · Car 4, seats 5-A to 5-E"] },
             { time: "Midday", title: "Peace Park + Museum", place: "Hiroshima Peace Memorial Museum" },
-            { time: "Afternoon", title: "Miyajima (optional)", note: "Then back to Osaka for an early night. USJ tomorrow", place: "Miyajima Itsukushima Shrine", train: ["JR Sanyo Line + JR ferry · Hiroshima → Miyajimaguchi → Miyajima · Suica OK"] },
-            { time: "6:43pm", title: "Shinkansen back to Shin-Osaka", note: "Reserved seats for 5", train: ["Sanyo Shinkansen Line · Nozomi 56 · Hiroshima 6:43pm → Shin-Osaka 8:04pm"] },
+            { time: "2:00pm", title: "Boat from Peace Park to Miyajima", note: "World Heritage Sea Route from Motoyasu Pier (backup 2:30pm). Pay at the pier office, arrive 15 min early", place: "Motoyasu Pier, Hiroshima" },
+            { time: "~5:00pm", title: "Leave Miyajima", note: "JR ferry + JR back to Hiroshima Stn, collect the return tickets, then Shinkansen. USJ tomorrow", place: "Miyajima Itsukushima Shrine", train: ["JR ferry + JR Sanyo Line · Miyajima → Miyajimaguchi → Hiroshima · Ferry every ~15 min, no booking, Suica OK"] },
+            { time: "6:43pm", title: "Shinkansen back to Shin-Osaka", note: "Reserved seats for 5", train: ["Sanyo Shinkansen Line · Nozomi 56 · Hiroshima 6:43pm → Shin-Osaka 8:04pm · Car 4, seats 19-A to 19-E"] },
           ],
           meals: [
             { meal: "Breakfast", what: "Konbini or Shin-Osaka station" },
@@ -240,7 +241,7 @@ window.TRIP = {
         name: "Everyone", people: ["mum", "dad", "darryl", "josie", "matt", "chloe", "choleh"],
         activities: [
           { time: "~9:45am", title: "Check out → Tenjinbashi-suji Shopping Street", note: "Overnight bags only. ~10:15–12:15: most shops open 10–11, Harukoma sushi opens 11", place: "Tenjinbashi-suji Shopping Street", train: ["Osaka Metro · Villa → Tenjinbashisuji 6-chome · Check the route on the day", "Tanimachi + Midosuji Lines · Tenjinbashisuji 6-chome → Shin-Osaka"] },
-          { time: "1:15pm", title: "Shinkansen Shin-Osaka → Tokyo", note: "Nozomi 254, arrives 3:45pm. All 7 together. Overnight bags only", train: ["Tokaido Shinkansen Line · Nozomi 254 · Shin-Osaka 1:15pm → Tokyo 3:45pm"] },
+          { time: "1:15pm", title: "Shinkansen Shin-Osaka → Tokyo", note: "Nozomi 254, arrives 3:45pm. All 7 together. Overnight bags only", train: ["Tokaido Shinkansen Line · Nozomi 254 · Shin-Osaka 1:15pm → Tokyo 3:45pm · Car 3, all 7 together: Darryl's tickets 8-D, 8-E, 9-D, 9-E; Matt's tickets 8-A, 8-B, 8-C"] },
           { time: "~4:15pm", title: "Collect the big bags at Yamato", note: "Bunkyo Otowa office, open 8am–8pm. Bring Darryl's passport + the customer copies. Then ~12 min walk to the house", place: "1-19-22 Otowa, Bunkyo-ku, Tokyo" },
           { time: "~5:00pm", title: "Arrive at the Tokyo house", place: "361-1 Yamabukicho, Shinjuku-ku, Tokyo" },
           { time: "6:30pm", title: "KFC Christmas at the house", note: "Darryl picks up the order at KFC Waseda Ekimae", place: "KFC Waseda Ekimae", train: ["Walk · House ↔ KFC Waseda Ekimae · ~18 min each way"] },
